@@ -1,0 +1,76 @@
+{% extends 'master.html' %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+{% endblock %}
+
+{% block content1 %}
+	<section class="login">
+		<h3>INGRESO AL SISTEMA</h3>
+		<form method="post">
+		{% csrf_token %}
+			<div class="form-group">
+			    <label for="username">Username</label>
+			    <input type="text" class="form-control" id="username" name="username" aria-describedby="UserName" placeholder="Enter Username">
+			    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			</div>
+			<div class="form-group">
+			    <label for="exampleInputPassword1">Password</label>
+			    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+			</div>
+			<button type="submit" class="btn btn-primary">Ingresar</button>
+			{{ form.errors }} 
+		</form>
+		<form method="post" >
+		<!-- {% csrf_token %}
+			{{ form }}
+			<button type="submit" class="btn btn-primary">Registrar</button>
+		</form> -->
+	</section>
+	<section class="register">
+		<h3>FORMULARIO DE REGISTRO</h3>
+		<form method="post">{% csrf_token %}
+			<div class="form-group">
+			    <label for="first_name">First Name</label>
+			    <input type="text" class="form-control" id="first_name" name="first_name" aria-describedby="nameHelp" placeholder="Enter your first name">
+			</div>
+			<div class="form-group">
+			    <label for="last_name">Last Name</label>
+			    <input type="text" class="form-control" id="last_name" name="last_name" aria-describedby="nameHelp" placeholder="Enter your last name">
+			</div>
+			<div class="form-group">
+			    <label for="username">Username</label>
+			    <input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp" placeholder="Enter your username">
+			</div>
+			<div class="form-group">
+			    <label for="email">Email address</label>
+			    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+			</div>
+			<div class="form-group">
+			    <label for="password1">Password 1</label>
+			    <input type="password" class="form-control" id="password1" name="password1" placeholder="Password 1">
+			</div>
+			<div class="form-group">
+			    <label for="password2">Password 2</label>
+			    <input type="password" class="form-control" id="password2" name="password2" placeholder="Password 2">
+			</div>
+			<button type="submit" class="btn btn-primary">Registrar</button>
+		</form>
+		<!--<form method="post" >
+			{% csrf_token %}
+            {% for non_field_error in form.non_field_errors %}
+                <p class="help is-danger">{{ non_field_error }}</p>
+            {% endfor %}
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}" class="label">{{ field.html_name }}</label>
+                    {{ field }}
+                {% for error in field.errors %}
+                    <p class="help is-danger">{{ error }}</p>
+                {% endfor %}
+                </div>
+            {% endfor %}
+			<button type="submit" class="btn btn-primary">Registrar</button>
+		</form> -->
+	</section>
+{% endblock %}

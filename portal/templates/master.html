@@ -1,0 +1,46 @@
+{% load staticfiles %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fototeca UTPL</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css'%}">
+	{% block head %}
+	{% endblock %}
+</head>
+<body>
+<header>
+	<div class="imgheader"><img src="{% static 'images/logo-fototeca.jpg'%}" title="logo" width="60"></div>
+	<nav>
+		<a href="/" class="menuinicio">Home</a>
+		<a href="/#acerca">Acerca de</a>
+		<a href="/#quienes">Quines Somos?</a>
+		<a href="/reconoce">Colecciones</a>
+		<a href="/#contactos" class="menufin">Contactos</a>
+		{% if user.is_authenticated %}
+		<a href="/logout">Salir</a>
+		{% else %}
+		<a href="/formulario">Únete</a>{% endif %}
+	</nav>
+	{% block header %}
+	{% endblock %}
+</header>
+<main>
+	<section class="container1">
+		{% block content1 %}
+		{% endblock %}
+	</section>
+	<section class="aside1">
+		{% block content2 %}
+		{% endblock %}
+	</section>
+</main>
+<footer><a name="contact"></a>
+	<h6>Derechos Reservados UTPL | MediaLab | TAW | 2018</h6>
+	{% block footer %}
+	{% endblock %}
+</footer>
+</body>
+</html>

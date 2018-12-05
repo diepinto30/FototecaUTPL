@@ -1,0 +1,66 @@
+{% load staticfiles %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Fototeca UTPL</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Fotote de la UTPL, repositorio de fotos">
+  	<meta name="keywords" content="fotos, utpl, photos, fotos">
+  	<meta name="author" content="UTPL, by rlramirez">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css'%}">
+	<link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css' />
+
+</head>
+<body>
+<header>
+	<img src="{% static 'images/logo-fototeca.jpg'%}" title="logo">
+	<nav>
+		<a href="" class="menuinicio">Home</a>
+		<a href="#acerca">Acerca de</a>
+		<a href="#quienes">Quines Somos?</a>
+		<a href="/reconoce">Colecciones</a>
+		<a href="#contactos" class="menufin">Contactos</a>
+		<a href="/formulario">Únete</a>
+	</nav>
+</header>
+<section class="slider">
+	<div class="ventana"><p>Necesitamos tu ayuda para identificar estas fotografías. Colabora, comparte, etiqueta</p></div>
+</section>
+<section class="acerca"><a name="acerca"></a>
+	<h2>Acerca de</h2>
+	<p>
+		The HTML element represents the main content of the of a document, portion of a document, or application. The main content area consists of content that is directly related to, or expands upon the central topic of, a document or the central functionality of an application.		
+	</p>
+</section>
+<section class="numfotos">
+	<h3>+ 350 fotos</h3>
+</section>
+<section class="somos"><a name="quienes"></a>
+	<h2>¿Quienes Somós?</h2>
+	<p>
+		The HTML element represents the main content of the of a document, portion of a document, or application. The main content area consists of content that is directly related to, or expands upon the central topic of, a document or the central functionality of an application.		
+	</p>
+</section>
+<section class="sponsor">
+	<section class="contactos">
+		<h3>Contactos:</h3>
+		<ul>
+			<li>Dieccion</li>
+			<li>Dieccion</li>
+			<li>Dieccion</li>
+		</ul>
+	</section>
+	<section class="sponsor-logo"><a name="contactos"></a>
+		<img src="{% static 'images/utpl.png'%}">
+		<img src="{% static 'images/medialab.png'%}">
+		<img src="{% static 'images/taw.png'%}">
+	</section>
+</section>
+
+<footer><a name="contact"></a>
+	<h6>Derechos Reservados UTPL | MediaLab | TAW | 2018</h6>
+</footer>
+</body>
+</html>
