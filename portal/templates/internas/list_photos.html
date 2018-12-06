@@ -30,12 +30,19 @@
 			Texto de la ventana emergente<br/>
 			<br/>
 		</div>
-		<div class="window-container zoomin1">
-			<span class="close">Cerrar</span>
-			<h3>Versión en Zoom out 2</h3> 
-			Texto de la ventana emergente<br/>
-			<br/>
-		</div>
+		{% for img in list_imgs %}
+			<div class="window-container zoomin1"><center>
+				<span class="close">Cerrar </span>
+				<h3>{{ img.nombre}}</h3>
+				<img src="/media/{{ img.foto}}" style="height: 280px;width: 280px; "><br>
+				<div style="width: 90%;">{{ img.descripcion}}</div><br>
+				{{ img.direccion}}<br>
+				{{ img.ciudad}}, {{ img.pais}}<br>
+				{{ img.direccion}}<br>
+				Texto de la ventana emergente<br/>
+				<br/></center>
+			</div>
+		{% endfor %}
 	</div>
 	<script>!window.jQuery && document.write(unescape('%3Cscript src="{% static 'js/jquery-1.7.1.min.js'%}"%3E%3C/script%3E'))</script>
 	<script type="text/javascript" src="{% static 'js/ventana.js'%}"></script>
