@@ -10,10 +10,11 @@
 {% endblock %}
 
 {% block content1 %}
-	{% for imgC in list_imgct %}
+	{% for img in list_imgs %}
+		{% for imgC in list_imgC %}
 
-		{% for img in list_imgs %}
-			{% if imgc.idimagen == 2 %}
+			<!--{% if imgC == 2 %}-->
+				<p> you entered correct </p>
 				<section class="photo_list">
 					<h3>{{ img.nombre}}</h3>
 					<img src="/media/{{ img.foto}}">
@@ -25,7 +26,7 @@
 						<span class="button icon-twitter" data-type="zoomin"></span>
 					</div>
 				</section>
-			{% endif %}
+			<!--{% endif %}-->
 		{% endfor %}
 	{% endfor %}
 	<div class="overlay-container">

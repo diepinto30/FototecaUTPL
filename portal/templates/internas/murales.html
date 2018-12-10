@@ -11,17 +11,21 @@
 
 {% block content1 %}
 	{% for img in list_imgs %}
-		<section class="photo_list">
-			<h3>{{ img.nombre}}</h3>
-			<img src="/media/{{ img.foto}}">
-			<div class="icon-photo">
-				<span class="button icon-smile" data-type="zoomin"></span>
-				<span class="button icon-file-text" data-type="zoomin1"></span>
-				<span class="button icon-bubbles4" data-type="zoomin"></span>
-				<span class="button icon-facebook2" data-type="zoomin"></span>
-				<span class="button icon-twitter" data-type="zoomin"></span>
-			</div>
-		</section>
+		{% for imgC in list_imgC %}
+			<!--{% if imgC.idimagen == '1' %}-->
+				<section class="photo_list">
+					<h3>{{ img.nombre}}</h3>
+					<img src="/media/{{ img.foto}}">
+					<div class="icon-photo">
+						<span class="button icon-smile" data-type="zoomin"></span>
+						<span class="button icon-file-text" data-type="zoomin1"></span>
+						<span class="button icon-bubbles4" data-type="zoomin"></span>
+						<span class="button icon-facebook2" data-type="zoomin"></span>
+						<span class="button icon-twitter" data-type="zoomin"></span>
+					</div>
+				</section>
+			<!--{% endif %}-->
+		{% endfor %}
 	{% endfor %}
 
 	<div class="overlay-container">
