@@ -37,7 +37,17 @@ def listado_fotos(request):
 	return render(request, 'internas/list_photos.html', diccionario,context_instance=RequestContext(request))
 	#return render_to_response('internas/list_photos.html', context=RequestContext(request))
 
+def murales(request):
+	imagenes = Imagen.objects.all()
+	titulo = "Murales"
+	diccionario = {'list_imgs': imagenes, 'titulo': titulo}
+	return render(request, 'internas/murales.html', diccionario,context_instance=RequestContext(request))
 
+def monumentos(request):
+	imagenes = Imagen.objects.all()
+	titulo = "Monumentos"
+	diccionario = {'list_imgs': imagenes, 'titulo': titulo}
+	return render(request, 'internas/monumentos.html', diccionario,context_instance=RequestContext(request))
 
 def logout_view(request):
     logout(request)

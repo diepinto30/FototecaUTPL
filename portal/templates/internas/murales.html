@@ -1,0 +1,61 @@
+{% extends 'master.html' %}
+{% block tittle %} Murales {% endblock %}
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/ventana.css'%}">
+{% endblock %}
+
+{% block content1 %}
+	{% for img in list_imgs %}
+		<section class="photo_list">
+			<h3>{{ img.nombre}}</h3>
+			<img src="/media/{{ img.foto}}">
+			<div class="icon-photo">
+				<span class="button icon-smile" data-type="zoomin"></span>
+				<span class="button icon-file-text" data-type="zoomin1"></span>
+				<span class="button icon-bubbles4" data-type="zoomin"></span>
+				<span class="button icon-facebook2" data-type="zoomin"></span>
+				<span class="button icon-twitter" data-type="zoomin"></span>
+			</div>
+		</section>
+	{% endfor %}
+
+	<div class="overlay-container">
+		<div class="window-container zoomin">
+			<span class="close">Cerrar</span>
+			<h3>Versión en Zoom out </h3>
+			Texto de la ventana emergente<br/>
+			<br/>
+		</div>
+		{% for img in list_imgs %}
+			<div class="window-container zoomin1"><center>
+				<span class="close">Cerrar </span>
+				<h3>{{ img.nombre}}</h3>
+				<img src="/media/{{ img.foto}}" style="height: 280px;width: 280px; "><br>
+				<div style="width: 90%;">{{ img.descripcion}}</div><br>
+				{{ img.direccion}}<br>
+				{{ img.ciudad}}, {{ img.pais}}<br>
+				{{ img.direccion}}<br>
+				Texto de la ventana emergente<br/>
+				<br/></center>
+			</div>
+		{% endfor %}
+	</div>
+	<script>!window.jQuery && document.write(unescape('%3Cscript src="{% static 'js/jquery-1.7.1.min.js'%}"%3E%3C/script%3E'))</script>
+	<script type="text/javascript" src="{% static 'js/ventana.js'%}"></script>
+{% endblock %}
+{% block content2 %}
+	<section class="categorias">
+		<h3>Categorías</h3>
+		<ul>
+			<li>Cat1</li>
+			<li>Cat1</li>
+			<li>Cat1</li>
+			<li>Cat1</li>
+		</ul>
+	</section>
+{% endblock %}

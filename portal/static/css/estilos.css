@@ -227,3 +227,45 @@ footer{
 	text-align: center;
 	padding: 1em 0;
 }
+
+.dropbtn {
+    color: #fff;
+		text-decoration:none;
+		padding: 0 1em;
+		padding: 2em 1em;
+		transition: 0.7s;
+}
+
+.dropbtn:hover{
+	color: #000;
+	background: #E8C000;
+	text-decoration:none;
+	transition: 0.7s;
+}
+
+/* .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;} */
