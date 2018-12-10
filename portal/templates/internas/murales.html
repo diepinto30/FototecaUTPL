@@ -11,23 +11,23 @@
 
 {% block content1 %}
 	{% for img in list_imgs %}
-		{% for imgC in list_imgC %}
-			<!--{% if imgC.idimagen == '1' %}-->
-				<section class="photo_list">
-					<h3>{{ img.nombre}}</h3>
-					<img src="/media/{{ img.foto}}">
-					<div class="icon-photo">
-						<span class="button icon-smile" data-type="zoomin"></span>
-						<span class="button icon-file-text" data-type="zoomin1"></span>
-						<span class="button icon-bubbles4" data-type="zoomin"></span>
-						<span class="button icon-facebook2" data-type="zoomin"></span>
-						<span class="button icon-twitter" data-type="zoomin"></span>
-					</div>
-				</section>
-			<!--{% endif %}-->
-		{% endfor %}
-	{% endfor %}
 
+			<section class="photo_list">
+				<h3>{{ img.nombre}}</h3>
+				<img src="/media/{{ img.foto}}">
+				<div class="icon-photo">
+					<span class="button icon-smile" data-type="zoomin"></span>
+					<span class="button icon-file-text" data-type="zoomin1"></span>
+					<span class="button icon-bubbles4" data-type="zoomin"></span>
+					<span class="button icon-facebook2" data-type="zoomin"></span>
+					<span class="button icon-twitter" data-type="zoomin"></span>
+				</div>
+			</section>
+
+	{% endfor %}<br><br>
+	{% for imgC in list_imgC %}
+		<p>{{ imgC.idimagen}}</p>
+	{% endfor %}
 	<div class="overlay-container">
 		<div class="window-container zoomin">
 			<span class="close">Cerrar</span>
@@ -36,17 +36,19 @@
 			<br/>
 		</div>
 		{% for img in list_imgs %}
-			<div class="window-container zoomin1"><center>
-				<span class="close">Cerrar </span>
-				<h3>{{ img.nombre}}</h3>
-				<img src="/media/{{ img.foto}}" style="height: 280px;width: 280px; "><br>
-				<div style="width: 90%;">{{ img.descripcion}}</div><br>
-				{{ img.direccion}}<br>
-				{{ img.ciudad}}, {{ img.pais}}<br>
-				{{ img.direccion}}<br>
-				Texto de la ventana emergente<br/>
-				<br/></center>
-			</div>
+			{% if img.idimagen == img.idimagen %}
+				<div class="window-container zoomin1"><center>
+					<span class="close">Cerrar </span>
+					<h3>{{ img.nombre}}</h3>
+					<img src="/media/{{ img.foto}}" style="height: 280px;width: 280px; "><br>
+					<div style="width: 90%;">{{ img.descripcion}}</div><br>
+					{{ img.direccion}}<br>
+					{{ img.ciudad}}, {{ img.pais}}<br>
+					{{ img.direccion}}<br>
+					Texto de la ventana emergente<br/>
+					<br/></center>
+				</div>
+			{% endif %}
 		{% endfor %}
 	</div>
 	<script>!window.jQuery && document.write(unescape('%3Cscript src="{% static 'js/jquery-1.7.1.min.js'%}"%3E%3C/script%3E'))</script>
