@@ -19,10 +19,11 @@
 		<a href="/#quienes">Quines Somos?</a>
 		<a href="/murales">Murales</a>
 		<a href="/monumentos">Monumentos</a>
-		<a href="/reconoce">Colecciones</a>
+		<a href="/reconoce">Células</a>
 		<a href="/#contactos" class="menufin">Contactos</a>
 		{% if user.is_authenticated %}
-		<a href="/logout">Salir</a>
+
+		<a href="/logout"><img src="{% static 'images/user.png'%}" title="user" width="5"> {{ user.username }}</a>
 		{% else %}
 		<a href="/formulario">Únete</a>{% endif %}
 	</nav>

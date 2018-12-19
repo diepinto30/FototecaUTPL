@@ -10,3 +10,6 @@ admin.site.register(ImagenHasAutores)
 admin.site.register(ImagenHasCategorias)
 admin.site.register(Megusta)
 admin.site.register(Tipolicencia)
+
+
+

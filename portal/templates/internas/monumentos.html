@@ -8,7 +8,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/ventana.css'%}">
 {% endblock %}
-
 {% block content1 %}
 	{% for img in list_imgs %}
 		<section class="photo_list">
@@ -38,6 +37,7 @@
 				<img src="/media/{{ img.foto}}" style="height: 280px;width: 280px; "><br>
 				<div style="width: 90%;">{{ img.descripcion}}</div><br>
 				{{ img.direccion}}<br>
+				<img src="https://maps.googleapis.com/maps/api/staticmap?center={Latitude},{Longitude}&zoom=12&size=400x400&key=[my_api_key]">
 				{{ img.ciudad}}, {{ img.pais}}<br>
 				{{ img.direccion}}<br>
 				Texto de la ventana emergente<br/>
@@ -51,6 +51,7 @@
 {% block content2 %}
 	<section class="categorias">
 		<h3>Categorías</h3>
+
 		<ul>
 			<li>Cat1</li>
 			<li>Cat1</li>

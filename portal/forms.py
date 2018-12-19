@@ -27,3 +27,8 @@ class RegistrationForm(UserCreationForm):
 			user.save()
 
 		return user
+
+class LoginFrom(forms.Form):
+	username = forms.CharField()
+	password = forms.CharField(widget=forms.PasswordInput())
+

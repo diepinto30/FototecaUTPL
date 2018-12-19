@@ -35,6 +35,8 @@
 			Texto de la ventana emergente<br/>
 			<br/>
 		</div>
+        la -3.986069
+        log -79.197805
 		{% for img in list_imgs %}
 			{% if img.idimagen == img.idimagen %}
 				<div class="window-container zoomin1"><center>
@@ -42,8 +44,8 @@
 					<h3>{{ img.nombre}}</h3>
 					<img src="/media/{{ img.foto}}" style="height: 280px;width: 280px; "><br>
 					<div style="width: 90%;">{{ img.descripcion}}</div><br>
-					{{ img.direccion}}<br>
-					{{ img.ciudad}}, {{ img.pais}}<br>
+                    <img src="https://maps.googleapis.com/maps/api/staticmap?center=44.807572,41.716328&zoom=12&size=400x400&key=[My_api_code]"><br>
+                    {{ img.ciudad}}, {{ img.pais}}<br>
 					{{ img.direccion}}<br>
 					Texto de la ventana emergente<br/>
 					<br/></center>

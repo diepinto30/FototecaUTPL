@@ -12,8 +12,7 @@ from django.contrib.auth.views import (
 
 urlpatterns = patterns('portal.views',
 	url(r'^$', 'home_page', name='home'),
-	url(r'^formulario/$',login, {'template_name':'internas/formulario.html'}, name='login'),
-	#url(r'^logout/$', logout, {'template_name': 'internas/logout.html'}, name='logout'),
+	url(r'^formulario/$', login, {'template_name':'internas/formulario.html'}, name='login'),
 	url(r'^logout/$', 'logout_view', name='logout_view'),
 	url(r'^reconoce/$', 'listado_fotos', name='listado_fotos'),
 	url(r'^murales/$', 'murales', name='murales'),
