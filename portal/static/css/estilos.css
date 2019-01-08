@@ -9,7 +9,7 @@ html, body{
 }
 header{
 	background: #000;
-	height: 80px;
+	height: 90px;
 	
 	width: 100%; /* hacemos que la cabecera ocupe el ancho completo de la página */
 	left: 0; /* Posicionamos la cabecera al lado izquierdo */
@@ -70,12 +70,14 @@ main{
 	padding: 0.4em 2em;
 	font-size: 1.2em;
 }
+
+
 .login, .register{
 	width: 40%;
 	display: inline-block;
 	padding: 1em;
 	border: 1px solid #BFBDBD;
-	margin: 1em;
+	margin: 4em;
 	vertical-align: top;
 }
 .slider{
@@ -228,20 +230,8 @@ footer{
 	padding: 1em 0;
 }
 
-.dropbtn {
-    color: #fff;
-		text-decoration:none;
-		padding: 0 1em;
-		padding: 2em 1em;
-		transition: 0.7s;
-}
 
-.dropbtn:hover{
-	color: #000;
-	background: #E8C000;
-	text-decoration:none;
-	transition: 0.7s;
-}
+
 
 /* .dropdown {
     position: relative;
@@ -259,7 +249,7 @@ footer{
 
 .dropdown-content a {
     color: black;
-    padding: 12px 16px;
+    padding: 12px 16px;s
     text-decoration: none;
     display: block;
 }

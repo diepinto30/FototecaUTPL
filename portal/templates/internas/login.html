@@ -1,0 +1,19 @@
+{% extends 'master.html' %}
+{% block tittle %} LOGIN {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+{% endblock %}
+
+{% block content1 %}
+
+	<section class="login" style="">
+        <h3>INGRESO AL SISTEMA</h3>
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit">Login</button>
+            </form>
+
+	</section>
+{% endblock %}

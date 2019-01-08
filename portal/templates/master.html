@@ -7,6 +7,7 @@
 	<title>{% block tittle %}{% endblock %} | Fototeca UTPL</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css'%}">
+	<link href="https://file.myfontastic.com/hUsvSK8s6MutdPKJHuW7TX/icons.css" rel="stylesheet">
 	{% block head %}
 	{% endblock %}
 </head>
@@ -22,10 +23,21 @@
 		<a href="/reconoce">Células</a>
 		<a href="/#contactos" class="menufin">Contactos</a>
 		{% if user.is_authenticated %}
+		<!--<div class="dropdown" style="float:right;">-->
 
-		<a href="/logout"><img src="{% static 'images/user.png'%}" title="user" width="5"> {{ user.username }}</a>
-		{% else %}
-		<a href="/formulario">Únete</a>{% endif %}
+		<a href="/formulario"><span class="icon-user"></span> | {{ user.username }}</a>
+		<a href="/logout">Salir</a>
+			{% else %}
+			<a href="/login">login</a>
+			<a href="/formulario">Únete</a>
+			{% endif %}
+
+		</div>
+
+
+
+
+
 	</nav>
 	{% block header %}
 	{% endblock %}
