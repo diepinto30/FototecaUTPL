@@ -41,7 +41,6 @@ class Categoria(models.Model):
 class Imagen(models.Model):
     idimagen = models.AutoField(primary_key=True)
     iduser = models.ForeignKey(User)
-    #iduser = models.OneToOneField(User)
     nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=300, blank=True, null=True)
     hayrostros = models.NullBooleanField()
@@ -56,6 +55,7 @@ class Imagen(models.Model):
     fecha_publicacion = models.DateField('solved time', default=timezone.now)
     fecha_tomada = models.DateField('solved time', default=timezone.now)
     idlicencia = models.ForeignKey('Tipolicencia', db_column='idlicencia')
+    #idcategoria = models.ForeignKey('Categoria', db_column='idcategoria')
 
 
     def __unicode__(self):

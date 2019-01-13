@@ -12,17 +12,18 @@ from django.views.generic import CreateView
 from django.core.urlresolvers import reverse_lazy
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from portal.forms import LoginFrom
+from portal.forms import ImgForm
 from django.contrib.auth import authenticate, login
 
 
 from portal.models import *
+from portal.models import ImagenHasCategorias
+from portal.models import Imagen
 
 
-#Create your views here.
+# Create your views here.
 def home_page(request):
 	return render_to_response('home_page.html', context=RequestContext(request))
-
 
 
 class formulario(CreateView):
@@ -32,30 +33,28 @@ class formulario(CreateView):
 	success_url = reverse_lazy('form:form')
 
 
-
 # @login_required(login_url='/formulario/')
 
 
 def listado_fotos(request):
 	imagenes = Imagen.objects.all()
-	titulo = "Galeria imagenes"
-	diccionario = {'list_imgs': imagenes, 'titulo': titulo}
-	return render(request, 'internas/list_photos.html', diccionario,context_instance=RequestContext(request))
-	#return render_to_response('internas/list_photos.html', context=RequestContext(request))
+	Categoria = ImagenHasCategorias.objects.all()
+	diccionario = {'list_imgs': imagenes, 'list_monu': Categoria}
+	return render(request, 'home_page.html', diccionario)
 
 
 def murales(request):
 	imagenes = Imagen.objects.all()
-	titulo = "Murales"
-	diccionario = {'list_imgs': imagenes, 'titulo': titulo}
-	return render(request, 'internas/murales.html', diccionario,context_instance=RequestContext(request))
+	Categoria = ImagenHasCategorias.objects.all()
+	diccionario = {'list_imgs': imagenes, 'list_monu': Categoria}
+	return render(request, 'internas/murales.html', diccionario)
 
 
-def monumentos(request):
-	imagenes = Imagen.objects.all()
-	titulo = "Monumentos"
-	diccionario = {'list_imgs': imagenes, 'titulo': titulo}
-	return render(request, 'internas/monumentos.html', diccionario,context_instance=RequestContext(request))
+def monumentos_list(request):
+	imagMonu = Imagen.objects.all().order_by('idimagen')
+	Categoria = ImagenHasCategorias.objects.all()
+	diccionario = {'list_imgs': imagMonu, 'list_monu': Categoria}
+	return render(request, 'internas/monumentos.html', diccionario)
 
 
 def logout_view(request):
@@ -63,12 +62,42 @@ def logout_view(request):
     return render_to_response('internas/logout.html', context=RequestContext(request))
 
 
-def foto(request, id):
-    """
-        obtengo el detalle de cada imagen
-    """
-    imagen = Imagen.objects.get(pk=id)
 
-    diccionario = {'imagen': imagen}
-    return render(request, 'imagen.html', diccionario,context_instance=RequestContext(request))
+def ImgMonu_edit(request, idimagen):
+	imagMonu = Imagen.objects.get(id=idimagen)
+	if request.method == 'GET':
+		form = ImgForm(instance=imagMonu)
+	else:
+		form = ImgForm(request.POST, instance=imagMonu)
+		if form.is_vali():
+			form.save()
+		return redirect('imagMonu:monumentos_list')
+	return render(request, 'internas/img_form.html', {'form':form})
+
+
+
+# def foto(request, id):
+#     """
+#         obtengo el detalle de cada imagen
+#     """
+#     imagen = Imagen.objects.get(pk=id)
+#
+#
+#     diccionario = {'imagen': imagen}
+#     return render(request, 'imagen.html', diccionario,context_instance=RequestContext(request))
+
+#
+# def tipoMonu(request):
+# 	imagenes = ImagenHasCategorias.objects.all()
+# 	titulo = "Monumentos"
+# 	diccionario = {'list_tipoMonu': imagenes, 'titulo': titulo}
+# 	return render(request, 'internas/monumentos.html', diccionario,context_instance=RequestContext(request))
+#
+#
+# def tipoMura(request):
+# 	imagenes = ImagenHasCategorias.objects.all()
+# 	titulo = "Murales"
+# 	diccionario = {'list_tipoMura': imagenes, 'titulo': titulo}
+# 	return render(request, 'internas/murales.html', diccionario,context_instance=RequestContext(request))
+#
 

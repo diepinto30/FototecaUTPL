@@ -5,24 +5,82 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/ventana.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/galeria.css'%}">
 {% endblock %}
-{% block content1 %}
-	{% for img in list_imgs %}
-		<section class="photo_list">
-			<h3>{{ img.nombre}}</h3>
-			<img src="/media/{{ img.foto}}">
-			<div class="icon-photo">
-				<span class="button icon-smile" data-type="zoomin"></span>
-				<span class="button icon-file-text" data-type="zoomin1"></span>
-				<span class="button icon-bubbles4" data-type="zoomin"></span>
-				<span class="button icon-facebook2" data-type="zoomin"></span>
-				<span class="button icon-twitter" data-type="zoomin"></span>
-			</div>
-		</section>
-	{% endfor %}
 
+{% block content1 %}
+    <!--Galeria de Fotos-->
+    {% for img in list_imgs %}
+        {% if user.is_authenticated %}
+            <div class="img_{{ img.idimagen}}">
+                <div class="photo_list" style="border-radius: 0.3em;">
+                    <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" style="border-radius: 0.3em;"><br>
+                    <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button">
+                    <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button">
+                    <img src="{% static 'images/ico_info.png'%}" alt="más.." style="height: 2em; width: 2em" class="tw button">
+                </div>
+                <div>
+                    <input type="checkbox" class="read-more-state" id="see{{ img.idimagen}}" style="background-color: #003366;">
+                    <div class="read-more-wrap">
+                        <div class="read-more-target">
+                            <p>
+                                <p><strong>{{ img.nombre}}</strong></p>
+                                <p>{{ img.descripcion}}</p><br>
+                                {{ img.direccion}}<br>
+                                <!--<img src="https://maps.googleapis.com/maps/api/staticmap?center={{ img.latitud}},{{ img.longitud}}&zoom=12&size=400x400&key=[my_api_key]">-->
+                                {{ img.ciudad}}, {{ img.pais}}<br>
+                                {{ img.direccion}}<br>
+
+
+                            </p>
+                        </div>
+
+                    </div>
+                    <label for="see{{ img.idimagen}}" class="read-more-trigger"></label>
+
+            </div>
+        {% else %}
+            <div class="photo_list" style="border-radius: 0.3em;">
+                <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" style="border-radius: 0.3em;"><br>
+                <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button"></span>
+                <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button"></span>
+                <img src="{% static 'images/ico_info.png'%}" alt="más.." style="height: 2em; width: 2em" class="in button">
+                <div>
+                    <input type="checkbox" class="read-more-state" id="see{{ img.idimagen}}">
+                    <div class="read-more-wrap">
+                        <div class="read-more-target">
+                            <p>
+                                <h3>{{ img.nombre}}</h3>
+                                <p>{{ img.descripcion}}</p><br>
+                                {{ img.direccion}}<br>
+                                <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ img.latitud}},{{ img.longitud}}&zoom=12&size=400x400&key=[my_api_key]">
+                                {{ img.ciudad}}, {{ img.pais}}<br>
+                                {{ img.direccion}}<br>
+                            </p>
+                        </div>
+                    </div>
+                    <label for="see{{ img.idimagen}}" class="read-more-trigger"></label>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+<!--{% for img in list_monu %}
+                            <p>entro {{img.idcategoria}}</p>
+                            {% if img.idcategoria == '2' %}
+
+                             {% else %}
+                                <p>casi {{monu.idcategoria}}</p>
+                            {% endif %}
+                        {% endfor %}-->
+
+
+
+<!--
 	<div class="overlay-container">
 		<div class="window-container zoomin">
 			<span class="close">Cerrar</span>
@@ -31,7 +89,7 @@
 			<br/>
 		</div>
 		{% for img in list_imgs %}
-			<div class="window-container zoomin1"><center>
+			<div class="window-container zoomin1">
 				<span class="close">Cerrar </span>
 				<h3>{{ img.nombre}}</h3>
 				<img src="/media/{{ img.foto}}" style="height: 280px;width: 280px; "><br>
@@ -45,9 +103,12 @@
 			</div>
 		{% endfor %}
 	</div>
+	-->
 	<script>!window.jQuery && document.write(unescape('%3Cscript src="{% static 'js/jquery-1.7.1.min.js'%}"%3E%3C/script%3E'))</script>
 	<script type="text/javascript" src="{% static 'js/ventana.js'%}"></script>
+
 {% endblock %}
+<br><br>
 {% block content2 %}
 	<section class="categorias">
 		<h3>Categorías</h3>

@@ -24,8 +24,19 @@
 		<!-- <a href="/reconoce">Colecciones</a> -->
 		<a href="/murales">Murales</a>
 		<a href="/monumentos">Monumentos</a>
+		<a href="/reconoce">Células</a>
+		<a href="/editar/">editar</a>
 		<a href="#contactos" class="menufin">Contactos</a>
-		<a href="/formulario">Únete</a>
+		{% if user.is_authenticated %}
+		<!--<div class="dropdown" style="float:right;">-->
+
+		<a href="/formulario"><span class="icon-user"></span> | {{ user.username }}</a>
+		<a href="/logout">Salir</a>
+		{% else %}
+			<a href="/login">login</a>
+			<a href="/formulario">Únete</a>
+		{% endif %}
+
 	</nav>
 </header>
 <section class="slider">
