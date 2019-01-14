@@ -54,7 +54,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    #'portal.middleware.LoginRequiredMiddleware'
+    # 'portal.middleware.LoginRequiredMiddleware'
 
 )
 
@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'fototeca.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-    #'default': {
+    # 'default': {
     #    'ENGINE': 'django.db.backends.sqlite3',
     #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #}
+    # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'fototecadb',
@@ -112,15 +112,16 @@ USE_L10N = True
 USE_TZ = True
 
 
-
 # Static files (CSS, JavaScript, Images)
+
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=(
     os.path.join(BASE_DIR,'/portal/static/'),
     )
-#LOGIN_URL='/formulario'
+
+# LOGIN_URL='/formulario'
 LOGIN_REDIRECT_URL=reverse_lazy('listado_fotos')
 
 MEDIA_URL = '/media/'

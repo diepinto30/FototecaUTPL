@@ -5,49 +5,138 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/ventana.css'%}">
-{% endblock %}
-{% block content1 %}
-	{% for img in list_imgs %}
-		<section class="photo_list">
-			<h3>{{ img.nombre}}</h3>
-			<img src="/media/{{ img.foto}}">
-			<div class="icon-photo">
-				<span class="button icon-smile" data-type="zoomin"></span>
-				<span class="button icon-file-text" data-type="zoomin1"></span>
-				<span class="button icon-bubbles4" data-type="zoomin"></span>
-				<span class="button icon-facebook2" data-type="zoomin"></span>
-				<span class="button icon-twitter" data-type="zoomin"></span>
-			</div>
-		</section>
-	{% endfor %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/galeria.css'%}">
 
-	<div class="overlay-container">
-		<div class="window-container zoomin">
-			<span class="close">Cerrar</span>
-			<h3>Versión en Zoom out </h3>
-			Texto de la ventana emergente<br/>
-			<br/>
-		</div>
-		{% for img in list_imgs %}
-			<div class="window-container zoomin1"><center>
-				<span class="close">Cerrar </span>
-				<h3>{{ img.nombre}}</h3>
-				<img src="/media/{{ img.foto}}" style="height: 280px;width: 280px; "><br>
-				<div style="width: 90%;">{{ img.descripcion}}</div><br>
-				{{ img.direccion}}<br>
-				<img src="https://maps.googleapis.com/maps/api/staticmap?center={Latitude},{Longitude}&zoom=12&size=400x400&key=[my_api_key]">
-				{{ img.ciudad}}, {{ img.pais}}<br>
-				{{ img.direccion}}<br>
-				Texto de la ventana emergente<br/>
-				<br/></center>
-			</div>
-		{% endfor %}
-	</div>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+<script src="/assets/js/jquery-2.1.4.min.js"></script>
+
+ <script src="{% static 'jq/jquery-1.7.1.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+{% endblock %}
+
+{% block content1 %}
+    <!--Galeria de Fotos-->
+    {% for img in list_imgs %}
+        {% if user.is_authenticated %}
+            <div class="img_{{ img.idimagen}}">
+                <div class="photo_list" style="border-radius: 0.3em;">
+                    <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" style="border-radius: 0.3em;"><br>
+                    <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button">
+                    <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button">
+                    <img src="{% static 'images/ico_info.png'%}" alt="más.." style="height: 2em; width: 2em" class="tw button">
+                    <p>
+                        <strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category
+
+                        {% if user.is_authenticated %}
+                            <button id="likes{{img.idimagen}}" data-catid="{{img.idimagen}}" class="btn btn-primary" type="button">
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                            Like
+                            </button>
+                        {% endif %}
+                    </p>
+                    <script>
+                        $('#likes{{img.idimagen}}').click(function(){
+                            var catid;
+                            catid = $(this).attr("data-catid");
+                            $.get('/rango/like_category/', {category_id: catid}, function(data){
+                                $('#like_count{{img.idimagen}}').html(data);
+                                $('#likes{{img.idimagen}}').hide();
+                            });
+                        });
+                    </script>
+                </div>
+                <div>
+                    <input type="checkbox" class="read-more-state" id="see{{ img.idimagen}}" style="background-color: #003366;">
+                    <div class="read-more-wrap">
+                        <div class="read-more-target">
+                            <p>
+                                <p><strong>{{ img.nombre}}</strong></p><br>
+
+                                    <p>
+
+                                    <div class="container">
+                                        <a class="like"><i class="fa fa-thumbs-o-up"></i>
+                                            Like <input class="qty1" name="qty1" readonly="readonly" type="text" value="0" />
+                                        </a>
+                                        <a class="dislike"><i class="fa fa-thumbs-o-down"></i>
+                                            Dislike <input class="qty2"  name="qty2" readonly="readonly" type="text" value="0" />
+                                        </a>
+                                    </div>
+                                </p>
+                                <p>{{ img.descripcion}}</p><br>
+                                {{ img.direccion}}<br>
+                                <!--<img src="https://maps.googleapis.com/maps/api/staticmap?center={{ img.latitud}},{{ img.longitud}}&zoom=12&size=400x400&key=[my_api_key]">-->
+                                {{ img.ciudad}}, {{ img.pais}}<br>
+                                {{ img.direccion}}<br>
+                                <p><input type="text" value="{{ img.idimagen}}" id="idimg{{ img.idimagen}}"/>
+                                <input type="text" value=" {{ user.id}}" id="iduser{{ user.id}}" style="display: none" /></p>
+                            </p>
+                        </div>
+
+                    </div>
+                    <label for="see{{ img.idimagen}}" class="read-more-trigger"></label>
+
+                </div>
+            </div>
+        {% else %}
+            <div class="photo_list" style="border-radius: 0.3em;">
+                <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" style="border-radius: 0.3em;"><br>
+                <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button"></span>
+                <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button"></span>
+                <img src="{% static 'images/ico_info.png'%}" alt="más.." style="height: 2em; width: 2em" class="in button">
+                <div>
+                    <input type="checkbox" class="read-more-state" id="see{{ img.idimagen}}">
+                    <div class="read-more-wrap">
+                        <div class="read-more-target">
+                            <p>
+                                <h3>{{ img.nombre}}</h3>
+                                <p>{{ img.descripcion}}</p><br>
+                                {{ img.direccion}}<br>
+                                <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ img.latitud}},{{ img.longitud}}&zoom=12&size=400x400&key=[my_api_key]">
+                                {{ img.ciudad}}, {{ img.pais}}<br>
+                                {{ img.direccion}}<br>
+
+                            </p>
+                        </div>
+                    </div>
+                    <label for="see{{ img.idimagen}}" class="read-more-trigger"></label>
+                </div>
+            </div>
+        {% endif %}
+        <!--<script>
+            $(function () {
+                 $(".like").click(function () {
+                     var input = $(this).find('.qty1');
+                     var iduser = $('#iduser{{ user.id}}').val();
+                     var idimg = $('#see{{ img.idimagen}}').val();
+                     if('see{{ img.idimagen}}' == '{{ img.idimagen}}'){
+                         input.val(parseInt(input.val())+ 1);
+                     console.log("usuario "+iduser +": foto "+idimg);
+
+                     }
+
+
+                 });
+                 $(".dislike").click(function () {
+                     var input = $(this).find('.qty2');
+                     input.val(input.val() - 1);
+                 });
+            });
+        </script>-->
+    {% endfor %}
+
 	<script>!window.jQuery && document.write(unescape('%3Cscript src="{% static 'js/jquery-1.7.1.min.js'%}"%3E%3C/script%3E'))</script>
 	<script type="text/javascript" src="{% static 'js/ventana.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/likes.js'%}"></script>
+
 {% endblock %}
+<br><br>
 {% block content2 %}
 	<section class="categorias">
 		<h3>Categorías</h3>
