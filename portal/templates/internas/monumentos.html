@@ -50,7 +50,7 @@
                             $('#likes{{img.idimagen}}').click(function(){
                                 var catid;
                                 catid = $(this).attr("data-catid");
-                                $.get('/like_category/', {category_id: catid}, function(data){
+                                $.get('/portal/like_category/', {category_id: catid}, function(data){
                                     $('#like_count{{img.idimagen}}').html(data);
                                     $('#likes{{img.idimagen}}').hide();
                                 });
@@ -65,10 +65,10 @@
                             <p><strong>-</strong></p><br>
                             <p>
                                 <nav style="background-color: black;">
-                                    <a class="navbar-brand n1" href="#n1" onclick="fn1()">Descripción</a>
-                                    <a class="navbar-brand n2" href="#" onclick="fn2()">Autorubicación</a>
-                                    <a class="navbar-brand n3" href="#" onclick="fn3()">Ubicación</a>
-                                    <a class="navbar-brand n4" href="#" onclick="fn4()">Más</a>
+                                    <a class="navbar-brand n1_{{ img.idimagen}}" href="#n1" onclick="fn1_{{ img.idimagen}}()">Descripción</a>
+                                    <a class="navbar-brand n2_{{ img.idimagen}}" href="#" onclick="fn2_{{ img.idimagen}}()">Autor</a>
+                                    <a class="navbar-brand n3_{{ img.idimagen}}" href="#" onclick="fn3_{{ img.idimagen}}()">Ubicación</a>
+                                    <a class="navbar-brand n4_{{ img.idimagen}}" href="#" onclick="fn4_{{ img.idimagen}}()">Más</a>
 
                                 </nav>
                             </p>
@@ -83,20 +83,20 @@
                                 </div>
                             </p>-->
                             <p>
-                                <div id="n1-1" style="display: none">
+                                <div id="n1-{{ img.idimagen}}" style="display: none">
                                     <p>{{ img.descripcion}}</p>
                                 </div>
-                                <div id="n2-1" style="display: none">
+                                <div id="n2-{{ img.idimagen}}" style="display: none">
                                     <p>Datos de autor - tipo biografia {{ img.descripcion}}</p>
                                 </div>
-                                <div id="n3-1" style="display: none">
+                                <div id="n3-{{ img.idimagen}}" style="display: none">
                                     <h2>Ubicación y Datos importante</h2><br>
                                     {{ img.ciudad}}, {{ img.pais}}<br>
                                 {{ img.direccion}}<br>
                                     <img src="{% static 'images/map.png'%}"  alt="map">
                                     <p>{{ img.descripcion}}</p>
                                 </div>
-                                <div id="n4-1" style="display: none">
+                                <div id="n4-{{ img.idimagen}}" style="display: none">
                                     <p>{{ img.descripcion}}</p>
                                 </div>
                             </p>
@@ -117,6 +117,7 @@
                 <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button"></span>
                 <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button"></span>
                 <img src="{% static 'images/ico_info.png'%}" alt="más.." style="height: 2em; width: 2em" class="in button">
+                <p><strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category</p>
                 <div>
                     <input type="checkbox" class="read-more-state" id="see{{ img.idimagen}}">
                     <div class="read-more-wrap">
@@ -140,35 +141,35 @@
             </div>
         {% endif %}
         <script>
-            function fn1() {
-                document.getElementById("n1-1").style.display = "block";
-                document.getElementById("n2-1").style.display = "none";
-                document.getElementById("n3-1").style.display = "none";
-                document.getElementById("n4-1").style.display = "none";
+            function fn1_{{ img.idimagen}}() {
+                document.getElementById("n1-{{ img.idimagen}}").style.display = "block";
+                document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
+                document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
+                document.getElementById("n4-{{ img.idimagen}}").style.display = "none";
             }
-            function fn2() {
-                document.getElementById("n2-1").style.display = "block";
-                document.getElementById("n1-1").style.display = "none";
-                document.getElementById("n3-1").style.display = "none";
-                document.getElementById("n4-1").style.display = "none";
+            function fn2_{{ img.idimagen}}() {
+                document.getElementById("n2-{{ img.idimagen}}").style.display = "block";
+                document.getElementById("n1-{{ img.idimagen}}").style.display = "none";
+                document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
+                document.getElementById("n4-{{ img.idimagen}}").style.display = "none";
             }
-            function fn3() {
-                document.getElementById("n3-1").style.display = "block";
-                document.getElementById("n1-1").style.display = "none";
-                document.getElementById("n2-1").style.display = "none";
-                document.getElementById("n4-1").style.display = "none";
+            function fn3_{{ img.idimagen}}() {
+                document.getElementById("n3-{{ img.idimagen}}").style.display = "block";
+                document.getElementById("n1-{{ img.idimagen}}").style.display = "none";
+                document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
+                document.getElementById("n4-{{ img.idimagen}}").style.display = "none";
             }
-            function fn4() {
-                document.getElementById("n4-1").style.display = "block";
-                document.getElementById("n1-1").style.display = "none";
-                document.getElementById("n2-1").style.display = "none";
-                document.getElementById("n3-1").style.display = "none";
+            function fn4_{{ img.idimagen}}() {
+                document.getElementById("n4-{{ img.idimagen}}").style.display = "block";
+                document.getElementById("n1-{{ img.idimagen}}").style.display = "none";
+                document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
+                document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
             }
             function close() {
-                document.getElementById("n4-1").style.display = "none";
-                document.getElementById("n1-1").style.display = "none";
-                document.getElementById("n2-1").style.display = "none";
-                document.getElementById("n3-1").style.display = "none";
+                document.getElementById("n4-{{ img.idimagen}}").style.display = "none";
+                document.getElementById("n1-{{ img.idimagen}}").style.display = "none";
+                document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
+                document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
             }
 
 

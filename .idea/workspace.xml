@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50ebe5eb-69b6-464b-a48c-593f4ac7d17e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portal/static/css/galeria.css" beforeDir="false" afterPath="$PROJECT_DIR$/portal/static/css/galeria.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portal/static/images/user2.png" beforeDir="false" afterPath="$PROJECT_DIR$/portal/static/images/user2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portal/templates/home_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/portal/templates/home_page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portal/templates/internas/monumentos.html" beforeDir="false" afterPath="$PROJECT_DIR$/portal/templates/internas/monumentos.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/portal/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1185">
-              <caret line="99" column="24" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
+            <state relative-caret-position="254">
+              <caret line="88" column="17" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="17" />
               <folding>
                 <element signature="e#0#81#0" expanded="true" />
               </folding>
@@ -32,8 +32,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/portal/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="92" selection-start-line="2" selection-start-column="78" selection-end-line="2" selection-end-column="92" />
+            <state relative-caret-position="180">
+              <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -50,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/portal/templates/home_page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="38" lean-forward="true" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="38" />
+            <state relative-caret-position="480">
+              <caret line="32" column="61" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -59,14 +62,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/portal/templates/internas/monumentos.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="110" column="79" selection-start-line="110" selection-start-column="79" selection-end-line="110" selection-end-column="79" />
+            <state relative-caret-position="150">
+              <caret line="10" column="76" lean-forward="true" selection-start-line="10" selection-start-column="76" selection-end-line="10" selection-end-column="76" />
               <folding>
                 <element signature="e#1252#1299#0" expanded="true" />
                 <element signature="e#1999#2549#0" />
                 <element signature="e#2214#2480#0" />
-                <element signature="e#2574#3117#0" />
-                <element signature="e#2655#3081#0" />
                 <element signature="e#3744#3768#0" expanded="true" />
                 <element signature="e#3981#4013#0" expanded="true" />
                 <element signature="e#5139#5160#0" expanded="true" />
@@ -90,7 +91,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fototeca/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1395">
+            <state relative-caret-position="636">
               <caret line="94" column="21" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="21" />
               <folding>
                 <element signature="e#382#391#0" expanded="true" />
@@ -168,14 +169,14 @@
         <option value="$PROJECT_DIR$/portal/templates/internas/img_form.html" />
         <option value="$PROJECT_DIR$/portal/templates/master.html" />
         <option value="$PROJECT_DIR$/portal/templates/internas/list_photos.html" />
-        <option value="$PROJECT_DIR$/portal/templates/home_page.html" />
         <option value="$PROJECT_DIR$/portal/static/js/likes.js" />
         <option value="$PROJECT_DIR$/portal/templates/internas/monu.php" />
         <option value="$PROJECT_DIR$/portal/models.py" />
-        <option value="$PROJECT_DIR$/portal/urls.py" />
         <option value="$PROJECT_DIR$/portal/views.py" />
         <option value="$PROJECT_DIR$/portal/static/css/galeria.css" />
         <option value="$PROJECT_DIR$/portal/templates/internas/monumentos.html" />
+        <option value="$PROJECT_DIR$/portal/urls.py" />
+        <option value="$PROJECT_DIR$/portal/templates/home_page.html" />
       </list>
     </option>
   </component>
@@ -211,34 +212,7 @@
               <item name="FototecaUTPL" type="b2602c69:ProjectViewProjectNode" />
               <item name="FototecaUTPL" type="462c0819:PsiDirectoryNode" />
               <item name="portal" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FototecaUTPL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FototecaUTPL" type="462c0819:PsiDirectoryNode" />
-              <item name="portal" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FototecaUTPL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FototecaUTPL" type="462c0819:PsiDirectoryNode" />
-              <item name="portal" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FototecaUTPL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FototecaUTPL" type="462c0819:PsiDirectoryNode" />
-              <item name="portal" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FototecaUTPL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FototecaUTPL" type="462c0819:PsiDirectoryNode" />
-              <item name="portal" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="internas" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -333,12 +307,12 @@
       <workItem from="1547332978201" duration="3127000" />
       <workItem from="1547356157474" duration="14671000" />
       <workItem from="1547410427527" duration="15263000" />
-      <workItem from="1547491628361" duration="6273000" />
+      <workItem from="1547491628361" duration="7844000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75956000" />
+    <option name="totallyTimeSpent" value="77527000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="6" />
@@ -525,33 +499,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/portal/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="99" column="24" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portal/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="92" selection-start-line="2" selection-start-column="78" selection-end-line="2" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fototeca/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="94" column="21" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="21" />
-          <folding>
-            <element signature="e#382#391#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/portal/templates/internas/list_photos.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
@@ -587,6 +534,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fototeca/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="636">
+          <caret line="94" column="21" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="21" />
+          <folding>
+            <element signature="e#382#391#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/portal/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="88" column="17" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#81#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/portal/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/portal/templates/master.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -596,21 +573,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/portal/templates/home_page.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="38" lean-forward="true" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="38" />
+        <state relative-caret-position="480">
+          <caret line="32" column="61" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/portal/templates/internas/monumentos.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="110" column="79" selection-start-line="110" selection-start-column="79" selection-end-line="110" selection-end-column="79" />
+        <state relative-caret-position="150">
+          <caret line="10" column="76" lean-forward="true" selection-start-line="10" selection-start-column="76" selection-end-line="10" selection-end-column="76" />
           <folding>
             <element signature="e#1252#1299#0" expanded="true" />
             <element signature="e#1999#2549#0" />
             <element signature="e#2214#2480#0" />
-            <element signature="e#2574#3117#0" />
-            <element signature="e#2655#3081#0" />
             <element signature="e#3744#3768#0" expanded="true" />
             <element signature="e#3981#4013#0" expanded="true" />
             <element signature="e#5139#5160#0" expanded="true" />
