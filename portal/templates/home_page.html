@@ -30,7 +30,7 @@
 		{% if user.is_authenticated %}
 		<!--<div class="dropdown" style="float:right;">-->
 
-		<a href="/formulario"><span class="icon-user"></span> | {{ user.username }}-{{ user.id }}</a>
+		<a href="/formulario"><span class="icon-user"></span> | {{ user.username }}</a>
 		<a href="/logout">Salir</a>
 		{% else %}
 			<a href="/login">login</a>
