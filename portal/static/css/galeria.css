@@ -1,5 +1,6 @@
 .read-more-state {
   display: none;
+    margin-top: 4em;
 }
 
 .read-more-target {
@@ -13,6 +14,7 @@
   opacity: 1;
   font-size: inherit;
   max-height: 999em;
+
 }
 
 .read-more-state ~ .read-more-trigger:before {
@@ -98,6 +100,10 @@
 .like{
     background-color: #0c5460;
 }
+
+
+
+/*NAV INTERNO*/
 
 
 
