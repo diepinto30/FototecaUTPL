@@ -36,6 +36,7 @@ class formulario(CreateView):
 # @login_required(login_url='/formulario/')
 
 
+
 def listado_fotos(request):
 	imagenes = Imagen.objects.all()
 	Categoria = ImagenHasCategorias.objects.all()
@@ -43,17 +44,26 @@ def listado_fotos(request):
 	return render(request, 'home_page.html', diccionario)
 
 
-def murales(request):
+def listado_fotosCelulas(request):
 	imagenes = Imagen.objects.all()
 	Categoria = ImagenHasCategorias.objects.all()
 	diccionario = {'list_imgs': imagenes, 'list_monu': Categoria}
+	return render(request, 'internas/list_photos.html', diccionario)
+
+
+def murales(request):
+	imagenes = Imagen.objects.all()
+	Categoria = ImagenHasCategorias.objects.all()
+	user = User.objects.all()
+	diccionario = {'list_imgs': imagenes, 'list_monu': Categoria, 'userlist': user}
 	return render(request, 'internas/murales.html', diccionario)
 
 
 def monumentos_list(request):
 	imagMonu = Imagen.objects.all().order_by('idimagen')
 	Categoria = ImagenHasCategorias.objects.all()
-	diccionario = {'list_imgs': imagMonu, 'list_monu': Categoria}
+	user = AuthUser.objects.all()
+	diccionario = {'list_imgs': imagMonu, 'list_monu': Categoria, 'userlist': user}
 	return render(request, 'internas/monumentos.html', diccionario)
 
 
@@ -74,6 +84,23 @@ def ImgMonu_edit(request, idimagen):
 		return redirect('imagMonu:monumentos_list')
 	return render(request, 'internas/img_form.html', {'form':form})
 
+
+@login_required
+def like_category(request):
+
+    cat_id = None
+    if request.method == 'GET':
+        cat_id = request.GET['category_id']
+
+    likes = 0
+    if cat_id:
+        cat = Imagen.objects.get(id=int(cat_id))
+        if cat:
+            likes = cat.likes + 1
+            cat.likes = likes
+            cat.save()
+
+    return HttpResponse(likes)
 
 
 # def foto(request, id):
