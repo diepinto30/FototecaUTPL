@@ -31,9 +31,8 @@ class RegistrationForm(UserCreationForm):
 
 
 class LoginFrom(forms.Form):
-	username = forms.CharField()
-	password = forms.CharField(widget=forms.PasswordInput())
-
+	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 class ImgForm(forms.ModelForm):
 

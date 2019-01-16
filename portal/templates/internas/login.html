@@ -1,19 +1,28 @@
 {% extends 'master.html' %}
 {% block tittle %} LOGIN {% endblock %}
-
 {% block head %}
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 {% endblock %}
-
 {% block content1 %}
-
-	<section class="login" style="">
-        <h3>INGRESO AL SISTEMA LOGIN</h3>
-            <form method="post">
-              {% csrf_token %}
-              {{ form.as_p }}
-              <button type="submit">Login</button>
-            </form>
-
-	</section>
+    <div class="row pt-5">
+        <div class="col-md-4 mx-auto">
+            <div class="card">
+                <h3 class="card-header py-4">INGRESO AL SISTEMA</h3>
+                <div class="card-body">
+                    <form method="post" class="text-left">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label >Nombre de usuario</label>
+                            {{ form.username }}
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            {{ form.password }}
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-block">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
