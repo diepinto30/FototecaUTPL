@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50ebe5eb-69b6-464b-a48c-593f4ac7d17e" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portal/static/css/galeria.css" beforeDir="false" afterPath="$PROJECT_DIR$/portal/static/css/galeria.css" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/portal/static/images/user2.png" beforeDir="false" afterPath="$PROJECT_DIR$/portal/static/images/user2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portal/templates/home_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/portal/templates/home_page.html" afterDir="false" />
+>>>>>>> e9978787d9ce11c64b4eaf0ec4a8469f009b1d0f
       <change beforePath="$PROJECT_DIR$/portal/templates/internas/monumentos.html" beforeDir="false" afterPath="$PROJECT_DIR$/portal/templates/internas/monumentos.html" afterDir="false" />
+>>>>>>> 2ea83c9a9cb0d2970f542162ff74444e686bd0c7
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,6 +25,9 @@
     <SUITE FILE_PATH="coverage/FototecaUTPL$manage.coverage" NAME="manage Coverage Results" MODIFIED="1547122869531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+=======
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/portal/views.py">
@@ -123,6 +135,7 @@
         </entry>
       </file>
     </leaf>
+>>>>>>> 2ea83c9a9cb0d2970f542162ff74444e686bd0c7
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -186,6 +199,8 @@
               <item name="FototecaUTPL" type="b2602c69:ProjectViewProjectNode" />
               <item name="FototecaUTPL" type="462c0819:PsiDirectoryNode" />
             </path>
+<<<<<<< HEAD
+=======
             <path>
               <item name="FototecaUTPL" type="b2602c69:ProjectViewProjectNode" />
               <item name="FototecaUTPL" type="462c0819:PsiDirectoryNode" />
@@ -215,6 +230,7 @@
               <item name="portal" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
+>>>>>>> 2ea83c9a9cb0d2970f542162ff74444e686bd0c7
           </expand>
           <select />
         </subPane>
@@ -308,21 +324,47 @@
       <workItem from="1547237578817" duration="204000" />
       <workItem from="1547332978201" duration="3127000" />
       <workItem from="1547356157474" duration="14671000" />
+<<<<<<< HEAD
+      <workItem from="1547410427527" duration="9960000" />
+      <workItem from="1547503252856" duration="2208000" />
+=======
       <workItem from="1547410427527" duration="15263000" />
+<<<<<<< HEAD
       <workItem from="1547491628361" duration="8070000" />
       <workItem from="1547512517316" duration="989000" />
       <workItem from="1547575044229" duration="451000" />
       <workItem from="1547654458042" duration="2009000" />
+=======
+      <workItem from="1547491628361" duration="7844000" />
+>>>>>>> 2ea83c9a9cb0d2970f542162ff74444e686bd0c7
+>>>>>>> e9978787d9ce11c64b4eaf0ec4a8469f009b1d0f
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="81202000" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="66588000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="0" width="1368" height="741" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20378788" />
+=======
+    <option name="totallyTimeSpent" value="77527000" />
+>>>>>>> e9978787d9ce11c64b4eaf0ec4a8469f009b1d0f
   </component>
   <component name="ToolWindowManager">
     <frame x="2270" y="227" width="1280" height="777" extended-state="0" />
     <layout>
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21324718" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20355412" />
+>>>>>>> 2ea83c9a9cb0d2970f542162ff74444e686bd0c7
+>>>>>>> e9978787d9ce11c64b4eaf0ec4a8469f009b1d0f
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -335,7 +377,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32959327" />
       <window_info anchor="bottom" id="Python Console" order="8" weight="0.32959327" />
       <window_info anchor="bottom" id="Educational.CheckDetails" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.26928473" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.26865673" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
@@ -406,16 +448,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/django/db/models/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="53" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/django/db/models/__init__.py" />
     <entry file="file://$PROJECT_DIR$/portal/static/css/estilos.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="636">
@@ -495,6 +528,12 @@
     <entry file="file://$PROJECT_DIR$/portal/templates/internas/monu.php" />
     <entry file="file://$PROJECT_DIR$/portal/models.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="936">
+          <caret line="42" column="10" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+=======
         <state relative-caret-position="585">
           <caret line="42" column="10" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="10" />
           <folding>
@@ -510,20 +549,34 @@
           <folding>
             <element signature="e#1313#1349#0" expanded="true" />
             <element signature="e#1364#1383#0" expanded="true" />
+>>>>>>> 2ea83c9a9cb0d2970f542162ff74444e686bd0c7
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/portal/static/js/likes.js">
+    <entry file="file://$PROJECT_DIR$/portal/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="18" />
+        <state relative-caret-position="1896">
+          <caret line="99" column="24" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#0#81#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/portal/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="92" selection-start-line="2" selection-start-column="78" selection-end-line="2" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/portal/templates/internas/monumentos.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3408">
+          <caret line="135" column="76" selection-start-line="135" selection-start-column="76" selection-end-line="135" selection-end-column="76" />
+=======
     <entry file="file://$PROJECT_DIR$/portal/templates/internas/img_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -540,6 +593,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/portal/templates/master.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="270">
           <caret line="18" column="25" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="25" />
         </state>
@@ -549,13 +603,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="22" lean-forward="true" selection-start-column="22" selection-end-column="22" />
+=======
+        <state relative-caret-position="636">
+          <caret line="94" column="21" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="21" />
+          <folding>
+            <element signature="e#382#391#0" expanded="true" />
+          </folding>
+>>>>>>> 2ea83c9a9cb0d2970f542162ff74444e686bd0c7
+>>>>>>> e9978787d9ce11c64b4eaf0ec4a8469f009b1d0f
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/portal/views.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="54">
           <caret line="69" column="25" lean-forward="true" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="490">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fototeca/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="94" column="21" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="21" />
+          <folding>
+            <element signature="e#382#391#0" expanded="true" />
+=======
+        <state relative-caret-position="254">
+          <caret line="88" column="17" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="17" />
+>>>>>>> e9978787d9ce11c64b4eaf0ec4a8469f009b1d0f
           <folding>
             <element signature="e#0#81#0" expanded="true" />
           </folding>
@@ -567,12 +647,41 @@
         <state relative-caret-position="595">
           <caret line="94" column="21" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="21" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#382#391#0" expanded="true" />
+=======
+            <element signature="e#0#51#0" expanded="true" />
+>>>>>>> 2ea83c9a9cb0d2970f542162ff74444e686bd0c7
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/portal/templates/internas/list_photos.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="43" column="21" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="22" />
+          <folding>
+            <element signature="e#1313#1349#0" expanded="true" />
+            <element signature="e#1364#1383#0" expanded="true" />
+>>>>>>> e9978787d9ce11c64b4eaf0ec4a8469f009b1d0f
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/portal/static/css/galeria.css">
+=======
+    <entry file="file://$PROJECT_DIR$/portal/static/js/likes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/portal/templates/master.html">
+>>>>>>> e9978787d9ce11c64b4eaf0ec4a8469f009b1d0f
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="26" lean-forward="true" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
@@ -581,21 +690,37 @@
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="15">
           <caret line="17174" column="12" selection-start-line="17174" selection-start-column="12" selection-end-line="17174" selection-end-column="12" />
+=======
+        <state relative-caret-position="480">
+          <caret line="32" column="61" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="61" />
+>>>>>>> 2ea83c9a9cb0d2970f542162ff74444e686bd0c7
+>>>>>>> e9978787d9ce11c64b4eaf0ec4a8469f009b1d0f
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/portal/templates/internas/monumentos.html">
+    <entry file="file://$PROJECT_DIR$/portal/templates/internas/img_form.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="524">
           <caret line="165" column="13" lean-forward="true" selection-start-line="165" selection-start-column="13" selection-end-line="165" selection-end-column="13" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="394">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+=======
+        <state relative-caret-position="150">
+          <caret line="10" column="76" lean-forward="true" selection-start-line="10" selection-start-column="76" selection-end-line="10" selection-end-column="76" />
+>>>>>>> e9978787d9ce11c64b4eaf0ec4a8469f009b1d0f
           <folding>
             <element signature="e#2450#2524#0" expanded="true" />
             <element signature="e#3833#3855#0" expanded="true" />
             <element signature="e#3882#3914#0" expanded="true" />
             <element signature="e#4492#4513#0" expanded="true" />
           </folding>
+>>>>>>> 2ea83c9a9cb0d2970f542162ff74444e686bd0c7
         </state>
       </provider>
     </entry>
