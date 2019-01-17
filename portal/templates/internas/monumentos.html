@@ -26,27 +26,25 @@
 
 {% block content1 %}
     <!--Galeria de Fotos-->
-    <script>var asd=[]</script>
     {% for img in list_imgs %}
         {% if user.is_authenticated %}
-            <div style="display:inline-block; margin-left: 0.4%">
-                <div class="img_{{ img.idimagen}} photo_list">
-                    <div class="" style="border-radius: 0.3em; width: 100%;">
+                 <div class="photo_list" style="border-radius: 0.3em;">
+                    <div class="" style="border-radius: 0.3em; width: 100%; display: inline-block;">
                         <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" style="border-radius: 0.3em;"><br>
                         <h4>{{ img.nombre}}</h4>
                         <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button">
                         <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button">
                         <img src="{% static 'images/comentar.png'%}" alt="comentar" style="height: 2em; width: 2em" class="tw button">
                         <img src="{% static 'images/seemore.png'%}" alt="ver más" style="height: 2.2em; width: 3em; margin-left: -0.4em; margin-top: -0.1em" class="tw button" onclick="seemore_{{ img.idimagen}}()">
-                        <p>
-                            <strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category
+                        <p><strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category</p>
                             {% if user.is_authenticated %}
                                 <button id="likes{{img.idimagen}}" data-catid="{{img.idimagen}}" class="btn btn-primary" type="button">
                                 <span class="glyphicon glyphicon-thumbs-up"></span>
                                 Like
                                 </button>
+                                <p>  </p>
                             {% endif %}
-                        </p>
+
                         <script>
                             $('#likes{{img.idimagen}}').click(function(){
                                 var catid;
@@ -86,17 +84,6 @@
                         <input type="text" value="{{ img.idimagen}}" id="idimg{{ img.idimagen}}" style="display: none" />
                         <input type="text" value=" {{ user.id}}" id="iduser{{ user.id}}" style="display: none" />
                     </p>
-                    <!--<p>
-                                <div class="container">
-                                    <a class="like"><i class="fa fa-thumbs-o-up"></i>
-                                        Like <input class="qty1" name="qty1" readonly="readonly" type="text" value="0" />
-                                    </a>
-                                    <a class="dislike"><i class="fa fa-thumbs-o-down"></i>
-                                        Dislike <input class="qty2"  name="qty2" readonly="readonly" type="text" value="0" />
-                                    </a>
-                                </div>
-                            </p>-->
-
                 </div>
 
         {% else %}
@@ -105,28 +92,40 @@
                 <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button"></span>
                 <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button"></span>
                 <img src="{% static 'images/ico_info.png'%}" alt="más.." style="height: 2em; width: 2em" class="in button">
+                <img src="{% static 'images/comentar.png'%}" alt="comentar" style="height: 2em; width: 2em" class="tw button">
+                <img src="{% static 'images/seemore.png'%}" alt="ver más" style="height: 2.2em; width: 3em; margin-left: -0.4em; margin-top: -0.1em" class="tw button" onclick="seemore_{{ img.idimagen}}()">
                 <p><strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category</p>
-                <div>
-                    <input type="checkbox" class="read-more-state" id="see{{ img.idimagen}}">
-                    <div class="read-more-wrap">
-                        <div class="read-more-target">
-                            <p>
-                                <h3>{{ img.nombre}}</h3>
-                                <p>{{ img.descripcion}}</p><br>
-                                {{ img.direccion}}<br>
-                            <img src="{% static 'images/map.png'%}"  alt="map">
-<!--
-                                <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ img.latitud}},{{ img.longitud}}&zoom=12&size=400x400&key=[my_api_key]">
--->
-                                {{ img.ciudad}}, {{ img.pais}}<br>
-                                {{ img.direccion}}<br>
-
-                            </p>
-                        </div>
-                    </div>
-                    <label for="see{{ img.idimagen}}" class="read-more-trigger"></label>
-                </div>
+                <p>  </p>
             </div>
+            <div id="seemore{{ img.idimagen}}"  style="display: none;">
+                <nav style="background-color: black;">
+                    <a class="navbar-brand n1_{{ img.idimagen}}" href="#n1" onclick="fn1_{{ img.idimagen}}()">Descripción</a>
+                    <a class="navbar-brand n2_{{ img.idimagen}}" href="#" onclick="fn2_{{ img.idimagen}}()">Autor</a>
+                    <a class="navbar-brand n3_{{ img.idimagen}}" href="#" onclick="fn3_{{ img.idimagen}}()">Ubicación</a>
+                    <a class="navbar-brand n4_{{ img.idimagen}}" href="#" onclick="fn4_{{ img.idimagen}}()">Más</a>
+                </nav>
+                <div id="n1-{{ img.idimagen}}" style="display: none">
+                    <p>{{ img.descripcion}}</p>
+                </div>
+                <div id="n2-{{ img.idimagen}}" style="display: none">
+                    <p>Datos de autor - tipo biografia {{ img.descripcion}}</p>
+                </div>
+                <div id="n3-{{ img.idimagen}}" style="display: none">
+                    <h2>Ubicación y Datos importante</h2><br>
+                    {{ img.ciudad}}, {{ img.pais}}<br>
+                {{ img.direccion}}<br>
+                    <img src="{% static 'images/map.png'%}"  alt="map">
+                    <p>{{ img.descripcion}}</p>
+                </div>
+                <div id="n4-{{ img.idimagen}}" style="display: none">
+                    <p>{{ img.descripcion}}</p>
+                </div>
+                <p>
+                    <input type="text" value="{{ img.idimagen}}" id="idimg{{ img.idimagen}}" style="display: none" />
+                    <input type="text" value=" {{ user.id}}" id="iduser{{ user.id}}" style="display: none" />
+                </p>
+            </div>
+
         {% endif %}
         <script>
             function fn1_{{ img.idimagen}}() {
