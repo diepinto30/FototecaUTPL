@@ -26,27 +26,25 @@
 
 {% block content1 %}
     <!--Galeria de Fotos-->
-    <script>var asd=[]</script>
     {% for img in list_imgs %}
         {% if user.is_authenticated %}
-            <div style="display:inline-block; margin-left: 0.4%">
-                <div class="img_{{ img.idimagen}} photo_list">
-                    <div class="" style="border-radius: 0.3em; width: 100%;">
+                 <div class="photo_list" style="border-radius: 0.3em;">
+                    <div class="" style="border-radius: 0.3em; width: 100%; display: inline-block;">
                         <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" style="border-radius: 0.3em;"><br>
                         <h4>{{ img.nombre}}</h4>
-                        <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button">
-                        <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button">
-                        <img src="{% static 'images/comentar.png'%}" alt="comentar" style="height: 2em; width: 2em" class="tw button">
-                        <img src="{% static 'images/seemore.png'%}" alt="ver más" style="height: 2.2em; width: 3em; margin-left: -0.4em; margin-top: -0.1em" class="tw button" onclick="seemore_{{ img.idimagen}}()">
-                        <p>
-                            <strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category
+                        <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button" title="Compartir en Facebook">
+                        <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button" title="Compartir en Twitter">
+                        <img src="{% static 'images/comentar.png'%}" alt="comentar" title="Comentar"  style="height: 2em; width: 2em" class="tw button" onclick="comentar_{{ img.idimagen}}()" >
+                        <img src="{% static 'images/seemore.png'%}" alt="ver más" title="Ver más"  style="height: 2.2em; width: 3em; margin-left: -0.4em; margin-top: -0.1em" class="tw button" onclick="seemore_{{ img.idimagen}}()" >
+                        <p><strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category</p>
                             {% if user.is_authenticated %}
                                 <button id="likes{{img.idimagen}}" data-catid="{{img.idimagen}}" class="btn btn-primary" type="button">
                                 <span class="glyphicon glyphicon-thumbs-up"></span>
                                 Like
                                 </button>
+                                <p>  </p>
                             {% endif %}
-                        </p>
+
                         <script>
                             $('#likes{{img.idimagen}}').click(function(){
                                 var catid;
@@ -59,75 +57,64 @@
                         </script>
                     </div>
                 </div>
-                <div id="seemore{{ img.idimagen}}"  style="display: none;">
-                    <nav style="background-color: black;">
-                        <a class="navbar-brand n1_{{ img.idimagen}}" href="#n1" onclick="fn1_{{ img.idimagen}}()">Descripción</a>
-                        <a class="navbar-brand n2_{{ img.idimagen}}" href="#" onclick="fn2_{{ img.idimagen}}()">Autor</a>
-                        <a class="navbar-brand n3_{{ img.idimagen}}" href="#" onclick="fn3_{{ img.idimagen}}()">Ubicación</a>
-                        <a class="navbar-brand n4_{{ img.idimagen}}" href="#" onclick="fn4_{{ img.idimagen}}()">Más</a>
-                    </nav>
-                    <div id="n1-{{ img.idimagen}}" style="display: none">
+
+        {% else %}
+            <div class="photo_list" style="border-radius: 0.3em;">
+                <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" style="border-radius: 0.3em;"><br>
+                        <h4>{{ img.nombre}}</h4>
+                        <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button" title="Compartir en Facebook">
+                        <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button" title="Compartir en Twitter">
+                        <img src="{% static 'images/comentar.png'%}" alt="comentar" title="Comentar"  style="height: 2em; width: 2em" class="tw button" onclick="comentar_{{ img.idimagen}}()" >
+                        <img src="{% static 'images/seemore.png'%}" alt="ver más" title="Ver más"  style="height: 2.2em; width: 3em; margin-left: -0.4em; margin-top: -0.1em" class="tw button" onclick="seemore_{{ img.idimagen}}()" >
+                <p><strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category</p>
+                <p>  </p>
+            </div>
+        {% endif %}
+        {# ver más #}
+            <div id="seemore{{ img.idimagen}}"  style="display: none;">
+
+                <nav style="background-color: black;width: 60%;margin-left: 14em;border-radius: 0.3em;">
+                    <a class="navbar-brand n1_{{ img.idimagen}}" href="#n{{ img.idimagen}}" onclick="fn1_{{ img.idimagen}}()">Descripción</a>
+                    <a class="navbar-brand n2_{{ img.idimagen}}" href="#n2{{ img.idimagen}}" onclick="fn2_{{ img.idimagen}}()">Autor</a>
+                    <a class="navbar-brand n3_{{ img.idimagen}}" href="#n3{{ img.idimagen}}" onclick="fn3_{{ img.idimagen}}()">Ubicación</a>
+                    <a class="navbar-brand n4_{{ img.idimagen}}" href="#n4{{ img.idimagen}}" onclick="fn4_{{ img.idimagen}}()">Más</a>
+                    <a class="navbar-brand " href="#" onclick="doDoubleClickAction_{{ img.idimagen}}()" style="float: right; margin-top: 0.07em; margin-right: 0.05em">Ver menos</a>
+                </nav>
+                <div style="width: 60%;margin-left: 14em;background-color:#c3d9ff ">
+                    <div id="n1-{{ img.idimagen}}" style="display: none"><a name="n{{ img.idimagen}}"></a>
                         <p>{{ img.descripcion}}</p>
                     </div>
                     <div id="n2-{{ img.idimagen}}" style="display: none">
-                        <p>Datos de autor - tipo biografia {{ img.descripcion}}</p>
+                        <p>Datos de autor - tipo biografia {{ img.descripcion}}</p><a name="n2{{ img.idimagen}}"></a>
                     </div>
-                    <div id="n3-{{ img.idimagen}}" style="display: none">
+                    <div id="n3-{{ img.idimagen}}" style="display: none"><a name="n3{{ img.idimagen}}"></a>
                         <h2>Ubicación y Datos importante</h2><br>
                         {{ img.ciudad}}, {{ img.pais}}<br>
                     {{ img.direccion}}<br>
                         <img src="{% static 'images/map.png'%}"  alt="map">
                         <p>{{ img.descripcion}}</p>
                     </div>
-                    <div id="n4-{{ img.idimagen}}" style="display: none">
+                    <div id="n4-{{ img.idimagen}}" style="display: none"><a name="n4{{ img.idimagen}}"></a>
                         <p>{{ img.descripcion}}</p>
                     </div>
                     <p>
                         <input type="text" value="{{ img.idimagen}}" id="idimg{{ img.idimagen}}" style="display: none" />
                         <input type="text" value=" {{ user.id}}" id="iduser{{ user.id}}" style="display: none" />
                     </p>
-                    <!--<p>
-                                <div class="container">
-                                    <a class="like"><i class="fa fa-thumbs-o-up"></i>
-                                        Like <input class="qty1" name="qty1" readonly="readonly" type="text" value="0" />
-                                    </a>
-                                    <a class="dislike"><i class="fa fa-thumbs-o-down"></i>
-                                        Dislike <input class="qty2"  name="qty2" readonly="readonly" type="text" value="0" />
-                                    </a>
-                                </div>
-                            </p>-->
-
-                </div>
-
-        {% else %}
-            <div class="photo_list" style="border-radius: 0.3em;">
-                <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" style="border-radius: 0.3em;"><br>
-                <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button"></span>
-                <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button"></span>
-                <img src="{% static 'images/ico_info.png'%}" alt="más.." style="height: 2em; width: 2em" class="in button">
-                <p><strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category</p>
-                <div>
-                    <input type="checkbox" class="read-more-state" id="see{{ img.idimagen}}">
-                    <div class="read-more-wrap">
-                        <div class="read-more-target">
-                            <p>
-                                <h3>{{ img.nombre}}</h3>
-                                <p>{{ img.descripcion}}</p><br>
-                                {{ img.direccion}}<br>
-                            <img src="{% static 'images/map.png'%}"  alt="map">
-<!--
-                                <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ img.latitud}},{{ img.longitud}}&zoom=12&size=400x400&key=[my_api_key]">
--->
-                                {{ img.ciudad}}, {{ img.pais}}<br>
-                                {{ img.direccion}}<br>
-
-                            </p>
-                        </div>
-                    </div>
-                    <label for="see{{ img.idimagen}}" class="read-more-trigger"></label>
-                </div>
+                </div><br>
             </div>
-        {% endif %}
+            {# comentar #}
+            <div id="comentario{{ img.idimagen}}"  style="display: none;background-color: #c3d9ff;width: 60%;margin-left: 14em;border-radius: 0.3em;" >
+            <p>Comentarios del Monumeto: <strong>{{ img.nombre}} </strong> </p>
+                <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Escriba su comentario aquí..."></textarea><br>
+                <button class="btn btn-primary" onclick="doDoubleClickActionComentario_{{ img.idimagen}}()">Esconder comentario</button>
+                <button class="btn btn-primary">Publicar</button>
+
+                <p>
+                    <input type="text" value="{{ img.idimagen}}" id="idimg{{ img.idimagen}}" style="display: none" />
+                    <input type="text" value=" {{ user.id}}" id="iduser{{ user.id}}" style="display: none" />
+                </p>
+            </div>
         <script>
             function fn1_{{ img.idimagen}}() {
                 document.getElementById("n1-{{ img.idimagen}}").style.display = "block";
@@ -153,46 +140,41 @@
                 document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
                 document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
             }
-            function close() {
-                document.getElementById("n4-{{ img.idimagen}}").style.display = "none";
-                document.getElementById("n1-{{ img.idimagen}}").style.display = "none";
-                document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
-                document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
-            }
+
 
             function seemore_{{ img.idimagen}}() {
-                document.getElementById("seemore{{ img.idimagen}}").style.display = "block";
-                document.getElementById("seemore{{ img.idimagen}}").src = "comentar.png";
+                    document.getElementById("seemore{{ img.idimagen}}").style.display = "block";
+            }
+            function doDoubleClickAction_{{ img.idimagen}}() {
+                document.getElementById('seemore{{ img.idimagen}}').style.display = "none";
+
+            }
+            function comentar_{{ img.idimagen}}() {
+                document.getElementById("comentario{{ img.idimagen}}").style.display = "block";
             }
 
-
+            function doDoubleClickActionComentario_{{ img.idimagen}}() {
+                document.getElementById('comentario{{ img.idimagen}}').style.display = "none";
+            }
         </script>
     {% endfor %}
-        <!--<script>
-            $(function () {
-                 $(".like").click(function () {
-                     var input = $(this).find('.qty1');
-                     var iduser = $('#iduser{{ user.id}}').val();
-                     var idimg = $('#see{{ img.idimagen}}').val();
-                     if('see{{ img.idimagen}}' == '{{ img.idimagen}}'){
-                         input.val(parseInt(input.val())+ 1);
-                     console.log("usuario "+iduser +": foto "+idimg);
-
-                     }
-
-
-                 });
-                 $(".dislike").click(function () {
-                     var input = $(this).find('.qty2');
-                     input.val(input.val() - 1);
-                 });
-            });
-        </script>-->
 
 	<script>!window.jQuery && document.write(unescape('%3Cscript src="{% static 'js/jquery-1.7.1.min.js'%}"%3E%3C/script%3E'))</script>
 	<script type="text/javascript" src="{% static 'js/ventana.js'%}"></script>
     <script type="text/javascript" src="{% static 'js/likes.js'%}"></script>
 
+{% endblock %}
+
+{% block content2 %}
+	<section class="categorias">
+		<h3>Categorías</h3>
+		<ul>
+			<li>Cat1</li>
+			<li>Cat1</li>
+			<li>Cat1</li>
+			<li>Cat1</li>
+		</ul>
+	</section>
 {% endblock %}
 <br><br>
 
