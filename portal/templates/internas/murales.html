@@ -1,30 +1,49 @@
 {% extends 'master.html' %}
 {% block tittle %} Murales {% endblock %}
 {% load static %}
-
-
 {% block head %}
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/ventana.css'%}">
 {% endblock %}
-
 {% block content1 %}
-	{% for img in list_imgs %}
-
-			<section class="photo_list">
-				<h3>{{ img.nombre}}</h3>
-				<img src="/media/{{ img.foto}}">
-				<div class="icon-photo">
-					<span class="button icon-smile" data-type="zoomin"></span>
-					<span class="button icon-file-text" data-type="zoomin1"></span>
-					<span class="button icon-bubbles4" data-type="zoomin"></span>
-					<span class="button icon-facebook2" data-type="zoomin"></span>
-					<span class="button icon-twitter" data-type="zoomin"></span>
-				</div>
-			</section>
-
-	{% endfor %}<br><br>
+  <div class="row py-3">
+    <div class="col-md-9">
+      <div class="row">
+        {% for img in list_imgs %}
+        <div class="col-md-4 mx-auto">
+          <div class="card">
+            <img src="/media/{{ img.foto}}" class="card-img-top" height="180px">
+            <div class="card-body">
+              <h3 class="card-title">{{ img.nombre}}</h3>
+              <p>
+                <span class="button"><i class="far fa-smile"></i></span>
+                <span class="button" data-type="zoomin1"><i class="far fa-file-alt"></i></span>
+                <span class="button" data-type="zoomin"><i class="far fa-comments"></i></span>
+                <span class="button" data-type="zoomin"><i class="fab fa-facebook-f"></i></span>
+                <span class="button" data-type="zoomin"><i class="fab fa-twitter"></i></span>
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-3">
+      {% block content2 %}
+      <section class="categorias">
+        <h3>Categorías</h3>
+        <ul>
+          <li>Cat1</li>
+          <li>Cat1</li>
+          <li>Cat1</li>
+          <li>Cat1</li>
+        </ul>
+      </section>
+      {% endblock %}
+    </div>
+  </div>
 	{% for imgC in list_imgC %}
 		<p>{{ imgC.idimagen}}</p>
 	{% endfor %}
@@ -56,14 +75,4 @@
 	<script>!window.jQuery && document.write(unescape('%3Cscript src="{% static 'js/jquery-1.7.1.min.js'%}"%3E%3C/script%3E'))</script>
 	<script type="text/javascript" src="{% static 'js/ventana.js'%}"></script>
 {% endblock %}
-{% block content2 %}
-	<section class="categorias">
-		<h3>Categorías</h3>
-		<ul>
-			<li>Cat1</li>
-			<li>Cat1</li>
-			<li>Cat1</li>
-			<li>Cat1</li>
-		</ul>
-	</section>
-{% endblock %}
+
