@@ -1,14 +1,12 @@
 {% extends 'master.html' %}
 {% block tittle %} Murales {% endblock %}
 {% load static %}
-
-
 {% block head %}
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/ventana.css'%}">
 {% endblock %}
-
 {% block content1 %}
     {% comment %}{% for tipoimg in list_monu %}
             <p>{{ tipoimg.idimagen}}</p>
@@ -150,20 +148,9 @@
             }
         </script>
     {% endfor %}
-
 	<script>!window.jQuery && document.write(unescape('%3Cscript src="{% static 'js/jquery-1.7.1.min.js'%}"%3E%3C/script%3E'))</script>
 	<script type="text/javascript" src="{% static 'js/ventana.js'%}"></script>
     <script type="text/javascript" src="{% static 'js/likes.js'%}"></script>
 
 {% endblock %}
-{% block content2 %}
-	<section class="categorias">
-		<h3>Categorías</h3>
-		<ul>
-			<li>Cat1</li>
-			<li>Cat1</li>
-			<li>Cat1</li>
-			<li>Cat1</li>
-		</ul>
-	</section>
-{% endblock %}
+

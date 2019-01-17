@@ -33,6 +33,7 @@ header nav{
 	float: right;
 	margin-right: 2em;
 	padding: 1.6em 1em;
+	position: relative;
 }
 /*nav a{
 	color: #fff;
