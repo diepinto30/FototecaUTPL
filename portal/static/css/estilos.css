@@ -7,19 +7,19 @@ html, body{
 	height: 100%;
 	font-family: Helvetica,arial;
 }
-header{
+/*header{
 	background: #000;
 	height: 90px;
 	
-	width: 100%; /* hacemos que la cabecera ocupe el ancho completo de la página */
-	left: 0; /* Posicionamos la cabecera al lado izquierdo */
-	top: 0; /* Posicionamos la cabecera pegada arriba */
+	width: 100%; !* hacemos que la cabecera ocupe el ancho completo de la página *!
+	left: 0; !* Posicionamos la cabecera al lado izquierdo *!
+	top: 0; !* Posicionamos la cabecera pegada arriba *!
 	position:fixed;
 }
 header img{
 	width: 4.5%;
 	padding: 0.5em 3em ;
-}
+}*/
 .imgheader img{
 	width: 23%;
 	padding: 0;
@@ -34,7 +34,7 @@ header nav{
 	margin-right: 2em;
 	padding: 1.6em 1em;
 }
-nav a{
+/*nav a{
 	color: #fff;
 	text-decoration:none;
 	padding: 0 1em;
@@ -46,7 +46,7 @@ nav a:hover{
 	background: #E8C000;
 	text-decoration:none;
 	transition: 0.7s;
-}
+}*/
 main{
 	margin-top: 90px !important; 
 	width: 95%;
