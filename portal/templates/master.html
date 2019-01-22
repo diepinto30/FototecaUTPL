@@ -12,7 +12,7 @@
 	{% endblock %}
 </head>
 <body>
-<header>
+<header style="background: #000000">
 	<div class="imgheader"><img src="{% static 'images/logo-fototeca.jpg'%}" title="logo" width="60"></div>
 	<nav>
 		<a href="/" class="menuinicio">Home</a>
@@ -23,7 +23,7 @@
 		<a href="/coleciones">Células</a>
 		<a href="/#contactos" class="menufin">Contactos</a>
 		{% if user.is_authenticated %}
-		<!--<div class="dropdown" style="float:right;">-->
+		<!--<div class="dropdown" style="float:right------;">-->
 
 		<a href="/formulario"><span class="icon-user"></span> | {{ user.username }}</a>
 		<a href="/logout">Salir</a>
