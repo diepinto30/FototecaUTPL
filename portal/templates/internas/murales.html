@@ -10,11 +10,11 @@
 {% endblock %}
 
 {% block content1 %}
-    {% comment %}{% for tipoimg in list_monu %}
-            <p>{{ tipoimg.idimagen}}</p>
+    {% for tipoimg in list_mura %}
+            <p>id img: {{ tipoimg.idimagen}}</p>
         <div class="{{ tipoimg.idimagen}}">diego</div>
-            <p>autor: {{ tipoimg.idautor }}</p>
-        {% endfor %}{% endcomment %}
+            <p>categoria: {{ tipoimg.idcategoria }}</p>
+        {% endfor %}
     <!--Galeria de Fotos-->
     {% for img in list_imgs %}
         {% if user.is_authenticated %}
@@ -22,6 +22,7 @@
                     <div class="" style="border-radius: 0.3em; width: 100%; display: inline-block;">
                         <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" style="border-radius: 0.3em;"><br>
                         <h4>{{ img.nombre}}</h4>
+                        <h4>{{ img.idlicencia}}</h4>
                         <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button" title="Compartir en Facebook">
                         <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button" title="Compartir en Twitter">
                         <img src="{% static 'images/comentar.png'%}" alt="comentar" title="Comentar"  style="height: 2em; width: 2em" class="tw button" onclick="comentar_{{ img.idimagen}}()" >
