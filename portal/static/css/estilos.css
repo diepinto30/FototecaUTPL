@@ -7,6 +7,7 @@ html, body{
 	height: 100%;
 	font-family: Helvetica,arial;
 }
+<<<<<<< HEAD
 header{
 	background: #000;
 	height: 90px;
@@ -14,9 +15,19 @@ header{
 	width: 100%; /*!* hacemos que la cabecera ocupe el ancho completo de la página *!*/
 	left: 0; /*!* Posicionamos la cabecera al lado izquierdo *!*/
 	top: 0; /*!* Posicionamos la cabecera pegada arriba */
+=======
+
+/*header{
+	background: #000;
+	height: 90px;
+	
+	width: 100%;  hacemos que la cabecera ocupe el ancho completo de la página
+	left: 0;  Posicionamos la cabecera al lado izquierdo
+	top: 0;  Posicionamos la cabecera pegada arriba
+>>>>>>> 2c2fc7c856521d468c8524e17691c143b16174a0
 	position:fixed;
-}
-header img{
+}*/
+/*header img{
 	width: 4.5%;
 	padding: 0.5em 3em ;
 }
@@ -33,6 +44,7 @@ header nav{
 	float: right;
 	margin-right: 2em;
 	padding: 1.6em 1em;
+	position: relative;
 }
 nav a{
 	color: #fff;
@@ -47,6 +59,34 @@ nav a:hover{
 	text-decoration:none;
 	transition: 0.7s;
 }
+<<<<<<< HEAD
+=======
+
+/*.nav li a{
+	color: #fff;
+	text-decoration:none;
+	padding: 0 1em;
+	padding: 2em 1em;
+	transition: 0.7s;
+}
+.nav li a:hover{
+	color: #000;
+	background: #E8C000;
+	text-decoration:none;
+	transition: 0.7s;
+}*/
+
+/*nav li ul {
+	display: none;
+	position: absolute;
+	min-width: 140px;
+}
+
+nav li:hover > ul {
+	display: block;
+}*/
+
+>>>>>>> 2c2fc7c856521d468c8524e17691c143b16174a0
 main{
 	margin-top: 90px !important; 
 	width: 95%;
