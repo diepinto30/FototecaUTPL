@@ -1,6 +1,6 @@
 from django.conf.urls import include, url, patterns
 from . import views
-from portal.views import monumentos_list, ImgMonu_edit, listado_fotosCelulas, login_required
+from portal.views import monumentos_list, ImgMonu_edit, listado_fotosCelulas, login_required, murales
 
 
 #from django.contrib.auth.views import login
@@ -18,7 +18,7 @@ urlpatterns = patterns('portal.views',
 	url(r'^logout/$', 'logout_view', name='logout_view'),
 	url(r'^reconoce/$', 'listado_fotos', name='listado_fotos'),
 	url(r'^coleciones/$', listado_fotosCelulas, name='listado_fotosCelulas'),
-	url(r'^murales/$', 'murales', name='murales'),
+	url(r'^murales/$', murales, name='murales'),
 	url(r'^monumentos/$', 'monumentos_list', name='monumentos_list'),
 	url(r'^editar/(?P<idimagen>\d+)$', ImgMonu_edit, name='monumentos_edit'),
 	url(r'^like_category/$', views.like_category, name='like_category'),

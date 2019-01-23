@@ -61,9 +61,9 @@ def listado_fotosCelulas(request):
 
 def murales(request):
 	imagenes = Imagen.objects.all()
-	Categoria = ImagenHasCategorias.objects.filter()
+	Categoria = ImagenHasCategorias.objects.all()
 	user = User.objects.all()
-	diccionario = {'list_imgs': imagenes, 'list_monu': Categoria, 'userlist': user}
+	diccionario = {'list_imgs': imagenes, 'list_mura': Categoria, 'userlist': user}
 	return render(request, 'internas/murales.html', diccionario)
 
 

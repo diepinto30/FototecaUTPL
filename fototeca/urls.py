@@ -27,7 +27,6 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('portal.urls')),
-    url(r'^', include('portal.webServices.wsImagenes.urls')),
 ]
 
 if settings.DEBUG:
