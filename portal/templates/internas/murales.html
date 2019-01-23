@@ -8,16 +8,35 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/ventana.css'%}">
 {% endblock %}
 {% block content1 %}
-    {% comment %}{% for tipoimg in list_monu %}
-            <p>{{ tipoimg.idimagen}}</p>
+    {% for tipoimg in list_mura %}
+            <p>id img: {{ tipoimg.idimagen}}</p>
         <div class="{{ tipoimg.idimagen}}">diego</div>
-            <p>autor: {{ tipoimg.idautor }}</p>
-        {% endfor %}{% endcomment %}
+            <p>categoria: {{ tipoimg.idcategoria }}</p>
+        {% endfor %}
     <!--Galeria de Fotos-->
       <div class="row mb-5">
       {% for img in list_imgs %}
       <div class="col-md-5 mx-auto">
         {% if user.is_authenticated %}
+<<<<<<< HEAD
+                 <div class="photo_list" style="border-radius: 0.3em;">
+                    <div class="" style="border-radius: 0.3em; width: 100%; display: inline-block;">
+                        <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" style="border-radius: 0.3em;"><br>
+                        <h4>{{ img.nombre}}</h4>
+                        <h4>{{ img.idlicencia}}</h4>
+                        <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button" title="Compartir en Facebook">
+                        <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button" title="Compartir en Twitter">
+                        <img src="{% static 'images/comentar.png'%}" alt="comentar" title="Comentar"  style="height: 2em; width: 2em" class="tw button" onclick="comentar_{{ img.idimagen}}()" >
+                        <img src="{% static 'images/seemore.png'%}" alt="ver más" title="Ver más"  style="height: 2.2em; width: 3em; margin-left: -0.4em; margin-top: -0.1em" class="tw button" onclick="seemore_{{ img.idimagen}}()" >
+                        <p><strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category</p>
+                            {% if user.is_authenticated %}
+                                <button id="likes{{img.idimagen}}" data-catid="{{img.idimagen}}" class="btn btn-primary" type="button">
+                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                Like
+                                </button>
+                                <p>  </p>
+                            {% endif %}
+=======
           <div class="card" style="width: 25rem;">
             <img src="/media/{{ img.foto}}" alt="" class="card-img-top" height="215px">
             <div class="card-body">
@@ -54,6 +73,7 @@
                                     </button>
                                     <p>  </p>
                                 {% endif %}
+>>>>>>> 2c2fc7c856521d468c8524e17691c143b16174a0
 
                             <script>
                                 $('#likes{{img.idimagen}}').click(function(){
