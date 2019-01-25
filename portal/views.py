@@ -59,6 +59,14 @@ def listado_fotosCelulas(request):
 	return render(request, 'internas/list_photos.html', diccionario)
 
 
+def celulas(request):
+	imagenes = Imagen.objects.all()
+	Categoria = ImagenHasCategorias.objects.all()
+	user = User.objects.all()
+	diccionario = {'list_imgs': imagenes, 'list_mura': Categoria, 'userlist': user}
+	return render(request, 'internas/celulas.html', diccionario)
+
+
 def murales(request):
 	imagenes = Imagen.objects.all()
 	Categoria = ImagenHasCategorias.objects.all()
