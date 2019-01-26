@@ -20,6 +20,9 @@ a, a:visited {
 	a:hover {
 		text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
 	}*/
+body {
+	height: 88vh;
+}
 	
 .button {
 	padding: 2px 2px;

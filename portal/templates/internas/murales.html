@@ -2,17 +2,20 @@
 {% block tittle %} Murales {% endblock %}
 {% load static %}
 {% block head %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/ventana.css'%}">
+  <style>
+    footer {
+      margin-top: 60px;
+    }
+  </style>
 {% endblock %}
 {% block content1 %}
     <!--Galeria de Fotos-->
     {% for img in list_imgs %}
         {% if user.is_authenticated %}
 
-            <div class="card" style="width: 22em; display: inline-block;" id="">
+            <div class="card mr-3 my-5" style="width: 22em; display: inline-block;" id="">
                 <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" class="card-img-top" height="215px">
                 <div class="card-body">
                     <h5 class="card-title">{{ img.nombre }}</h5>
@@ -38,7 +41,7 @@
             </div>
         {% else %}
 
-            <div class="card" style="width: 22em; display: inline-block;" id="">
+            <div class="card mr-3 my-5" style="width: 22em; display: inline-block;" id="">
                 <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" class="card-img-top" height="215px">
                 <div class="card-body">
                     <h5 class="card-title">{{ img.nombre }}</h5>

@@ -1,0 +1,37 @@
+.bg-negro {
+  background-color: #000000;
+}
+
+.bg-azulMarino {
+  background-color: #004468;
+}
+
+body {
+  min-height: 100%;
+}
+
+.imagen {
+  width: 66px;
+}
+
+.item-navbar {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.nav-link:hover {
+  background: #ffc107;
+  color: #343a40 !important;
+}
+
+.dropdown-item {
+  background: #000000 !important;
+  color: #fff !important;
+}
+
+.dropdown-item:hover {
+  background: #ffc107 !important;
+  color: #000000 !important;
+}
