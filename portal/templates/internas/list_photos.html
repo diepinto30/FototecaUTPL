@@ -1,62 +1,47 @@
 {% extends 'master.html' %}
 {% block tittle %} Células {% endblock %}
 {% load static %}
-
-
 {% block head %}
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/ventana.css'%}">
+  <style>
+    .img-modal {
+      width: 466px;
+      height: 349.5px;
+    }
+  </style>
 {% endblock %}
-
 {% block content1 %}
-	{% for img in list_imgs %}
-		<section class="photo_list">
-			<h3>{{ img.nombre}}</h3>
-			<img src="/media/{{ img.foto}}">
-			<div class="icon-photo">
-				<span class="button icon-smile" data-type="zoomin"></span>
-				<span class="button icon-file-text" data-type="zoomin1"></span>
-				<span class="button icon-bubbles4" data-type="zoomin"></span>
-				<span class="button icon-facebook2" data-type="zoomin"></span>
-				<span class="button icon-twitter" data-type="zoomin"></span>
-			</div>
-		</section>
-	{% endfor %}
-
-	<div class="overlay-container">
-		<div class="window-container zoomin">
-			<span class="close">Cerrar</span>
-			<h3>Versión en Zoom out </h3>
-			Texto de la ventana emergente<br/>
-			<br/>
-		</div>
-		{% for img in list_imgs %}
-			<div class="window-container zoomin1"><center>
-				<span class="close">Cerrar </span>
-				<h3>{{ img.nombre}}</h3>
-				<img src="/media/{{ img.foto}}" style="height: 280px;width: 280px; "><br>
-				<div style="width: 90%;">{{ img.descripcion}}</div><br>
-				{{ img.direccion}}<br>
-				{{ img.ciudad}}, {{ img.pais}}<br>
-				{{ img.direccion}}<br>
-				Texto de la ventana emergente<br/>
-				<br/></center>
-			</div>
-		{% endfor %}
-	</div>
-	<script>!window.jQuery && document.write(unescape('%3Cscript src="{% static 'js/jquery-1.7.1.min.js'%}"%3E%3C/script%3E'))</script>
-	<script type="text/javascript" src="{% static 'js/ventana.js'%}"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-{% endblock %}
-{% block content2 %}
-	<section class="categorias">
-		<h3>Categorías</h3>
-		<ul>
-			<li>Cat1</li>
-			<li>Cat1</li>
-			<li>Cat1</li>
-			<li>Cat1</li>
-		</ul>
-	</section>
+  <div class="row">
+    {% for img in list_imgs %}
+      <div class="col-lg-4 col-md-6 d-flex justify-content-center">
+        <div class="card mr-3 my-5" style="width: 20em; display: inline-block;" id="">
+          <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ img.nombre }}</h5>
+            <div class="d-flex justify-content-around">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-outline-primary" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
+              <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-outline-primary" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+              <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter{{ img.idimagen }}"><i class="far fa-clone text-primary"></i></a>
+              <div class="modal fade" id="exampleModalCenter{{ img.idimagen }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalCenterTitle">{{ img.nombre }}</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top img-modal">
+                      <hr>
+                      <p class="text-justify">{{ img.descripcion }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}
