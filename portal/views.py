@@ -136,10 +136,6 @@ def like_category(request):
     #         cat.likes = likes
     #         cat.save()
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ac16286724088c81ad669742a7d6fff35e9de1ec
 
 
 # def foto(request, id):
