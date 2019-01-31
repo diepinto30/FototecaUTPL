@@ -15,7 +15,7 @@
   <div class="row">
     {% for img in list_imgs %}
       {% if user.is_authenticated %}
-        <div class="col-md-4 d-flex justify-content-center">
+        <div class="col-lg-4 col-md-6 d-flex justify-content-center">
           <div class="card mr-3 my-5" style="width: 20em; display: inline-block;" id="{{ img.idimagen }}">
             <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
             <div class="card-body">
@@ -39,7 +39,7 @@
           </div>
         </div>
       {% else %}
-        <div class="col-md-4 d-flex justify-content-center">
+        <div class="col-lg-4 col-md-6 d-flex justify-content-center">
           <div class="card mr-3 my-5" style="width: 20em; display: inline-block;" id="">
             <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
             <div class="card-body">
