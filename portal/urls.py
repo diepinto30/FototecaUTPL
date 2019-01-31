@@ -23,6 +23,10 @@ urlpatterns = patterns('portal.views',
 	url(r'^monumentos/$', 'monumentos_list', name='monumentos_list'),
 	url(r'^editar/(?P<idimagen>\d+)$', ImgMonu_edit, name='monumentos_edit'),
 	url(r'^like_category/$', views.like_category, name='like_category'),
+<<<<<<< HEAD
+=======
+	url(r'^like_post/$', views.like_post, name='like_post'),
+>>>>>>> ac16286724088c81ad669742a7d6fff35e9de1ec
 	#url(r'foto/(?P<id>\d+)$', views.foto, name='foto'),
 	#url(r'^api/sacardata$', 'sacar_data', name='sacar_data'),
 	#url(r'^api/sacarlugares$', 'listarlugares', name='json'),

@@ -15,7 +15,7 @@ from django.shortcuts import render_to_response
 from portal.forms import ImgForm
 from portal.forms import LoginFrom
 from django.contrib.auth import authenticate, login
-
+from django.template.loader import render_to_string
 
 from portal.models import *
 from portal.models import ImagenHasCategorias
@@ -101,6 +101,27 @@ def ImgMonu_edit(request, idimagen):
 	return render(request, 'internas/img_form.html', {'form':form})
 
 
+def like_post(request):
+	global get_object_or_404
+	#post = get_object_or_404(Post, id=request.POST.get('post_id'))
+	post =  Imagen.objects.get( id=request.POST.get('id'))
+	is_liked = False
+	if post.likes.filter(id=request.user.id).exists():
+		post.likes.remove(request.user)
+		is_liked = True
+	else:
+		post.likes.add(request.user)
+		is_liked = True
+	context = {
+		'post': post,
+		'is_liked': is_liked,
+		'total_likes': post.total_likes()
+	}
+	if request.is_ajax():
+		html = render_to_string('internas/like_setion.html', context, request=request)
+		return JsonResponse({'form': html})
+
+
 @login_required
 def like_category(request):
 
@@ -119,7 +140,10 @@ def like_category(request):
     return HttpResponse(likes)
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ac16286724088c81ad669742a7d6fff35e9de1ec
 
 
 # def foto(request, id):
