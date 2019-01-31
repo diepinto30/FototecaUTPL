@@ -62,6 +62,10 @@ class Imagen(models.Model):
         self.fecha_publicacion = timezone.now()
         self.save()
 
+    @property
+    def total_likes(self):
+        return self.likes.count()
+
     def __unicode__(self):
         return "%s - %s, %s - %s - %s" % (self.nombre, self.ciudad, self.direccion, self.fecha_publicacion, self.fecha_tomada)
 
@@ -86,12 +90,12 @@ class ImagenHasCategorias(models.Model):
 
 
 class Megusta(models.Model):
-    idmegusta = models.AutoField(primary_key=True)
+    #idmegusta = models.AutoField(primary_key=True)
     #iduser = models.IntegerField()
     iduser = models.OneToOneField(User)
-    idimagen = models.ForeignKey(Imagen, db_column='idimagen')
+    idimagen = models.ForeignKey(Imagen)
     #me_gusta = models.NullBooleanField()
-    #fecha_megusta = models.DateField(blank=True, null=True)
+    fecha_megusta = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return "%s - %s " % (self.iduser, self.idimagen)  #, self.me_gusta, self.fecha_megusta)
