@@ -104,7 +104,7 @@ def ImgMonu_edit(request, idimagen):
 def like_post(request):
 	global get_object_or_404
 	#post = get_object_or_404(Post, id=request.POST.get('post_id'))
-	post =  Imagen.objects.get( id=request.POST.get('id'))
+	post =  Imagen.objects.get(id=request.POST.get('id'))
 	is_liked = False
 	if post.likes.filter(id=request.user.id).exists():
 		post.likes.remove(request.user)
@@ -122,23 +122,19 @@ def like_post(request):
 		return JsonResponse({'form': html})
 
 
-@login_required
 def like_category(request):
+	print ('aqui metodo')
+	query = request.GET.get['?id']
 
-    cat_id = None
-    if request.method == 'GET':
-        cat_id = request.GET['category_id']
 
-    likes = 0
-    if cat_id:
-        cat = Imagen.objects.get(id=int(cat_id))
-        if cat:
-            likes = cat.likes + 1
-            cat.likes = likes
-            cat.save()
 
-    return HttpResponse(likes)
-
+    # likes = 0
+    # if cat_id:
+    #     cat = Imagen.objects.get(id=id)
+    #     if cat:
+    #         likes = cat.likes + 1
+    #         cat.likes = likes
+    #         cat.save()
 
 
 

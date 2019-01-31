@@ -31,3 +31,4 @@ urlpatterns = patterns('portal.views',
 	#url(r'^estadistica', 'estadistica_view', name='estadistica'),
 	#url(r'^tablas', 'data_table', name='tables'),
 	)
+

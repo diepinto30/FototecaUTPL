@@ -18,6 +18,7 @@
     <script src="static/js/jquery-1.12.4.min.js"></script>
 <script src="/assets/js/jquery-2.1.4.min.js"></script>
 
+
  <script src="{% static 'jq/jquery-1.7.1.min.js' %}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -38,7 +39,7 @@
                         <img src="{% static 'images/seemore.png'%}" alt="ver más" title="Ver más"  style="height: 2.2em; width: 3em; margin-left: -0.4em; margin-top: -0.1em" class="tw button" onclick="seemore_{{ img.idimagen}}()" >
                         <p><strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category</p>
                             {% if user.is_authenticated %}
-                                <button id="likes{{img.idimagen}}" data-catid="{{img.idimagen}}" class="btn btn-primary" type="button">
+                                <button id="likes{{img.idimagen}}" data-catid="{{img.idimagen}}" class="btn btn-primary" type="button" value="{{img.idimagen}}" onclick="subirlike({{img.idimagen}})">
                                 <span class="glyphicon glyphicon-thumbs-up"></span>
                                 Like
                                 </button>
@@ -46,14 +47,25 @@
                             {% endif %}
 
                         <script>
-                            $('#likes{{img.idimagen}}').click(function(){
+                            function subirlike(value){
                                 var catid;
                                 catid = $(this).attr("data-catid");
-                                $.get('/portal/like_category/', {category_id: catid}, function(data){
-                                    $('#like_count{{img.idimagen}}').html(data);
-                                    $('#likes{{img.idimagen}}').hide();
+                                $.get('/like_category/?id='+value, function(data){
+                                    console.log('gfdgdgdg'+data)
                                 });
-                            });
+                            };
+
+                            {% comment %}function subirlike(value){
+                                console.log(value)
+                                axios.get('http://localhost:8080/portal/like_category/'+value).then(
+                                    function (response) {
+                                        console.log(response)
+
+                                    }
+                                )
+
+                            }{% endcomment %}
+
                         </script>
                     </div>
                 </div>
@@ -162,6 +174,7 @@
 	<script>!window.jQuery && document.write(unescape('%3Cscript src="{% static 'js/jquery-1.7.1.min.js'%}"%3E%3C/script%3E'))</script>
 	<script type="text/javascript" src="{% static 'js/ventana.js'%}"></script>
     <script type="text/javascript" src="{% static 'js/likes.js'%}"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 {% endblock %}
 
