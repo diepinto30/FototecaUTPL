@@ -119,6 +119,23 @@ def like_category(request):
     return HttpResponse(likes)
 
 
+def like(request):
+    if request.method == 'POST':
+        perfil = request.user
+        slug = request.POST.get('slug', None)
+        comentario = get_object_or_404(Comentario, slug=slug)
+
+        if comentario.objects.filter(id=user.id).exists():
+            comentario.likes.remove(user)
+
+        else:
+            comentario.likes.add(user)
+
+
+    contexto = {'likes_count': comentario.total_likes }
+    return HttpResponse(json.dumps(contexto), content_type='application/json')
+
+
 # def foto(request, id):
 #     """
 #         obtengo el detalle de cada imagen
