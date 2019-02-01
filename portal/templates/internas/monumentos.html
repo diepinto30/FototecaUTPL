@@ -18,6 +18,7 @@
     <script src="static/js/jquery-1.12.4.min.js"></script>
 <script src="/assets/js/jquery-2.1.4.min.js"></script>
 
+
  <script src="{% static 'jq/jquery-1.7.1.min.js' %}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -25,102 +26,138 @@
 {% endblock %}
 
 {% block content1 %}
-    <!--Galeria de Fotos-->
+    <br><h1>Momulentos Loja</h1>
+  <!--Galeria de Fotos-->
+  <div class="row">
     {% for img in list_imgs %}
-        {% if user.is_authenticated %}
-                 <div class="photo_list" style="border-radius: 0.3em;">
-                    <div class="" style="border-radius: 0.3em; width: 100%; display: inline-block;">
-                        <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" style="border-radius: 0.3em;"><br>
-                        <h4>{{ img.nombre}}</h4>
-                        <a href="javascript:var dir=window.document.URL;var tit=window.document.title;var tit2=encodeURIComponent(tit);var dir2= encodeURIComponent(dir);window.location.href=('http://www.facebook.com/share.php?u='+dir2+'&amp;t='+tit2+'');"><img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button" title="Compartir en Facebook"></a>
-                        <a href="javascript:var dir=window.document.URL;var tit=window.document.title;var tit2=encodeURIComponent(tit);window.location.href=('http://twitter.com/?status='+tit2+'%20'+dir+'');"><img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button" title="Compartir en Twitter"></a>
-                        <img src="{% static 'images/comentar.png'%}" alt="comentar" title="Comentar"  style="height: 2em; width: 2em" class="tw button" onclick="comentar_{{ img.idimagen}}()" >
-                        <img src="{% static 'images/seemore.png'%}" alt="ver más" title="Ver más"  style="height: 2.2em; width: 3em; margin-left: -0.4em; margin-top: -0.1em" class="tw button" onclick="seemore_{{ img.idimagen}}()" >
-                        <p><strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category</p>
-                            {% if user.is_authenticated %}
-                                <button id="likes{{img.idimagen}}" data-catid="{{img.idimagen}}" class="btn btn-primary" type="button">
-                                <span class="glyphicon glyphicon-thumbs-up"></span>
-                                Like
-                                </button>
-                                <p>  </p>
-                            {% endif %}
+      {% if user.is_authenticated %}
+            <div class="col-lg-4 col-md-6 d-flex justify-content-center" >
+              <div class="card mr-3 my-5 fotosMu" style="width: 20em; display:block;" id="{{ img.idimagen}}">
+                <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
+                <div class="card-body">
+                  <h5 class="card-title">{{ img.nombre }}</h5>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Escribe un comentario...">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text" id="btnGroupAddon{{ img.idimagen }}"><i class="fas fa-comment-dots" style="cursor: pointer"></i></div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-3">
+                    <button id="likes{{ img.idimagen }}" data-catid="{{ img.idimagen }}" class="btn btn-sm btn-outline-primary" type="button"><i class="far fa-thumbs-up"></i> Me gusta</button>
+                    {% comment %}<div id="like-section">
+                        {% include 'internas/like_setion.html' %}
+                    </div>{% endcomment %}
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
+                    <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()" title="Ver más contenido"><i class="far fa-plus-square text-primary"></i></a>
+                  </div>
+                  <div class="card-footer bg-transparent ">
+                    <p class="mb-0">A <span id="like_count{{ img.idimagen }}" class="text-primary">{{ img.likes }}</span> personas les gusta</p>
+                  </div>
+                    {% if user.is_authenticated %}
+                        <button id="likes{{img.idimagen}}" data-catid="{{img.idimagen}}" class="btn btn-primary" type="button" value="{{img.idimagen}}" onclick="subirlike({{img.idimagen}})">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                        Like
+                        </button>
+                        <p>  </p>
+                    {% endif %}
 
-                        <script>
-                            $('#likes{{img.idimagen}}').click(function(){
-                                var catid;
-                                catid = $(this).attr("data-catid");
-                                $.get('/portal/like_category/', {category_id: catid}, function(data){
-                                    $('#like_count{{img.idimagen}}').html(data);
-                                    $('#likes{{img.idimagen}}').hide();
-                                });
+                    <script>
+                        function subirlike(value){
+                            var catid;
+                            catid = $(this).attr("data-catid");
+                            $.get('/like_category/?id='+value, function(data){
+                                console.log('gfdgdgdg'+data)
                             });
-                        </script>
-                    </div>
+                        };
+                    </script>
+
                 </div>
-
-        {% else %}
-            <div class="photo_list" style="border-radius: 0.3em;">
-                <img src="/media/{{ img.foto}}" alt="img_{{ img.nombre}}" style="border-radius: 0.3em;"><br>
-                        <h4>{{ img.nombre}}</h4>
-                        <img src="{% static 'images/ico_facebook.png'%}" alt="facebook" style="height: 2em; width: 2em" class="fa button" title="Compartir en Facebook">
-                        <img src="{% static 'images/ico_twitter.png'%}" alt="twitter" style="height: 2em; width: 2em" class="tw button" title="Compartir en Twitter">
-                        <img src="{% static 'images/comentar.png'%}" alt="comentar" title="Comentar"  style="height: 2em; width: 2em" class="tw button" onclick="comentar_{{ img.idimagen}}()" >
-                        <img src="{% static 'images/seemore.png'%}" alt="ver más" title="Ver más"  style="height: 2.2em; width: 3em; margin-left: -0.4em; margin-top: -0.1em" class="tw button" onclick="seemore_{{ img.idimagen}}()" >
-                <p><strong id="like_count{{img.idimagen}}">{{ img.likes }}</strong> people like this category</p>
-                <p>  </p>
+              </div>
             </div>
-        {% endif %}
-        {# ver más #}
-            <div id="seemore{{ img.idimagen}}"  style="display: none;">
+      {% else %}
+        <div class="col-lg-4 col-md-6 d-flex justify-content-center">
+          <div class="card mr-3 my-5" style="width: 20em; display: inline-block;" id="">
+            <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
+            <div class="card-body">
+              <h5 class="card-title">{{ img.nombre }}</h5>
+              <div class="d-flex justify-content-between mb-3">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
+                <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()"><i class="far fa-plus-square text-primary"></i></a>
 
-                <nav style="background-color: black;width: 60%;margin-left: 14em;border-radius: 0.3em;">
-                    <a class="navbar-brand n1_{{ img.idimagen}}" href="#n{{ img.idimagen}}" onclick="fn1_{{ img.idimagen}}()">Descripción</a>
-                    <a class="navbar-brand n2_{{ img.idimagen}}" href="#n2{{ img.idimagen}}" onclick="fn2_{{ img.idimagen}}()">Autor</a>
-                    <a class="navbar-brand n3_{{ img.idimagen}}" href="#n3{{ img.idimagen}}" onclick="fn3_{{ img.idimagen}}()">Ubicación</a>
-                    <a class="navbar-brand n4_{{ img.idimagen}}" href="#n4{{ img.idimagen}}" onclick="fn4_{{ img.idimagen}}()">Más</a>
-                    <a class="navbar-brand " href="#" onclick="doDoubleClickAction_{{ img.idimagen}}()" style="float: right; margin-top: 0.07em; margin-right: 0.05em">Ver menos</a>
-                </nav>
-                <div style="width: 60%;margin-left: 14em;background-color:#c3d9ff ">
-                    <div id="n1-{{ img.idimagen}}" style="display: none"><a name="n{{ img.idimagen}}"></a>
-                        <p>{{ img.descripcion}}</p>
-                    </div>
-                    <div id="n2-{{ img.idimagen}}" style="display: none">
-                        <p>Datos de autor - tipo biografia {{ img.descripcion}}</p><a name="n2{{ img.idimagen}}"></a>
-                    </div>
-                    <div id="n3-{{ img.idimagen}}" style="display: none"><a name="n3{{ img.idimagen}}"></a>
-                        <h2>Ubicación y Datos importante</h2><br>
-                        {{ img.ciudad}}, {{ img.pais}}<br>
-                    {{ img.direccion}}<br>
-                        <img src="{% static 'images/map.png'%}"  alt="map">
-                        <p>{{ img.descripcion}}</p>
-                    </div>
-                    <div id="n4-{{ img.idimagen}}" style="display: none"><a name="n4{{ img.idimagen}}"></a>
-                        <p>{{ img.descripcion}}</p>
-                    </div>
-                    <p>
-                        <input type="text" value="{{ img.idimagen}}" id="idimg{{ img.idimagen}}" style="display: none" />
-                        <input type="text" value=" {{ user.id}}" id="iduser{{ user.id}}" style="display: none" />
-                    </p>
-                </div><br>
+              </div>
+              <div class="card-footer bg-transparent ">
+                <p class="mb-0">A <span id="like_count{{ img.idimagen }}" class="text-primary">{{ img.likes }}</span> personas les gusta</p>
+              </div>
             </div>
-            {# comentar #}
-            <div id="comentario{{ img.idimagen}}"  style="display: none;background-color: #c3d9ff;width: 60%;margin-left: 14em;border-radius: 0.3em;" >
-            <p>Comentarios del Monumeto: <strong>{{ img.nombre}} </strong> </p>
-                <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Escriba su comentario aquí..."></textarea><br>
-                <button class="btn btn-primary" onclick="doDoubleClickActionComentario_{{ img.idimagen}}()">Esconder comentario</button>
-                <button class="btn btn-primary">Publicar</button>
+          </div>
+        </div>
+      {% endif %}
+      {# Menú ver más #}
+    <div id="seemore{{ img.idimagen}}"  style="display: none;">
+        <div class="col-lg-4 col-md-6 d-flex justify-content-center" style="display: none;">
+          <div class="card mr-3 my-5" style="width: 20em; display: inline-block;margin-left: -8em;" id="">
+            <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
+            <div class="card-body">
+              <h5 class="card-title">{{ img.nombre }}</h5>
+              <div class="d-flex justify-content-between mb-3">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
+                <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+              </div>
+              <div class="card-footer bg-transparent ">
+                <p class="mb-0">A <span id="like_count{{ img.idimagen }}" class="text-primary">{{ img.likes }}</span> personas les gusta</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-left: 20em;margin-top: -27em;">
+          <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-warning rounded-0 n1_{{ img.idimagen}} btn-verMas" href="#n{{ img.idimagen}}" onclick="fn1_{{ img.idimagen}}()">Descripción</button>
+            <button type="button" class="btn btn-warning n2_{{ img.idimagen}} btn-verMas" href="#n2{{ img.idimagen}}" onclick="fn2_{{ img.idimagen}}()">Autor</button>
+            <button type="button" class="btn btn-warning rounded-0 n3_{{ img.idimagen}} btn-verMas" href="#n3{{ img.idimagen}}" onclick="fn3_{{ img.idimagen}}()">Ubicación</button>
+            <button type="button" class="btn btn-warning rounded-0 n4_{{ img.idimagen}} btn-verMas" href="#n4{{ img.idimagen}}" onclick="fn4_{{ img.idimagen}}()">Más</button>
+            <button type="button" class="btn btn-warning rounded-0" href="#" onclick="doDoubleClickAction_{{ img.idimagen}}()"><i class="fas fa-times"></i></button>
+          </div>
+          {# Contenido #}
+          <div class="bg-light p-3 w-80" >
+            <div id="n1-{{ img.idimagen}}" class="card">
+              <a name="n{{ img.idimagen}}"></a>
+              <div class="card-body"> {{ img.descripcion}}</div>
+            </div>
+            <div id="n2-{{ img.idimagen}}" style="display: none;width: 12em;" class="card">
+              <div class="card-body" >
+                <p>Datos de autor - tipo biografia {{ img.descripcion }}</p>
+                <a name="n2{{ img.idimagen}}"></a>
+              </div>
+            </div>
+            <div id="n3-{{ img.idimagen}}" style="display: none" class="card">
+              <div class="card-body">
+                <a name="n3{{ img.idimagen}}"></a>
+                <p><strong>Ubicación: </strong> {{ img.ciudad}}, {{ img.pais}}</p>
+                <p><strong>Dirección: </strong>{{ img.direccion }}</p>
+                <img src="{% static 'images/map.png'%}"  alt="map">
+                <p class="mt-3 text-justify">{{ img.descripcion}}</p>
+              </div>
+            </div>
+            <div id="n4-{{ img.idimagen}}" style="display: none" class="card">
+              <div class="card-body">
+                <p>{{ img.descripcion }}</p>
+                <a name="n4{{ img.idimagen}}"></a>
+              </div>
+            </div>
 
-                <p>
-                    <input type="text" value="{{ img.idimagen}}" id="idimg{{ img.idimagen}}" style="display: none" />
-                    <input type="text" value=" {{ user.id}}" id="iduser{{ user.id}}" style="display: none" />
-                </p>
-            </div>
+          </div>
+        </div>
+    <br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
+    </div>
+
         <script>
             function fn1_{{ img.idimagen}}() {
                 document.getElementById("n1-{{ img.idimagen}}").style.display = "block";
                 document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
                 document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
-                document.getElementById("n4-{{ img.idimagen}}").style.display = "none";
+                document.getElementById("n4-{{ img.idimagen}}").style.display = "none"
             }
             function fn2_{{ img.idimagen}}() {
                 document.getElementById("n2-{{ img.idimagen}}").style.display = "block";
@@ -143,9 +180,12 @@
 
 
             function seemore_{{ img.idimagen}}() {
-                    document.getElementById("seemore{{ img.idimagen}}").style.display = "block";
-            }
+                $('.fotosMu').hide();
+                document.getElementById("seemore{{ img.idimagen}}").style.display = "block";
+             }
+
             function doDoubleClickAction_{{ img.idimagen}}() {
+                $('.fotosMu').show();
                 document.getElementById('seemore{{ img.idimagen}}').style.display = "none";
 
             }
@@ -157,24 +197,37 @@
                 document.getElementById('comentario{{ img.idimagen}}').style.display = "none";
             }
         </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% comment %}<script>
+            $(document).ready(function (event) {
+                event.preventDefault();
+                var pk = $(this).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "like_post" %}',
+                    data: {'id':pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    dataType: 'json',
+                    success: function (response) {
+                        $('#like-section').html(response['form']);
+                        console.log($('#like-section').html(response['form']));
+                    },
+                    error: function (rs, e) {
+                        console.log(rs.responseText);
+                    },
+                });
+            });
+        </script>{% endcomment %}
+
     {% endfor %}
-
-	<script>!window.jQuery && document.write(unescape('%3Cscript src="{% static 'js/jquery-1.7.1.min.js'%}"%3E%3C/script%3E'))</script>
-	<script type="text/javascript" src="{% static 'js/ventana.js'%}"></script>
-    <script type="text/javascript" src="{% static 'js/likes.js'%}"></script>
-
+  </div>
+  <!--<script>
+    $('#likes{{img.idimagen}}').click(function(){
+        var catid;
+        catid = $(this).attr("data-catid");
+        $.get('/portal/like_category/', {category_id: catid}, function(data){
+            $('#like_count{{img.idimagen}}').html(data);
+            $('#likes{{img.idimagen}}').hide();
+        });
+    });
+  </script>-->
 {% endblock %}
-
-{% block content2 %}
-	<section class="categorias">
-		<h3>Categorías</h3>
-		<ul>
-			<li>Cat1</li>
-			<li>Cat1</li>
-			<li>Cat1</li>
-			<li>Cat1</li>
-		</ul>
-	</section>
-{% endblock %}
-<br><br>
-

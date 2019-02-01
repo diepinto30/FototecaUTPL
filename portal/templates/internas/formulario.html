@@ -1,42 +1,85 @@
 {% extends 'master.html' %}
-{% block tittle %} Registro {% endblock %}
+{% block tittle %} Registros {% endblock %}
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 {% endblock %}
 
 {% block content1 %}
-	<section class="register">
+  {% comment %}<h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registro</button>
+  </form>{% endcomment %}
+    {% comment %}<div class="row pt-5">
+        <div class="col-md-4 mx-auto">
+            <div class="card">
+                <h3 class="card-header py-4">INGRESO AL SISTEMA</h3>
+                <div class="card-body">
+                    <form method="post" class="text-left">
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" aria-describedby="nameHelp" placeholder="Enter your first name">
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" aria-describedby="nameHelp" placeholder="Enter your last name">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp" placeholder="Enter your username">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password1">Password 1</label>
+                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Password 1">
+                        </div>
+
+                        <br>
+                        <button type="submit" class="btn btn-warning btn-block">Registro</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>{% endcomment %}
+	<section class="register" style="margin-left: 25em;"><br><br>
+        <div class="w-50">
         <h3>Registrate gratis</h3>
-		<!--<form method="POST">{% csrf_token %}
+
+		<form method="POST">{% csrf_token %}
 			<div class="form-group">
-			    <label for="first_name">First Name</label>
-			    <input type="text" class="form-control" id="first_name" name="first_name" aria-describedby="nameHelp" placeholder="Enter your first name">
+			    <label for="first_name">Nombres</label>
+			    <input type="text" class="form-control" id="first_name" name="first_name" aria-describedby="nameHelp" placeholder="Nombres...">
 			</div>
 			<div class="form-group">
-			    <label for="last_name">Last Name</label>
-			    <input type="text" class="form-control" id="last_name" name="last_name" aria-describedby="nameHelp" placeholder="Enter your last name">
+			    <label for="last_name">Apellidos</label>
+			    <input type="text" class="form-control" id="last_name" name="last_name" aria-describedby="nameHelp" placeholder="Apellidos...">
 			</div>
 			<div class="form-group">
 			    <label for="username">Username</label>
-			    <input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp" placeholder="Enter your username">
+			    <input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp" placeholder="nick name">
 			</div>
 			<div class="form-group">
 			    <label for="email">Email address</label>
-			    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+			    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="email...">
 			</div>
 			<div class="form-group">
-			    <label for="password1">Password 1</label>
-			    <input type="password" class="form-control" id="password1" name="password1" placeholder="Password 1">
+			    <label for="password1">Contraseña</label>
+			    <input type="password" class="form-control" id="password1" name="password1" placeholder="Contraseña...">
 			</div>
 			<div class="form-group">
-			    <label for="password2">Password 2</label>
-			    <input type="password" class="form-control" id="password2" name="password2" placeholder="Password 2">
+			    <label for="password2">Conformación de contraseña </label>
+			    <input type="password" class="form-control" id="password2" name="password2" placeholder="Contraseña...">
 			</div>
-			<button type="submit" class="btn btn-primary">Registrar3</button>
-		</form>-->
-
-		<form method="post" >
+			<button type="submit" class="btn btn-primary" style="margin-left: 8em;">Registrar</button>
+		</form>
+</div>
+        <br><br>
+		{% comment %}<form method="post" >
 			{% csrf_token %}
             {% for non_field_error in form.non_field_errors %}
                 <p class="help is-danger">{{ non_field_error }}</p>
@@ -51,6 +94,6 @@
                 </div>
             {% endfor %}
 			<button type="submit" class="btn btn-primary">Registrar</button>
-		</form>
+		</form>{% endcomment %}
 	</section>
 {% endblock %}
