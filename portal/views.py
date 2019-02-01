@@ -71,8 +71,9 @@ def murales(request):
 	imagenes = Imagen.objects.all()
 	Categoria = ImagenHasCategorias.objects.all()
 	Autores = Autor.objects.all()
+	comentarios = Actividades.objects.all()
 	user = User.objects.all()
-	diccionario = {'list_imgs': imagenes, 'list_mura': Categoria, 'autorlist': Autores, 'userlist': user}
+	diccionario = {'list_imgs': imagenes, 'list_mura': Categoria, 'autorlist': Autores,'comentlist': comentarios, 'userlist': user}
 	return render(request, 'internas/murales.html', diccionario)
 
 
