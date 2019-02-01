@@ -1,0 +1,9 @@
+
+{% load static %}
+{% for autor in autorlist %}
+    <strong>Datos del autor del Mural</strong><br>
+        <img src="{% static 'images/autor.png'%}"  alt="autor" style="width: 8em;height: 8em">
+    <div class="autor_img{{ img.idimagen }}">
+        <p style="margin-top: -6em;margin-left: 9em;"><strong>Nombres :</strong> {{ autor.nombreautor }}<br> <strong>Apellidos :</strong> {{ autor.apellidoautor }}<br> <strong>Nacionalidad :</strong> {{ autor.nacionalidad }}<br> <strong>Correo :</strong> {{ autor.correo }}</p>
+    </div>
+{% endfor %}

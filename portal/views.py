@@ -12,19 +12,24 @@ from django.views.generic import CreateView
 from django.core.urlresolvers import reverse_lazy
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from portal.forms import ImgForm
 from portal.forms import LoginFrom
 from django.contrib.auth import authenticate, login
 from django.template.loader import render_to_string
-
+from portal.forms import RegistrationForm
 from portal.models import *
 from portal.models import ImagenHasCategorias
 from portal.models import Imagen
+
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+
 
 
 # Create your views here.
 def home_page(request):
 	return render_to_response('home_page.html', context=RequestContext(request))
+
 
 
 def login_home(request):
@@ -34,15 +39,18 @@ def login_home(request):
 		form = LoginFrom()
 	return render(request, 'internas/login.html', {'form': form})
 
-class formulario(CreateView):
-	model = User
-	template_name = "internas/formulario.html"
-	from_class = UserCreationForm
-	success_url = reverse_lazy('form:form')
 
+def register(request):
+	if request.method == 'POST':
+		form = RegistrationForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('/internas')
+		else:
+			form = RegistrationForm()
 
-# @login_required(login_url='/formulario/')
-
+			args = {'form':form}
+			return render(request, 'internas/formulario.html', args)
 
 
 def listado_fotos(request):

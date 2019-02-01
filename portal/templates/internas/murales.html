@@ -45,7 +45,7 @@
                 </div>
           {% else %}
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-              <div class="card mr-3 my-5" style="width: 20em; display: inline-block;" id="">
+              <div class="card mr-3 my-5 fotosMu" style="width: 20em; display: inline-block;" id="">
                 <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
                 <div class="card-body">
                   <h5 class="card-title">{{ img.nombre }}</h5>
@@ -94,17 +94,12 @@
                   <a name="n{{ img.idimagen}}"></a>
                   <div class="card-body"><strong>Nombre de mural: </strong>{{ img.nombre }}<br><br>{{ img.descripcion}}</div>
                 </div>
-                {% for autor in autorlist %}
+
                 <div id="n2-{{ img.idimagen}}" style="display: none;" class="card">
                   <div class="card-body" >
-                      <strong>Datos del autor del Mural</strong><br>
-                    <img src="{% static 'images/autor.png'%}"  alt="autor" style="width: 8em;height: 8em">
-                      <div class="autor{{ img.idimagen }}">
-                        <p style="margin-top: -6em;margin-left: 9em;"><strong>Nombres :</strong> {{ autor.nombreautor }}<br> <strong>Apellidos :</strong> {{ autor.apellidoautor }}<br> <strong>Nacionalidad :</strong> {{ autor.nacionalidad }}<br> <strong>Correo :</strong> {{ autor.correo }}</p>
-                      </div>
+                        {% include 'internas/autores.html' %}
                   </div>
                 </div>
-                 {% endfor %}
                 <div id="n3-{{ img.idimagen}}" style="display: none" class="card">
                   <div class="card-body">
                     <a name="n3{{ img.idimagen}}"></a>

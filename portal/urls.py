@@ -2,6 +2,10 @@ from django.conf.urls import include, url, patterns
 from . import views
 from portal.views import monumentos_list, ImgMonu_edit, listado_fotosCelulas, login_required, murales
 
+from django.conf.urls import url, include
+from django.contrib.auth import views as auth_views
+
+
 
 #from django.contrib.auth.views import login
 

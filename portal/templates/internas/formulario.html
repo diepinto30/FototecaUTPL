@@ -1,12 +1,52 @@
 {% extends 'master.html' %}
-{% block tittle %} Registro {% endblock %}
+{% block tittle %} Registros {% endblock %}
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 {% endblock %}
 
 {% block content1 %}
-	<section class="register">
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registro</button>
+  </form>
+    {% comment %}<div class="row pt-5">
+        <div class="col-md-4 mx-auto">
+            <div class="card">
+                <h3 class="card-header py-4">INGRESO AL SISTEMA</h3>
+                <div class="card-body">
+                    <form method="post" class="text-left">
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" aria-describedby="nameHelp" placeholder="Enter your first name">
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" aria-describedby="nameHelp" placeholder="Enter your last name">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp" placeholder="Enter your username">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password1">Password 1</label>
+                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Password 1">
+                        </div>
+
+                        <br>
+                        <button type="submit" class="btn btn-warning btn-block">Registro</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>{% endcomment %}
+	{% comment %}<section class="register">
         <h3>Registrate gratis</h3>
 		<!--<form method="POST">{% csrf_token %}
 			<div class="form-group">
@@ -52,5 +92,5 @@
             {% endfor %}
 			<button type="submit" class="btn btn-primary">Registrar</button>
 		</form>
-	</section>
+	</section>{% endcomment %}
 {% endblock %}
