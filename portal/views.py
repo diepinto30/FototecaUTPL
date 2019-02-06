@@ -23,6 +23,7 @@ from portal.models import Imagen
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -41,16 +42,20 @@ def login_home(request):
 
 
 def register(request):
+	print 'ss andn a and a nadnand nanda '
 	if request.method == 'POST':
+		print 'ammsmdm asndkasdkada'
 		form = RegistrationForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('/internas')
+			return redirect('internas/login.html')
 		else:
 			form = RegistrationForm()
 
 			args = {'form':form}
 			return render(request, 'internas/formulario.html', args)
+
+	return redirect('internas/login.html')
 
 
 def listado_fotos(request):
@@ -111,30 +116,66 @@ def ImgMonu_edit(request, idimagen):
 	return render(request, 'internas/img_form.html', {'form':form})
 
 
-def like_post(request):
-	global get_object_or_404
-	#post = get_object_or_404(Post, id=request.POST.get('post_id'))
-	post =  Imagen.objects.get(id=request.POST.get('id'))
-	is_liked = False
-	if post.likes.filter(id=request.user.id).exists():
-		post.likes.remove(request.user)
-		is_liked = True
-	else:
-		post.likes.add(request.user)
-		is_liked = True
-	context = {
-		'post': post,
-		'is_liked': is_liked,
-		'total_likes': post.total_likes()
-	}
-	if request.is_ajax():
-		html = render_to_string('internas/like_setion.html', context, request=request)
-		return JsonResponse({'form': html})
+def PostLikeToggle(request):
+    user = request.user
+    if request.method == 'POST':
+        post_id = request.POST['post_id']
+        post = get_object_or_404(posts, id=post_id)
+        _liked = user in post.liked.all()
+        if _liked :
+            post.liked.remove(user)
+        else:
+            post.liked.add(user)
+
+    return JsonResponse({'liked':_liked})
 
 
-def like_category(request):
-	print ('aqui metodo')
-	query = request.GET.get['?id']
+@login_required
+def like(request):
+	like_id = None
+
+	params = request.GET
+	id = params['id']
+	print(id)
+
+	cat_id = None
+	if request.method == 'GET':
+		cat_id = request.GET['id']
+
+	likes = 0
+	if cat_id:
+		cat = Imagen.objects.get(idimagen=int(cat_id))
+		if cat:
+			likes = cat.likes + 1
+			cat.likes = likes
+			cat.save()
+
+	import json
+
+	data={}
+	data['status']='200 ok'
+	data['likes']=likes
+	data=json.dumps(data)
+
+
+	return HttpResponse(data, content_type='application/json')
+
+
+
+
+
+	# likess = 0
+	# if request.method == 'GET':
+	#
+	# 	if id:
+	# 		print('if dos')
+	# 		com = Imagen.objects.get(id=idimagen)
+	# 		print('pase el dos')
+	# 		if com:
+	# 			print('if tres')
+	# 			likes = com.likes + 1
+	# 			com.likes = likes
+	# 			com.save()
 
 
 
