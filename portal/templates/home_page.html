@@ -42,7 +42,7 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle py-4 px-3" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i> |  {{ user.username }}</a>
+            <a class="nav-link dropdown-toggle py-4 px-3" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i> |  {{ user.username }} - {{ user.id }}</a>
             <div class="dropdown-menu py-0 rounded-0" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item py-4 px-3" href="#">Perfíl</a>
               <a class="dropdown-item py-4 px-3" href="/logout">Salir</a>

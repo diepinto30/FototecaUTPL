@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block content1 %}
-    <br><h1>Momulentos Loja</h1>
+    <br><h1>Momumentos Loja</h1>
   <!--Galeria de Fotos-->
   <div class="row">
     {% for img in list_imgs %}
@@ -60,23 +60,6 @@
                   <div class="card-footer bg-transparent ">
                     <p class="mb-0">A <span id="like_count{{ img.idimagen }}" class="text-primary">{{ img.likes }}</span> personas les gusta</p>
                   </div>
-                    {% if user.is_authenticated %}
-                        <button id="likes{{img.idimagen}}" data-catid="{{img.idimagen}}" class="btn btn-primary" type="button" value="{{img.idimagen}}" onclick="subirlike({{img.idimagen}})">
-                        <span class="glyphicon glyphicon-thumbs-up"></span>
-                        Like
-                        </button>
-                        <p>  </p>
-                    {% endif %}
-
-                    <script>
-                        function subirlike(value){
-                            var catid;
-                            catid = $(this).attr("data-catid");
-                            $.get('/like_category/?id='+value, function(data){
-                                console.log('gfdgdgdg'+data)
-                            });
-                        };
-                    </script>
 
                 </div>
               </div>

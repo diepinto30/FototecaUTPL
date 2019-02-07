@@ -23,6 +23,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from portal.forms import SignUpForm
+from portal.forms import CommitForm
 
 
 
@@ -142,6 +143,50 @@ def like(request):
 
 	return HttpResponse(data, content_type='application/json')
 
+
+def commit(request):
+    if request.method == 'POST':
+        form = CommitForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = SignUpForm()
+    return render(request, 'internas/commit.html', {'form': form})
+
+
+
+# def like_view(request):
+# 	user = request.user
+# 	if request.method == 'POST':
+# 		post_id = request.POST['post_id']
+# 		post = get_object_or_404(posts, id=post_id)
+# 		_liked = user in post.liked.all()
+# 		if _liked:
+# 			post.liked.remove(user)
+# 		else:
+# 			post.liked.add(user)
+#
+# 	return JsonResponse({'liked': _liked})
+
+    # user = check_validation(request)
+    # if user and request.method == 'POST':
+    #    form = LikeForm(request.POST)
+    #    if form.is_valid():
+    #        #post_id = form.cleaned_data.get('post').id
+    #        post_id=request.POST['post']
+	#
+    #        existing_like = Megusta.objects.filter(post_id=post_id, user=user).first()
+	#
+    #        if not existing_like:
+    #             Megusta.objects.create(post_id=post_id, user=user)
+    #        else:
+    #             existing_like.remove(user)
+	#
+    #     return redirect('home_page.html')
+	#
+    # else:
+    #     return redirect('internas/login.html')
 
 
 # def foto(request, id):
