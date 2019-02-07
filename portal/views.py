@@ -3,7 +3,6 @@ from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 
 from django.contrib.auth.forms import UserCreationForm
-from portal.forms import RegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
@@ -15,7 +14,6 @@ from django.shortcuts import render_to_response
 from portal.forms import LoginFrom
 from django.contrib.auth import authenticate, login
 from django.template.loader import render_to_string
-from portal.forms import RegistrationForm
 from portal.models import *
 from portal.models import ImagenHasCategorias
 from portal.models import Imagen
@@ -33,7 +31,6 @@ def home_page(request):
 	return render_to_response('home_page.html', context=RequestContext(request))
 
 
-
 def login_home(request):
 	if request.method == 'GET':
 		form = LoginFrom()
@@ -41,20 +38,6 @@ def login_home(request):
 		form = LoginFrom()
 	return render(request, 'internas/login.html', {'form': form})
 
-
-def register(request):
-	if request.method == 'POST':
-		form = RegistrationForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return redirect('internas/login.html')
-		else:
-			form = RegistrationForm()
-
-			args = {'form':form}
-			return render(request, 'internas/formulario.html', args)
-
-	return redirect('internas/formulario.html')
 
 def signup(request):
     if request.method == 'POST':
@@ -68,7 +51,7 @@ def signup(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'internas/formulario.html', {'form': form})
+    return render(request, 'internas/signup.html', {'form': form})
 
 
 

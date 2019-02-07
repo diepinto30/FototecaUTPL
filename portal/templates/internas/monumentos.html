@@ -43,10 +43,16 @@
                     </div>
                   </div>
                   <div class="d-flex justify-content-between mb-3">
-                    <button id="likes{{ img.idimagen }}" data-catid="{{ img.idimagen }}" class="btn btn-sm btn-outline-primary" type="button"><i class="far fa-thumbs-up"></i> Me gusta</button>
-                    {% comment %}<div id="like-section">
-                        {% include 'internas/like_setion.html' %}
-                    </div>{% endcomment %}
+                    <button id="likes-{{forloop.counter0}}" class="btn btn-warning btn-sm" type="button" onclick="likeThisComment('{{img.idimagen}}')"><i class="far fa-thumbs-up"></i> Me gusta</button>
+                          <script>
+                              function likeThisComment (comid) {
+                                  $.get("/like/", {"id": comid}, function (data, status) {
+                                      console.log('di like '+ data.likes)
+                                      $("#like_count"+comid).text(data.likes);
+                                      $(this).hide();
+                                  });
+                              }
+                          </script>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
                     <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()" title="Ver más contenido"><i class="far fa-plus-square text-primary"></i></a>
