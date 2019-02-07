@@ -24,6 +24,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from portal.forms import SignUpForm
 
 
 
@@ -42,9 +43,7 @@ def login_home(request):
 
 
 def register(request):
-	print 'ss andn a and a nadnand nanda '
 	if request.method == 'POST':
-		print 'ammsmdm asndkasdkada'
 		form = RegistrationForm(request.POST)
 		if form.is_valid():
 			form.save()
@@ -55,7 +54,23 @@ def register(request):
 			args = {'form':form}
 			return render(request, 'internas/formulario.html', args)
 
-	return redirect('internas/login.html')
+	return redirect('internas/formulario.html')
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignUpForm()
+    return render(request, 'internas/formulario.html', {'form': form})
+
+
 
 
 def listado_fotos(request):
@@ -116,24 +131,8 @@ def ImgMonu_edit(request, idimagen):
 	return render(request, 'internas/img_form.html', {'form':form})
 
 
-def PostLikeToggle(request):
-    user = request.user
-    if request.method == 'POST':
-        post_id = request.POST['post_id']
-        post = get_object_or_404(posts, id=post_id)
-        _liked = user in post.liked.all()
-        if _liked :
-            post.liked.remove(user)
-        else:
-            post.liked.add(user)
-
-    return JsonResponse({'liked':_liked})
-
-
 @login_required
 def like(request):
-	like_id = None
-
 	params = request.GET
 	id = params['id']
 	print(id)
@@ -159,33 +158,6 @@ def like(request):
 
 
 	return HttpResponse(data, content_type='application/json')
-
-
-
-
-
-	# likess = 0
-	# if request.method == 'GET':
-	#
-	# 	if id:
-	# 		print('if dos')
-	# 		com = Imagen.objects.get(id=idimagen)
-	# 		print('pase el dos')
-	# 		if com:
-	# 			print('if tres')
-	# 			likes = com.likes + 1
-	# 			com.likes = likes
-	# 			com.save()
-
-
-
-    # likes = 0
-    # if cat_id:
-    #     cat = Imagen.objects.get(id=id)
-    #     if cat:
-    #         likes = cat.likes + 1
-    #         cat.likes = likes
-    #         cat.save()
 
 
 

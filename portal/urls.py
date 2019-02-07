@@ -1,6 +1,6 @@
 from django.conf.urls import include, url, patterns
 from . import views
-from portal.views import monumentos_list, ImgMonu_edit, listado_fotosCelulas, login_required, murales
+from portal.views import monumentos_list, ImgMonu_edit, listado_fotosCelulas, login_required, murales, register
 
 from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
@@ -16,9 +16,10 @@ from django.contrib.auth.views import (
 
 urlpatterns = patterns('portal.views',
 	url(r'^$', 'home_page', name='home'),
-	url(r'^formulario/$', views.register, name='registro'),
+	#url(r'^formulario/$', register, name='register'),
 	url(r'^login/$', login, {'template_name':'internas/login.html'}, name='login'),
 	#url(r'^login/$', 'login_home', name='login'),
+	url(r'^signup/$',views.signup, name='signup'),
 	url(r'^logout/$', 'logout_view', name='logout_view'),
 	url(r'^reconoce/$', 'listado_fotos', name='listado_fotos'),
 	url(r'^colecciones/$', listado_fotosCelulas, name='listado_fotosCelulas'),

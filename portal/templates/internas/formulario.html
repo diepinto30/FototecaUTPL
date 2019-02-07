@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>{% endcomment %}
-	<section class="register" style="margin-left: 25em;"><br><br>
+	{% comment %}<section class="register" style="margin-left: 25em;"><br><br>
         <div class="w-50">
         <h3>Registrate gratis</h3>
 
@@ -79,7 +79,7 @@
 		</form>
 </div>
         <br><br>
-		{% comment %}<form method="post" >
+		<form method="post" >
 			{% csrf_token %}
             {% for non_field_error in form.non_field_errors %}
                 <p class="help is-danger">{{ non_field_error }}</p>
@@ -94,6 +94,24 @@
                 </div>
             {% endfor %}
 			<button type="submit" class="btn btn-primary">Registrar</button>
-		</form>{% endcomment %}
-	</section>
+		</form>
+	</section>{% endcomment %}
+
+    <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
+  </form>
 {% endblock %}

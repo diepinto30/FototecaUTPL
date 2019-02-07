@@ -31,7 +31,7 @@
                       <div class="d-flex justify-content-between mb-3">
 {#                        <button id="likes{{ img.idimagen }}" data-catid="{{ img.idimagen }}" class="btn btn-sm btn-outline-primary" type="button"><i class="far fa-thumbs-up"></i> Me gusta</button>#}
 
-                          <button id="likes-{{forloop.counter0}}" class="btn btn-warning btn-sm" type="button" onclick="likeThisComment('{{img.idimagen}}')">LIKE</button>
+                          <button id="likes-{{forloop.counter0}}" class="btn btn-warning btn-sm" type="button" onclick="likeThisComment('{{img.idimagen}}')"><i class="far fa-thumbs-up"></i> Me gusta</button>
                           <script>
                               function likeThisComment (comid) {
                                   $.get("/like/", {"id": comid}, function (data, status) {
