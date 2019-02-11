@@ -135,11 +135,6 @@ def like_post(request):
 def like_category(request):
 	print ('aqui metodo')
 	query = request.GET.get['?id']
-
-
-
-<<<<<<< HEAD
-=======
     # likes = 0
     # if cat_id:
     #     cat = Imagen.objects.get(id=id)
@@ -147,7 +142,6 @@ def like_category(request):
     #         likes = cat.likes + 1
     #         cat.likes = likes
     #         cat.save()
->>>>>>> f8cee13fbf119c1d8538c28ad3e8cdd620c42dbb
 
 
 

@@ -11,7 +11,7 @@
 
 {% endblock %}
 {% block content1 %}
-    <br><h1>Murales Loja</h1>
+    <br><h1 class="text-center">Murales Loja</h1>
   <!--Galeria de Fotos-->
 
   <div class="row">
@@ -69,7 +69,7 @@
                 <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
                 <div class="card-body">
                   <h5 class="card-title">{{ img.nombre }}</h5>
-                  <div class="d-flex justify-content-between mb-3">
+                  <div class="d-flex justify-content-around mb-3">
                       <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter{{ img.idimagen }}"><i class="far fa-clone text-primary"></i></a>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
                     <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
@@ -148,22 +148,17 @@
                     document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
                     document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
                 }
-
-
                 function seemore_{{ img.idimagen}}() {
                     $('.fotosMu').hide();
                     document.getElementById("seemore{{ img.idimagen}}").style.display = "block";
                  }
-
                 function doDoubleClickAction_{{ img.idimagen}}() {
                     $('.fotosMu').show();
                     document.getElementById('seemore{{ img.idimagen}}').style.display = "none";
-
                 }
                 function comentar_{{ img.idimagen}}() {
                     document.getElementById("comentario{{ img.idimagen}}").style.display = "block";
                 }
-
                 function doDoubleClickActionComentario_{{ img.idimagen}}() {
                     document.getElementById('comentario{{ img.idimagen}}').style.display = "none";
                 }
@@ -192,4 +187,3 @@
   </div>
 
 {% endblock %}
-

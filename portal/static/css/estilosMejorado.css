@@ -52,11 +52,11 @@
   width: 40%;
   font-size: 2.3em;
   font-weight: bold;
-  text-shadow: 2px 2px 3px #000;
+  text-shadow: 2px 2px 9px #000;
 	color: #ccc;
 	text-transform: uppercase;
 	background: #fff;
-	background: rgb(255,255,255,0.4);
+	background: rgba(255,255,255,0.1);
 	box-shadow: 2px 2px 3px #999;
 }
 
