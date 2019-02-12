@@ -12,11 +12,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/galeria.css'%}">
 
 <link href="https://file.myfontastic.com/hUsvSK8s6MutdPKJHuW7TX/icons.css" rel="stylesheet">
-  <style>
-    .btn-verMas {
-      padding: 0 36px!important;
-    }
-  </style>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -31,7 +26,7 @@
 {% endblock %}
 
 {% block content1 %}
-  <h1 class="pt-4 text-center">Momumentos Loja</h1>
+    <br><h1>Momumentos Loja</h1>
   <!--Galeria de Fotos-->
   <div class="row">
     {% for img in list_imgs %}
@@ -48,10 +43,16 @@
                     </div>
                   </div>
                   <div class="d-flex justify-content-between mb-3">
-                    <button id="likes{{ img.idimagen }}" data-catid="{{ img.idimagen }}" class="btn btn-sm btn-outline-primary" type="button"><i class="far fa-thumbs-up"></i> Me gusta</button>
-                    {% comment %}<div id="like-section">
-                        {% include 'internas/like_setion.html' %}
-                    </div>{% endcomment %}
+                    <button id="likes-{{forloop.counter0}}" class="btn btn-warning btn-sm" type="button" onclick="likeThisComment('{{img.idimagen}}')"><i class="far fa-thumbs-up"></i> Me gusta</button>
+                          <script>
+                              function likeThisComment (comid) {
+                                  $.get("/like/", {"id": comid}, function (data, status) {
+                                      console.log('di like '+ data.likes)
+                                      $("#like_count"+comid).text(data.likes);
+                                      $(this).hide();
+                                  });
+                              }
+                          </script>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
                     <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()" title="Ver más contenido"><i class="far fa-plus-square text-primary"></i></a>
@@ -59,23 +60,6 @@
                   <div class="card-footer bg-transparent ">
                     <p class="mb-0">A <span id="like_count{{ img.idimagen }}" class="text-primary">{{ img.likes }}</span> personas les gusta</p>
                   </div>
-                    {% if user.is_authenticated %}
-                        <button id="likes{{img.idimagen}}" data-catid="{{img.idimagen}}" class="btn btn-primary" type="button" value="{{img.idimagen}}" onclick="subirlike({{img.idimagen}})">
-                        <span class="glyphicon glyphicon-thumbs-up"></span>
-                        Like
-                        </button>
-                        <p>  </p>
-                    {% endif %}
-
-                    <script>
-                        function subirlike(value){
-                            var catid;
-                            catid = $(this).attr("data-catid");
-                            $.get('/like_category/?id='+value, function(data){
-                                console.log('gfdgdgdg'+data)
-                            });
-                        };
-                    </script>
 
                 </div>
               </div>
@@ -86,7 +70,7 @@
             <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
             <div class="card-body">
               <h5 class="card-title">{{ img.nombre }}</h5>
-              <div class="d-flex justify-content-around mb-3">
+              <div class="d-flex justify-content-between mb-3">
                 <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
                 <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()"><i class="far fa-plus-square text-primary"></i></a>
@@ -125,12 +109,12 @@
             <button type="button" class="btn btn-warning rounded-0" href="#" onclick="doDoubleClickAction_{{ img.idimagen}}()"><i class="fas fa-times"></i></button>
           </div>
           {# Contenido #}
-          <div class="bg-light p-3 w-75" >
+          <div class="bg-light p-3 w-80" >
             <div id="n1-{{ img.idimagen}}" class="card">
               <a name="n{{ img.idimagen}}"></a>
               <div class="card-body"> {{ img.descripcion}}</div>
             </div>
-            <div id="n2-{{ img.idimagen}}" style="display: none;" class="card">
+            <div id="n2-{{ img.idimagen}}" style="display: none;width: 12em;" class="card">
               <div class="card-body" >
                 <p>Datos de autor - tipo biografia {{ img.descripcion }}</p>
                 <a name="n2{{ img.idimagen}}"></a>
@@ -141,7 +125,7 @@
                 <a name="n3{{ img.idimagen}}"></a>
                 <p><strong>Ubicación: </strong> {{ img.ciudad}}, {{ img.pais}}</p>
                 <p><strong>Dirección: </strong>{{ img.direccion }}</p>
-                <img src="{% static 'images/map.png'%}"  alt="map" class="img-fluid">
+                <img src="{% static 'images/map.png'%}"  alt="map">
                 <p class="mt-3 text-justify">{{ img.descripcion}}</p>
               </div>
             </div>
@@ -182,22 +166,17 @@
                 document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
                 document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
             }
-
-
             function seemore_{{ img.idimagen}}() {
                 $('.fotosMu').hide();
                 document.getElementById("seemore{{ img.idimagen}}").style.display = "block";
              }
-
             function doDoubleClickAction_{{ img.idimagen}}() {
                 $('.fotosMu').show();
                 document.getElementById('seemore{{ img.idimagen}}').style.display = "none";
-
             }
             function comentar_{{ img.idimagen}}() {
                 document.getElementById("comentario{{ img.idimagen}}").style.display = "block";
             }
-
             function doDoubleClickActionComentario_{{ img.idimagen}}() {
                 document.getElementById('comentario{{ img.idimagen}}').style.display = "none";
             }

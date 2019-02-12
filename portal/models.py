@@ -7,10 +7,10 @@ from django.utils import timezone
 class Actividades(models.Model):
     idactividad = models.AutoField(primary_key=True)
     #iduser = models.ForeignKey('AuthUser', db_column='iduser')
-    iduser = models.OneToOneField(User)
+    iduser =  models.ForeignKey(User)
     idimagen = models.ForeignKey('Imagen', db_column='idimagen')
     comentario = models.CharField(max_length=300, blank=True, null=True)
-    ##fecha_comentario = models.DateField(blank=True, null=True)
+    fecha_comentario = models.DateTimeField(auto_now_add=True)
     #compartir = models.IntegerField(blank=True, null=True)
     #fecha_compartido = models.DateField(blank=True, null=True)
 
@@ -52,6 +52,7 @@ class Imagen(models.Model):
     longitud = models.CharField(max_length=30)
     dimenciones = models.CharField(max_length=100)
     Tecnica = models.CharField(max_length=100)
+    #likes = models.ManyToManyField(User, related_name='like_view')
     likes = models.IntegerField(default=0)
     fecha_publicacion = models.DateField('solved time', default=timezone.now)
     fecha_tomada = models.DateField('solved time', default=timezone.now)
@@ -89,10 +90,13 @@ class ImagenHasCategorias(models.Model):
         return "%s - %s" % (self.idimagen, self.idcategoria)
 
 
+
+
+
 class Megusta(models.Model):
     #idmegusta = models.AutoField(primary_key=True)
     #iduser = models.IntegerField()
-    iduser = models.OneToOneField(User)
+    iduser = models.ForeignKey(User)
     idimagen = models.ForeignKey(Imagen)
     #me_gusta = models.NullBooleanField()
     fecha_megusta = models.DateTimeField(auto_now_add=True)
@@ -143,9 +147,4 @@ class User(models.Model):
 
 
     def __unicode__(self):
-        return "%s - %s - %s - %s - %s" % (self.username, self.first_name, self.last_name, self.email, self.password)
-
-
-
-
-
+        return "%s -%s - %s - %s - %s - %s" % (self.iduser, self.username, self.first_name, self.last_name, self.email, self.password)
