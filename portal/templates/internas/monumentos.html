@@ -1,222 +1,229 @@
 {% extends 'master.html' %}
 {% block tittle %} Monumentos {% endblock %}
 {% load static %}
-
-
 {% block head %}
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .btn-verMas {
+      padding: 0 66px!important;
+    }
+  </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta name="viewport" content="initial-scale=1.0">
+<meta charset="utf-8">
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/ventana.css'%}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/galeria.css'%}">
-
-<link href="https://file.myfontastic.com/hUsvSK8s6MutdPKJHuW7TX/icons.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <script src="static/js/jquery-1.12.4.min.js"></script>
-<script src="/assets/js/jquery-2.1.4.min.js"></script>
-
-
- <script src="{% static 'jq/jquery-1.7.1.min.js' %}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 {% endblock %}
-
 {% block content1 %}
-    <br><h1>Momumentos Loja</h1>
+    <br><h1>Monumentos Loja</h1>
   <!--Galeria de Fotos-->
+
   <div class="row">
     {% for img in list_imgs %}
-      {% if user.is_authenticated %}
-            <div class="col-lg-4 col-md-6 d-flex justify-content-center" >
-              <div class="card mr-3 my-5 fotosMu" style="width: 20em; display:block;" id="{{ img.idimagen}}">
-                <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
-                <div class="card-body">
-                  <h5 class="card-title">{{ img.nombre }}</h5>
-                  <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Escribe un comentario...">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text" id="btnGroupAddon{{ img.idimagen }}"><i class="fas fa-comment-dots" style="cursor: pointer"></i></div>
-                    </div>
-                  </div>
-                  <div class="d-flex justify-content-between mb-3">
-                    <button id="likes-{{forloop.counter0}}" class="btn btn-warning btn-sm" type="button" onclick="likeThisComment('{{img.idimagen}}')"><i class="far fa-thumbs-up"></i> Me gusta</button>
+          {% if user.is_authenticated %}
+                <div class="col-lg-4 col-md-6 d-flex justify-content-center" >
+                  <div class="card mr-3 my-5 fotosMu" style="width: 20em; display:block;" id="{{ img.idimagen}}">
+                    <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ img.nombre }}</h5>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Escribe un comentario...">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text" id="btnGroupAddon{{ img.idimagen }}"><i class="fas fa-comment-dots" style="cursor: pointer"></i></div>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between mb-3">
+                           <button id="likes-{{forloop.counter0}}" class="btn btn-warning btn-sm" type="button" onclick="likeThisComment('{{img.idimagen}}')"><i class="far fa-thumbs-up"></i> Me gusta</button>
                           <script>
-                              function likeThisComment (comid) {
-                                  $.get("/like/", {"id": comid}, function (data, status) {
+                              function likeThisComment (comid, nombre) {
+                                  $.get("/like/?id="+comid, function (data, status) {
                                       console.log('di like '+ data.likes)
                                       $("#like_count"+comid).text(data.likes);
                                       $(this).hide();
                                   });
                               }
                           </script>
+
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
+                        <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()" title="Ver más contenido"><i class="far fa-plus-square text-primary"></i></a>
+                      </div>
+                      <div class="card-footer bg-transparent ">
+                        <p class="mb-0">A <span id="like_count{{ img.idimagen }}" class="text-primary">{{ img.likes }}</span> personas les gusta</p>
+                      </div>
+
+
+{#                        <div id="like-section">#}
+{#                            {% include 'internas/commit.html' %}#}
+{#                          </div>#}
+                    </div>
+                  </div>
+                </div>
+          {% else %}
+            <div class="col-lg-4 col-md-6 d-flex justify-content-center">
+              <div class="card mr-3 my-5 fotosMu" style="width: 20em; display: inline-block;" id="">
+                <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
+                <div class="card-body">
+                  <h5 class="card-title">{{ img.nombre }}</h5>
+                  <div class="d-flex justify-content-between mb-3">
                     <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
                     <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()" title="Ver más contenido"><i class="far fa-plus-square text-primary"></i></a>
+                    <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()"><i class="far fa-plus-square text-primary"></i></a>
+
                   </div>
                   <div class="card-footer bg-transparent ">
                     <p class="mb-0">A <span id="like_count{{ img.idimagen }}" class="text-primary">{{ img.likes }}</span> personas les gusta</p>
                   </div>
-
                 </div>
               </div>
             </div>
-      {% else %}
-        <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-          <div class="card mr-3 my-5" style="width: 20em; display: inline-block;" id="">
-            <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
-            <div class="card-body">
-              <h5 class="card-title">{{ img.nombre }}</h5>
-              <div class="d-flex justify-content-between mb-3">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
-                <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()"><i class="far fa-plus-square text-primary"></i></a>
-
-              </div>
-              <div class="card-footer bg-transparent ">
-                <p class="mb-0">A <span id="like_count{{ img.idimagen }}" class="text-primary">{{ img.likes }}</span> personas les gusta</p>
+          {% endif %}
+          {# Menú ver más #}
+        <div id="seemore{{ img.idimagen}}"  style="display: none;">
+            <div class="col-lg-4 col-md-6 d-flex justify-content-center" style="display: none;">
+              <div class="card mr-3 my-5" style="width: 20em; display: inline-block;margin-left: -8em;" id="">
+                <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
+                <div class="card-body">
+                  <h5 class="card-title">{{ img.nombre }}</h5>
+                  <div class="d-flex justify-content-between mb-3">
+                      <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter{{ img.idimagen }}"><i class="far fa-clone text-primary"></i></a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
+                    <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                  </div>
+                  <div class="card-footer bg-transparent ">
+                    <p class="mb-0">A <span id="like_count{{ img.idimagen }}" class="text-primary">{{ img.likes }}</span> personas les gusta</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+            <div style="margin-left: 19em;margin-top: -27em;">
+              <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-warning rounded-0 n1_{{ img.idimagen}} btn-verMas" href="#n{{ img.idimagen}}" onclick="fn1_{{ img.idimagen}}()">Descripción</button>
+                <button type="button" class="btn btn-warning n2_{{ img.idimagen}} btn-verMas" href="#n2{{ img.idimagen}}" onclick="fn2_{{ img.idimagen}}()">Autor</button>
+                <button type="button" class="btn btn-warning rounded-0 n3_{{ img.idimagen}} btn-verMas" href="#n3{{ img.idimagen}}" onclick="fn3_{{ img.idimagen}}()">Ubicación</button>
+                <button type="button" class="btn btn-warning rounded-0 n4_{{ img.idimagen}} btn-verMas" href="#n4{{ img.idimagen}}" onclick="fn4_{{ img.idimagen}}()">Coment.</button>
+                <button type="button" class="btn btn-warning rounded-0" href="#" onclick="doDoubleClickAction_{{ img.idimagen}}()"><i class="fas fa-times"></i></button>
+              </div>
+              {# Contenido #}
+              <div class="bg-light p-3 w-80" >
+                <div id="n1-{{ img.idimagen}}" class="card">
+                  <a name="n{{ img.idimagen}}"></a>
+                  <div class="card-body"><strong>Nombre de mural: </strong>{{ img.nombre }}<br><br>{{ img.descripcion}}</div>
+                </div>
+
+                <div id="n2-{{ img.idimagen}}" style="display: none;" class="card">
+                  <div class="card-body" >
+                        {% include 'internas/autores.html' %}
+                  </div>
+                </div>
+                <div id="n3-{{ img.idimagen}}" style="display: none" class="card">
+                  <div class="card-body">
+                    <a name="n3{{ img.idimagen}}"></a>
+                    <p><strong>Ubicación: </strong> {{ img.ciudad}}, {{ img.pais}}</p>
+                    <p><strong>Dirección: </strong>{{ img.direccion }}</p>
+                    <div id="googleMap" class="map{{ img.idimagen}}" style="width:100%;height:400px;"></div>
+{#                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d995.0473635016231!2d-79.20189107083627!3d-3.9814019998190173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cb480a41b54935%3A0xa541050dbf43c14c!2sIglesia+de+El+Valle!5e0!3m2!1ses!2sec!4v1549520284787" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>#}
+                    <p class="mt-3 text-justify">{{ img.descripcion}}</p>
+                  </div>
+                </div>
+                {% for coment in comentlist %}
+                    <div id="n4-{{ img.idimagen}}" style="display: none" class="card">
+                      <div class="card-body">
+                        <p>hla: {{ coment.comentario }}</p>
+                      </div>
+                    </div>
+                {% endfor %}
+
+              </div>
+            </div>
+        <br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
         </div>
-      {% endif %}
-      {# Menú ver más #}
-    <div id="seemore{{ img.idimagen}}"  style="display: none;">
-        <div class="col-lg-4 col-md-6 d-flex justify-content-center" style="display: none;">
-          <div class="card mr-3 my-5" style="width: 20em; display: inline-block;margin-left: -8em;" id="">
-            <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
-            <div class="card-body">
-              <h5 class="card-title">{{ img.nombre }}</h5>
-              <div class="d-flex justify-content-between mb-3">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
-                <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
-              </div>
-              <div class="card-footer bg-transparent ">
-                <p class="mb-0">A <span id="like_count{{ img.idimagen }}" class="text-primary">{{ img.likes }}</span> personas les gusta</p>
-              </div>
+
+
+            <script>
+                function fn1_{{ img.idimagen}}() {
+                    document.getElementById("n1-{{ img.idimagen}}").style.display = "block";
+                    document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
+                    document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
+                    document.getElementById("n4-{{ img.idimagen}}").style.display = "none"
+                }
+                function fn2_{{ img.idimagen}}() {
+                    document.getElementById("n2-{{ img.idimagen}}").style.display = "block";
+                    document.getElementById("n1-{{ img.idimagen}}").style.display = "none";
+                    document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
+                    document.getElementById("n4-{{ img.idimagen}}").style.display = "none";
+                }
+                function fn3_{{ img.idimagen}}() {
+                    document.getElementById("n3-{{ img.idimagen}}").style.display = "block";
+                    document.getElementById("n1-{{ img.idimagen}}").style.display = "none";
+                    document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
+                    document.getElementById("n4-{{ img.idimagen}}").style.display = "none";
+                }
+                function fn4_{{ img.idimagen}}() {
+                    document.getElementById("n4-{{ img.idimagen}}").style.display = "block";
+                    document.getElementById("n1-{{ img.idimagen}}").style.display = "none";
+                    document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
+                    document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
+                }
+
+
+                function seemore_{{ img.idimagen}}() {
+                    $('.fotosMu').hide();
+                    document.getElementById("seemore{{ img.idimagen}}").style.display = "block";
+                 }
+
+                function doDoubleClickAction_{{ img.idimagen}}() {
+                    $('.fotosMu').show();
+                    document.getElementById('seemore{{ img.idimagen}}').style.display = "none";
+
+                }
+                function comentar_{{ img.idimagen}}() {
+                    document.getElementById("comentario{{ img.idimagen}}").style.display = "block";
+                }
+
+                function doDoubleClickActionComentario_{{ img.idimagen}}() {
+                    document.getElementById('comentario{{ img.idimagen}}').style.display = "none";
+                }
+
+                function myMap() {
+                    var mapProp= {
+                        {#center:new google.maps.LatLng(51.508742,-0.120850),#}
+                        center:new google.maps.LatLng({{ img.latitud }},{{ img.longitud }}),
+                        zoom:5,
+                };
+                var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                }
+
+            </script>
+
+
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <div class="modal fade" id="exampleModalCenter{{ img.idimagen }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalCenterTitle">{{ img.nombre }}</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top img-modal" >
+                        </div>
+                        </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div style="margin-left: 20em;margin-top: -27em;">
-          <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-warning rounded-0 n1_{{ img.idimagen}} btn-verMas" href="#n{{ img.idimagen}}" onclick="fn1_{{ img.idimagen}}()">Descripción</button>
-            <button type="button" class="btn btn-warning n2_{{ img.idimagen}} btn-verMas" href="#n2{{ img.idimagen}}" onclick="fn2_{{ img.idimagen}}()">Autor</button>
-            <button type="button" class="btn btn-warning rounded-0 n3_{{ img.idimagen}} btn-verMas" href="#n3{{ img.idimagen}}" onclick="fn3_{{ img.idimagen}}()">Ubicación</button>
-            <button type="button" class="btn btn-warning rounded-0 n4_{{ img.idimagen}} btn-verMas" href="#n4{{ img.idimagen}}" onclick="fn4_{{ img.idimagen}}()">Más</button>
-            <button type="button" class="btn btn-warning rounded-0" href="#" onclick="doDoubleClickAction_{{ img.idimagen}}()"><i class="fas fa-times"></i></button>
-          </div>
-          {# Contenido #}
-          <div class="bg-light p-3 w-80" >
-            <div id="n1-{{ img.idimagen}}" class="card">
-              <a name="n{{ img.idimagen}}"></a>
-              <div class="card-body"> {{ img.descripcion}}</div>
-            </div>
-            <div id="n2-{{ img.idimagen}}" style="display: none;width: 12em;" class="card">
-              <div class="card-body" >
-                <p>Datos de autor - tipo biografia {{ img.descripcion }}</p>
-                <a name="n2{{ img.idimagen}}"></a>
-              </div>
-            </div>
-            <div id="n3-{{ img.idimagen}}" style="display: none" class="card">
-              <div class="card-body">
-                <a name="n3{{ img.idimagen}}"></a>
-                <p><strong>Ubicación: </strong> {{ img.ciudad}}, {{ img.pais}}</p>
-                <p><strong>Dirección: </strong>{{ img.direccion }}</p>
-                <img src="{% static 'images/map.png'%}"  alt="map">
-                <p class="mt-3 text-justify">{{ img.descripcion}}</p>
-              </div>
-            </div>
-            <div id="n4-{{ img.idimagen}}" style="display: none" class="card">
-              <div class="card-body">
-                <p>{{ img.descripcion }}</p>
-                <a name="n4{{ img.idimagen}}"></a>
-              </div>
-            </div>
 
-          </div>
-        </div>
-    <br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
-    </div>
-
-        <script>
-            function fn1_{{ img.idimagen}}() {
-                document.getElementById("n1-{{ img.idimagen}}").style.display = "block";
-                document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
-                document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
-                document.getElementById("n4-{{ img.idimagen}}").style.display = "none"
-            }
-            function fn2_{{ img.idimagen}}() {
-                document.getElementById("n2-{{ img.idimagen}}").style.display = "block";
-                document.getElementById("n1-{{ img.idimagen}}").style.display = "none";
-                document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
-                document.getElementById("n4-{{ img.idimagen}}").style.display = "none";
-            }
-            function fn3_{{ img.idimagen}}() {
-                document.getElementById("n3-{{ img.idimagen}}").style.display = "block";
-                document.getElementById("n1-{{ img.idimagen}}").style.display = "none";
-                document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
-                document.getElementById("n4-{{ img.idimagen}}").style.display = "none";
-            }
-            function fn4_{{ img.idimagen}}() {
-                document.getElementById("n4-{{ img.idimagen}}").style.display = "block";
-                document.getElementById("n1-{{ img.idimagen}}").style.display = "none";
-                document.getElementById("n2-{{ img.idimagen}}").style.display = "none";
-                document.getElementById("n3-{{ img.idimagen}}").style.display = "none";
-            }
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqaUQdi2hAjOPBjEtaYZ0dQ8dOjverm8A&callback=myMap"  alt="img_{{ img.nombre }}"></script>
 
 
-            function seemore_{{ img.idimagen}}() {
-                $('.fotosMu').hide();
-                document.getElementById("seemore{{ img.idimagen}}").style.display = "block";
-             }
 
-            function doDoubleClickAction_{{ img.idimagen}}() {
-                $('.fotosMu').show();
-                document.getElementById('seemore{{ img.idimagen}}').style.display = "none";
+        {% endfor %}
 
-            }
-            function comentar_{{ img.idimagen}}() {
-                document.getElementById("comentario{{ img.idimagen}}").style.display = "block";
-            }
-
-            function doDoubleClickActionComentario_{{ img.idimagen}}() {
-                document.getElementById('comentario{{ img.idimagen}}').style.display = "none";
-            }
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        {% comment %}<script>
-            $(document).ready(function (event) {
-                event.preventDefault();
-                var pk = $(this).attr('value');
-                $.ajax({
-                    type: 'POST',
-                    url: '{% url "like_post" %}',
-                    data: {'id':pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
-                    dataType: 'json',
-                    success: function (response) {
-                        $('#like-section').html(response['form']);
-                        console.log($('#like-section').html(response['form']));
-                    },
-                    error: function (rs, e) {
-                        console.log(rs.responseText);
-                    },
-                });
-            });
-        </script>{% endcomment %}
-
-    {% endfor %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </div>
-  <!--<script>
-    $('#likes{{img.idimagen}}').click(function(){
-        var catid;
-        catid = $(this).attr("data-catid");
-        $.get('/portal/like_category/', {category_id: catid}, function(data){
-            $('#like_count{{img.idimagen}}').html(data);
-            $('#likes{{img.idimagen}}').hide();
-        });
-    });
-  </script>-->
+
+
+
 {% endblock %}
