@@ -142,14 +142,26 @@ def like(request):
 	return HttpResponse(data, content_type='application/json')
 
 
-def commit(request):
-	if request.method == 'POST':
-		form = CommitsForm(request.POST)
+# def commit(request):
+# 	if request.method == 'POST':
+# 		form = CommitsForm(request.POST)
+# 		if form.is_valid():
+# 			form.save()
+# 			return redirect('home')
+# 	else:
+# 		form = CommitsForm()
+# 	return render(request, 'internas/commit.html', {'form': form})
+
+
+def commitMonu(request, id):
+	commit = Actividades.objects.get(iduser=id)
+	if request.method == 'GET':
+		form = CommitsForm(instance=commit)
+	else:
+		form = CommitsForm(request.POST, instance=commit)
 		if form.is_valid():
 			form.save()
-			return redirect('home')
-	else:
-		form = CommitsForm()
+		return redirect('home')
 	return render(request, 'internas/commit.html', {'form': form})
 
 
@@ -161,7 +173,7 @@ def colecciones_edit(request, id):
 		form = ColeccionesForm(request.POST, instance=colecciones)
 		if form.is_valid():
 			form.save()
-		return redirect('home')
+		return redirect('/colecciones')
 	return render(request, 'internas/formularioColecciones.html', {'form': form})
 
 

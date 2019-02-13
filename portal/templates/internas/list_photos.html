@@ -34,7 +34,7 @@
                       <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top">
                       <hr>
                       <p class="text-justify">{{ img.descripcion }}</p>
-                        <button type="submit" class="btn btn-dark btn-block" href="{% url 'colecciones_edit' img.idimagen %}">Agregar contenido</button>
+                        <a type="submit" class="btn btn-dark btn-block" href="/editarColeccion/{{ img.idimagen }} ">Agregar contenido</a>
                     </div>
 
                   </div>

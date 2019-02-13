@@ -21,11 +21,11 @@ class LoginFrom(forms.Form):
 
 
 class ColeccionesForm(forms.ModelForm):
+    descripcion = forms.CharField(widget=forms.Textarea)
     class Meta:
         model = Imagen
 
         fields = [
-            'iduser',
             'nombre',
             'descripcion',
             'hayrostros',
@@ -38,7 +38,6 @@ class ColeccionesForm(forms.ModelForm):
             'Tecnica',
         ]
         labels = {
-            'iduser': 'User',
             'nombre': 'Nombre de la imagen',
             'descripcion': 'Descripcion',
             'hayrostros': 'Existe algun rostro',

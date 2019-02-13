@@ -2,10 +2,30 @@
 {% block tittle %} Editar Colecciones {% endblock %}
 {% load static %}
 {% block content1 %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn-primary">Guardar Edicion</button>
-    </form>
+    <div class="row pt-4">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <h3 class="card-header py-4">Editar o agregar Contenido</h3>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group" style="text-align: center">
+                            <label >Nombre de la imagen</label>
+                            {{ form.nombre }}
+                        </div>
+                        <div class="form-group" style="text-align: center">
+                            <label >Descripción</label>
+                            {{ form.descripcion }}
+                        </div>
+                        <div class="form-group" style="text-align: center">
+                            <label >Existe algun rostro en la img</label><br>
+                            {{ form.hayrostros }}
+                        </div>
+                        <button type="submit" class="btn-primary">Guardar Edicion</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
