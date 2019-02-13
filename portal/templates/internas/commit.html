@@ -1,33 +1,34 @@
-{#{% extends 'master.html' %}#}
+{% extends 'master.html' %}
 {#{% block tittle %} Editar Colecciones {% endblock %}#}
 {% load static %}
 {% block content1 %}
-   <form method="post" class="text-left">
-        {% csrf_token %}
-            <div class="form-group" style="text-align: center">
-                <label >id user</label>
-                {{ form.iduser }}
+    <div class="row pt-4">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <h3 class="card-header py-4">Agregar comentario</h3>
+                <div class="card-body">
+                   <form method="post" class="text-left">
+                        {% csrf_token %}
+                            <div class="form-group" style="text-align: center">
+                                <label >id user</label>
+                                {{ form.iduser }}
+                            </div>
+                            <hr>
+                            <div class="form-group" style="text-align: center">
+                                <label >id imagen</label>
+                                {{ form.idimagen }}
+                                <p><i style="size: 2">Coloqué el id de la imagen</i></p>
+                            </div>
+                            <hr>
+                            <div class="form-group" style="text-align: center">
+                                <label >Comentar</label><br>
+                                {{ form.comentario }}
+                            </div>
+                        <button type="submit" class="btn btn-primary btn-block">Commit</button>
+                   </form>
+                </div>
             </div>
-            <div class="form-group" style="text-align: center">
-                <label >id imagen</label>
-                {{ form.idimagen }}
-            </div>
-            <div class="form-group" style="text-align: center">
-                <label >Comentar</label><br>
-                {{ form.comentario }}
-            </div>
-        <button type="submit" class="btn btn-primary btn-block">Commit</button>
-    </form>
+        </div>
+    </div>
 
 {% endblock %}
-{% comment %}
-<form method="post">
-    {% csrf_token %}
-
-    {{ form.iduser }}<br>hola
-    {{ form.idimagen }}<br>hola2
-    {{ form.comentario }}<br>hola3444
-
-    <button type="submit" class="btn-primary">Comentar</button>
-</form>
-{% endcomment %}

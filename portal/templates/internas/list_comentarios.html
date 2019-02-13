@@ -1,7 +1,8 @@
 {% load static %}
 {% for coment in comentlist %}
     <p>
-        <strong><i>-{{ coment.iduser }}-</i> dice que:</strong> {{ coment.comentario }}
+        <strong><i class="far fa-user"></i><i> -{{ coment.iduser }}-</i></strong> | {{ coment.fecha_comentario }}
+        <br>Dice: {{ coment.comentario }}
         <hr>
     </p>
 {% endfor %}

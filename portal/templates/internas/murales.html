@@ -22,12 +22,13 @@
                     <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
                     <div class="card-body">
                       <h5 class="card-title">{{ img.nombre }}</h5>
-                      <div class="input-group mb-3">
+                        <hr>
+                      {% comment %}<div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Escribe un comentario...">
                         <div class="input-group-prepend">
                           <div class="input-group-text" id="btnGroupAddon{{ img.idimagen }}"><i class="fas fa-comment-dots" style="cursor: pointer"></i></div>
                         </div>
-                      </div>
+                      </div>{% endcomment %}
                       <div class="d-flex justify-content-between mb-3">
                            <button id="likes-{{forloop.counter0}}" class="btn btn-warning btn-sm" type="button" onclick="likeThisComment('{{img.idimagen}}')"><i class="far fa-thumbs-up"></i> Me gusta</button>
                           <script>
@@ -138,13 +139,20 @@
 
                   </div>
                 </div>
-                {% for coment in comentlist %}
-                    <div id="n4-{{ img.idimagen}}" style="display: none" class="card">
-                      <div class="card-body">
-                        <p>hla: {{ coment.comentario }}</p>
-                      </div>
-                    </div>
-                {% endfor %}
+                <div id="n4-{{ img.idimagen}}" style="display: none" class="card">
+                  <div class="card-body">
+                      {% include 'internas/list_comentarios.html' %}
+                      {% if user.is_authenticated %}
+                      <p>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text" id="btnGroupAddon{{ img.idimagen }}" ><a type="submit" class="btn fas fa-comment-dots" href="/commit/" style="cursor: pointer"></a></div>
+                            </div>
+                          </div>
+                      </p>
+                      {% endif %}
+                  </div>
+                </div>
 
               </div>
             </div>
