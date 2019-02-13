@@ -54,6 +54,7 @@ class Imagen(models.Model):
     Tecnica = models.CharField(max_length=100)
     #likes = models.ManyToManyField(User, related_name='like_view')
     likes = models.IntegerField(default=0)
+    img_qr = models.ImageField(upload_to='portal/imgs/QRS_fototeca')
     fecha_publicacion = models.DateField('solved time', default=timezone.now)
     fecha_tomada = models.DateField('solved time', default=timezone.now)
     idlicencia = models.ForeignKey('Tipolicencia', db_column='idlicencia')
