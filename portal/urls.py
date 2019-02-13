@@ -1,6 +1,6 @@
 from django.conf.urls import include, url, patterns
 from . import views
-from portal.views import monumentos_list, ImgMonu_edit, listado_fotosCelulas, login_required, murales, colecciones_edit, commitMonu
+from portal.views import monumentos_list, ImgMonu_edit, listado_fotosCelulas, login_required, murales, colecciones_edit#, commitMonu
 
 from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
@@ -26,8 +26,8 @@ urlpatterns = patterns('portal.views',
 	url(r'^monumentos/$', 'monumentos_list', name='monumentos_list'),
 	url(r'^editar/(?P<idimagen>\d+)$', ImgMonu_edit, name='monumentos_edit'),
 	url(r'^like/$', login_required(views.like), name='like'),
-	#url(r'^commit/$', commit, name='commit'),
-	url(r'^commitMonu/(?P<id>\d+)/$', commitMonu, name='commitMonu'),
+	url(r'^commit/$', views.commit, name='commit'),
+	#url(r'^commitMonu/(?P<id>\d+)/$', commitMonu, name='commitMonu'),
 	url(r'^editarColeccion/(?P<id>\d+)/$', colecciones_edit, name='colecciones_edit'),
 	#url(r'foto/(?P<id>\d+)$', views.foto, name='foto'),
 	#url(r'^api/sacardata$', 'sacar_data', name='sacar_data'),

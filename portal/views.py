@@ -92,7 +92,8 @@ def monumentos_list(request):
 	imagMonu = Imagen.objects.all().order_by('idimagen')
 	Categoria = ImagenHasCategorias.objects.all()
 	user = AuthUser.objects.all()
-	diccionario = {'list_imgs': imagMonu, 'list_monu': Categoria, 'userlist': user}
+	comentarios = Actividades.objects.all()
+	diccionario = {'list_imgs': imagMonu, 'list_monu': Categoria, 'userlist': user, 'comentlist': comentarios}
 	return render(request, 'internas/monumentos.html', diccionario)
 
 
@@ -142,27 +143,29 @@ def like(request):
 	return HttpResponse(data, content_type='application/json')
 
 
-# def commit(request):
-# 	if request.method == 'POST':
-# 		form = CommitsForm(request.POST)
+def commit(request):
+	if request.method == 'POST':
+		form = CommitsForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('home')
+	else:
+		form = CommitsForm()
+	return render(request, 'internas/commit.html', {'form': form})
+
+
+# def commitMonu(request, id):
+# 	commit = Actividades.objects.get(iduser=id)
+# 	if request.method == 'GET':
+# 		form = CommitsForm(instance=commit)
+# 	else:
+# 		form = CommitsForm(request.POST, instance=commit)
 # 		if form.is_valid():
 # 			form.save()
-# 			return redirect('home')
-# 	else:
-# 		form = CommitsForm()
+# 		return redirect('home')
 # 	return render(request, 'internas/commit.html', {'form': form})
 
 
-def commitMonu(request, id):
-	commit = Actividades.objects.get(iduser=id)
-	if request.method == 'GET':
-		form = CommitsForm(instance=commit)
-	else:
-		form = CommitsForm(request.POST, instance=commit)
-		if form.is_valid():
-			form.save()
-		return redirect('home')
-	return render(request, 'internas/commit.html', {'form': form})
 
 
 def colecciones_edit(request, id):

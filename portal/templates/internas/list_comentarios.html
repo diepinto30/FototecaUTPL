@@ -1,0 +1,7 @@
+{% load static %}
+{% for coment in comentlist %}
+    <p>
+        <strong><i>-{{ coment.iduser }}-</i> dice que:</strong> {{ coment.comentario }}
+        <hr>
+    </p>
+{% endfor %}
