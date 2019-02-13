@@ -18,10 +18,40 @@
                             {{ form.descripcion }}
                         </div>
                         <div class="form-group" style="text-align: center">
-                            <label >Existe algun rostro en la img</label><br>
+                            <label >Existe algun rostro en la img</label>
                             {{ form.hayrostros }}
                         </div>
-                        <button type="submit" class="btn-primary">Guardar Edicion</button>
+                        <div class="form-group" style="text-align: center">
+                            <label >dirección</label>
+                            {{ form.direccion }}
+                        </div>
+                        <div class="form-group" style="text-align: center">
+                            <label >País</label>
+                            {{ form.pais }}
+                        </div>
+                        <div class="form-group" style="text-align: center">
+                            <label >Ciudad</label>
+                            {{ form.ciudad }}
+                        </div>
+                        <div class="form-group" style="text-align: center">
+                            <label >Ubicación por latitud</label>
+                            {{ form.latitud }}
+                        </div>
+                        <div class="form-group" style="text-align: center">
+                            <label >Ubicación por longitud</label>
+                            {{ form.longitud }}
+                        </div>
+                        <div class="form-group" style="text-align: center">
+                            <label >Dimenciones en el caso que sea un mural </label>
+                            {{ form.dimenciones }}
+                        </div>
+                        <div class="form-group" style="text-align: center">
+                            <label >Técnica</label>
+                            {{ form.Tecnica }}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Guardar Edición</button>
+                        <a type="submit" class="btn btn-danger" href="/colecciones">Cancelar</a>
                     </form>
                 </div>
             </div>

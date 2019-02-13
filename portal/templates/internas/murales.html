@@ -42,9 +42,11 @@
 
                         <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
                         <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter{{ img.idimagen }}"><i class="far fa-clone text-primary"></i></a>
                         <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()" title="Ver más contenido"><i class="far fa-plus-square text-primary"></i></a>
                       </div>
                       <div class="card-footer bg-transparent ">
+
                         <p class="mb-0">A <span id="like_count{{ img.idimagen }}" class="text-primary">{{ img.likes }}</span> personas les gusta</p>
                       </div>
                         {% comment %}<div id="like-section">
@@ -60,6 +62,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ img.nombre }}</h5>
                   <div class="d-flex justify-content-between mb-3">
+                    <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter{{ img.idimagen }}"><i class="far fa-clone text-primary"></i></a>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
                     <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()"><i class="far fa-plus-square text-primary"></i></a>
@@ -116,20 +119,20 @@
                     <p><strong>Ubicación: </strong> {{ img.ciudad}}, {{ img.pais}}</p>
                     <p><strong>Dirección: </strong>{{ img.direccion }}</p>
                     <p>
-                      <div id="googleMap{{ img.idimagen}}" class="map{{ img.idimagen}}" style="width:100%;height:400px;"></div>
-                      <script>
-                          function myMap() {
-                            var mapProp= {
-                              {#center:new google.maps.LatLng(51.508742,-0.120850), #}
-                              center:new google.maps.LatLng({{ img.latitud}},{{ img.longitud}}),
-                              zoom:5,
+                      <div id="googleMap{{ img.idimagen}}" style="width:100%;height:400px;"></div>
 
-                            };
-                            var map = new google.maps.Map(document.getElementById("googleMap{{ img.idimagen}}"),mapProp);
-                            }
-                      </script>
-                      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX-toesnzWdXs-hxjFAUXnui_uaMoDFt0&callback=myMap"  alt="img_{{ img.nombre }}"></script>
+                        <script>
+                        function myMap() {
+                        var mapProp= {
+                          {#center:new google.maps.LatLng(51.508742,-0.120850),#}
+                          center:new google.maps.LatLng({{ img.latitud}},{{ img.longitud}}),
+                          zoom:5,
+                        };
+                        var map = new google.maps.Map(document.getElementById("googleMap{{ img.idimagen}}"),mapProp);
+                        }
+                        </script>
 
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDygkhiNJvyaDFcVM8zfiH8uyOnfkOVqz8&callback=myMap"></script>
                     </p>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d995.0473635016231!2d-79.20189107083627!3d-3.9814019998190173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cb480a41b54935%3A0xa541050dbf43c14c!2sIglesia+de+El+Valle!5e0!3m2!1ses!2sec!4v1549520284787" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                     <p class="mt-3 text-justify">{{ img.descripcion}}</p>

@@ -34,7 +34,9 @@
                       <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top">
                       <hr>
                       <p class="text-justify">{{ img.descripcion }}</p>
+                        {% if user.is_authenticated %}
                         <a type="submit" class="btn btn-dark btn-block" href="/editarColeccion/{{ img.idimagen }} ">Agregar contenido</a>
+                        {% endif %}
                     </div>
 
                   </div>
