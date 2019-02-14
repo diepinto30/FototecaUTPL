@@ -1,6 +1,5 @@
-
 {% extends 'master.html' %}
-{% block tittle %} Monumentos {% endblock %}
+{% block tittle %} Murales {% endblock %}
 {% load static %}
 {% block head %}
   <style>
@@ -9,9 +8,6 @@
     }
   </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<meta name="viewport" content="initial-scale=1.0">
-<meta charset="utf-8">
-
 
 {% endblock %}
 {% block content1 %}
@@ -26,12 +22,13 @@
                     <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
                     <div class="card-body">
                       <h5 class="card-title">{{ img.nombre }}</h5>
-                      <div class="input-group mb-3">
+                        <hr>
+                      {% comment %}<div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Escribe un comentario...">
                         <div class="input-group-prepend">
                           <div class="input-group-text" id="btnGroupAddon{{ img.idimagen }}"><i class="fas fa-comment-dots" style="cursor: pointer"></i></div>
                         </div>
-                      </div>
+                      </div>{% endcomment %}
                       <div class="d-flex justify-content-between mb-3">
                            <button id="likes-{{forloop.counter0}}" class="btn btn-warning btn-sm" type="button" onclick="likeThisComment('{{img.idimagen}}')"><i class="far fa-thumbs-up"></i> Me gusta</button>
                           <script>
@@ -46,16 +43,16 @@
 
                         <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
                         <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter{{ img.idimagen }}"><i class="far fa-clone text-primary"></i></a>
                         <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()" title="Ver más contenido"><i class="far fa-plus-square text-primary"></i></a>
                       </div>
                       <div class="card-footer bg-transparent ">
+
                         <p class="mb-0">A <span id="like_count{{ img.idimagen }}" class="text-primary">{{ img.likes }}</span> personas les gusta</p>
                       </div>
-
-
-{#                        <div id="like-section">#}
-{#                            {% include 'internas/commit.html' %}#}
-{#                          </div>#}
+                        {% comment %}<div id="like-section">
+                            {% include 'internas/commit.html' %}
+                          </div>{% endcomment %}
                     </div>
                   </div>
                 </div>
@@ -66,6 +63,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ img.nombre }}</h5>
                   <div class="d-flex justify-content-between mb-3">
+                    <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter{{ img.idimagen }}"><i class="far fa-clone text-primary"></i></a>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
                     <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-sm btn-light" onclick="seemore_{{ img.idimagen}}()"><i class="far fa-plus-square text-primary"></i></a>
@@ -85,8 +83,8 @@
                 <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
                 <div class="card-body">
                   <h5 class="card-title">{{ img.nombre }}</h5>
-                  <div class="d-flex justify-content-between mb-3">
-                      <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter{{ img.idimagen }}"><i class="far fa-clone text-primary"></i></a>
+                  <div class="d-flex justify-content-around mb-3">
+                    <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter{{ img.idimagen }}"><i class="far fa-clone text-primary"></i></a>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-light" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
                     <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-light" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
                   </div>
@@ -108,31 +106,77 @@
               <div class="bg-light p-3 w-80" >
                 <div id="n1-{{ img.idimagen}}" class="card">
                   <a name="n{{ img.idimagen}}"></a>
-                  <div class="card-body"><strong>Nombre de mural: </strong>{{ img.nombre }}<br><br>{{ img.descripcion}}</div>
+                  <div class="card-body">
+                    <p><strong>Nombre de mural: </strong>{{ img.nombre }}</p>
+                    <p class="text-justify">{{ img.descripcion }}</p>
+                  </div>
+                     <center><img src="/media/{{ img.img_qr}}" alt="img_{{ img.nombre }}" class="card-img-top" style="width: 20em;height: 20em"></center>
+                    <br>
                 </div>
+                <!--<div id="n1-{{ img.idimagen}}" class="card">
+                  <a name="n{{ img.idimagen}}"></a>
+                  <div class="card-body"><strong>Nombre de mural: </strong>{{ img.nombre }}<br><br>{{ img.descripcion}}</div>
+                   <center><img src="/media/{{ img.img_qr}}" alt="img_{{ img.nombre }}" class="card-img-top" style="width: 20em;height: 20em"></center> <br>
+                </div>-->
 
                 <div id="n2-{{ img.idimagen}}" style="display: none;" class="card">
                   <div class="card-body" >
                         {% include 'internas/autores.html' %}
                   </div>
                 </div>
-                <div id="n3-{{ img.idimagen}}" style="display: none" class="card">
+              <div id="n3-{{ img.idimagen}}" style="display: none" class="card">
                   <div class="card-body">
                     <a name="n3{{ img.idimagen}}"></a>
                     <p><strong>Ubicación: </strong> {{ img.ciudad}}, {{ img.pais}}</p>
                     <p><strong>Dirección: </strong>{{ img.direccion }}</p>
-                    <div id="googleMap" class="map{{ img.idimagen}}" style="width:100%;height:400px;"></div>
-{#                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d995.0473635016231!2d-79.20189107083627!3d-3.9814019998190173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cb480a41b54935%3A0xa541050dbf43c14c!2sIglesia+de+El+Valle!5e0!3m2!1ses!2sec!4v1549520284787" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>#}
-                    <p class="mt-3 text-justify">{{ img.descripcion}}</p>
+                    <div id="googleMap{{ img.idimagen}}" style=""></div>
+                    <script>
+                    function myMap() {
+                    var mapProp= {
+                      {#center:new google.maps.LatLng(51.508742,-0.120850),#}
+                      center:new google.maps.LatLng({{ img.latitud}},{{ img.longitud}}),
+                      zoom:5,
+                    };
+                    var map = new google.maps.Map(document.getElementById("googleMap{{ img.idimagen}}"),mapProp);
+                    }
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDygkhiNJvyaDFcVM8zfiH8uyOnfkOVqz8&callback=myMap"></script>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d995.0473635016231!2d-79.20189107083627!3d-3.9814019998190173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cb480a41b54935%3A0xa541050dbf43c14c!2sIglesia+de+El+Valle!5e0!3m2!1ses!2sec!4v1549520284787" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                   </div>
                 </div>
-                {% for coment in comentlist %}
-                    <div id="n4-{{ img.idimagen}}" style="display: none" class="card">
-                      <div class="card-body">
-                        <p>hla: {{ coment.comentario }}</p>
-                      </div>
-                    </div>
-                {% endfor %}
+                <!--<div id="n3-{{ img.idimagen}}" style="display: none" class="card">
+                  <div class="card-body">
+                    <a name="n3{{ img.idimagen}}"></a>
+                    <p><strong>Ubicación: </strong> {{ img.ciudad}}, {{ img.pais}}</p>
+                    <p><strong>Dirección: </strong>{{ img.direccion }}</p>
+                    <p>
+                      <div id="googleMap{{ img.idimagen}}" style="width:100%;height:400px;"></div>
+
+                        <script>
+                        function myMap() {
+                        var mapProp= {
+                          {#center:new google.maps.LatLng(51.508742,-0.120850),#}
+                          center:new google.maps.LatLng({{ img.latitud}},{{ img.longitud}}),
+                          zoom:5,
+                        };
+                        var map = new google.maps.Map(document.getElementById("googleMap{{ img.idimagen}}"),mapProp);
+                        }
+                        </script>
+
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDygkhiNJvyaDFcVM8zfiH8uyOnfkOVqz8&callback=myMap"></script>
+                    </p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d995.0473635016231!2d-79.20189107083627!3d-3.9814019998190173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cb480a41b54935%3A0xa541050dbf43c14c!2sIglesia+de+El+Valle!5e0!3m2!1ses!2sec!4v1549520284787" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+                  </div>
+                </div>-->
+                <div id="n4-{{ img.idimagen}}" style="display: none" class="card">
+                  <div class="card-body">
+                      {% include 'internas/list_comentarios.html' %}
+                      {% if user.is_authenticated %}
+                        <a href="/commit/" id="btnGroupAddon{{ img.idimagen }}" class="btn btn-warning">Agregar comentario</a>
+                      {% endif %}
+                  </div>
+                </div>
 
               </div>
             </div>
@@ -179,14 +223,6 @@
                 function doDoubleClickActionComentario_{{ img.idimagen}}() {
                     document.getElementById('comentario{{ img.idimagen}}').style.display = "none";
                 }
-                function myMap() {
-                    var mapProp= {
-                        {#center:new google.maps.LatLng(51.508742,-0.120850),#}
-                        center:new google.maps.LatLng({{ img.latitud }},{{ img.longitud }}),
-                        zoom:5,
-                };
-                var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                }
             </script>
 
 
@@ -209,15 +245,10 @@
                 </div>
             </div>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqaUQdi2hAjOPBjEtaYZ0dQ8dOjverm8A&callback=myMap"  alt="img_{{ img.nombre }}"></script>
-
-
 
         {% endfor %}
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </div>
-
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 {% endblock %}
+<br><br><h1>MAP</h1>
+<div id="map"></div>

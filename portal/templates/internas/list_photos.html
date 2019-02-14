@@ -17,16 +17,17 @@
           <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top" height="215px">
           <div class="card-body">
             <h5 class="card-title text-center">{{ img.nombre }}</h5>
+            <hr>
             <div class="d-flex justify-content-around">
               <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8080%2Fmurales%2F&amp;src=sdkpreparse" class="btn btn-sm btn-outline-primary" title="Compartir en Facebook" data-href="http://127.0.0.1:8080/murales/" target="_blank"><i class="fab fa-facebook-f fb-share-button"></i></a>
               <a href="https://twitter.com/intent/tweet?hashtags=example%2Cdemo&original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Fguides%2Fparameter-reference1&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=Fototeca%20UTPL,%20Imganen%20{{ img.nombre}}, &tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev" class="btn btn-sm btn-outline-primary" title="Compartir en Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
               <a class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter{{ img.idimagen }}"><i class="far fa-clone text-primary"></i></a>
               <div class="modal fade" id="exampleModalCenter{{ img.idimagen }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
                   <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalCenterTitle">{{ img.nombre }}</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <div class="modal-header bg-azulMarino rounded-0">
+                      <h5 class="modal-title text-white" id="exampleModalCenterTitle">{{ img.nombre }}</h5>
+                      <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
@@ -34,7 +35,9 @@
                       <img src="/media/{{ img.foto }}" alt="img_{{ img.nombre }}" class="card-img-top">
                       <hr>
                       <p class="text-justify">{{ img.descripcion }}</p>
-                        <button type="submit" class="btn btn-dark btn-block" href="{% url 'colecciones_edit' img.idimagen %}">Agregar contenido</button>
+                      {% if user.is_authenticated %}
+                      <a type="submit" class="btn btn-outline-warning btn-block text-dark" href="/editarColeccion/{{ img.idimagen }} ">Agregar contenido</a>
+                      {% endif %}
                     </div>
 
                   </div>

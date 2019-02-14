@@ -6,11 +6,12 @@
 {% endblock %}
 
 {% block content1 %}
-    <div class="row pt-5">
-        <div class="col-md-4 mx-auto">
-            <div class="card">
-                <h3 class="card-header py-6">REGISTRATE GRATIS</h3>
-                <div class="card-body">
+    <h3 class="text-center h1 mt-5">REGÍSTRATE EN EL SISTEMA</h3>
+    <hr class="bg-warning mb-4">
+    <div class="row mb-3">
+      <div class="col-md-4 mx-auto">
+        <div class="card">
+              <div class="card-body">
                     <form method="post" class="text-left">
                         {% csrf_token %}
                             <div class="form-group" style="text-align: center">
@@ -37,11 +38,10 @@
                                 <label >Contraseña (confirmación):</label><br>
                                 {{ form.password2 }}
                             </div>
-                    <button type="submit" class="btn btn-warning btn-block">Sign up</button>
+                    <button type="submit" class="btn btn-warning btn-block">Registrarse</button>
                     </form>
                 </div>
-            </div>
-        </div>
+          </div>
+      </div>
     </div>
-    <br><br>
 {% endblock %}

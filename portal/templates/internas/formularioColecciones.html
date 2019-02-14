@@ -2,9 +2,85 @@
 {% block tittle %} Editar Colecciones {% endblock %}
 {% load static %}
 {% block content1 %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn-primary">Guardar Edicion</button>
-    </form>
+    <div class="row pt-4">
+        <div class="col-md-8 mx-auto">
+            <div class="card mb-4">
+                <div class="card-header">
+                  <h3 class="py-1 text-center">Editar o agregar contenido</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                          <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre: </label>
+                          <div class="col-sm-10">
+                            {{ form.nombre }}
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputPassword3" class="col-sm-2 col-form-label">Descripción: </label>
+                          <div class="col-sm-10">
+                            {{ form.descripcion }}
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputPassword3" class="col-sm-5 col-form-label">¿Existe algún rostro en la imágen?</label>
+                          <div class="col-sm-3">
+                            {{ form.hayrostros }}
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputPassword3" class="col-sm-2 col-form-label">Dirección: </label>
+                          <div class="col-sm-10">
+                            {{ form.direccion }}
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputPassword3" class="col-sm-2 col-form-label">País: </label>
+                          <div class="col-sm-5">
+                            {{ form.pais }}
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputPassword3" class="col-sm-2 col-form-label">Ciudad: </label>
+                          <div class="col-sm-5">
+                            {{ form.ciudad }}
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputPassword3" class="col-sm-2 col-form-label">Ubicación por latitud: </label>
+                          <div class="col-sm-5">
+                            {{ form.latitud }}
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputPassword3" class="col-sm-2 col-form-label">Ubicación por longitud: </label>
+                          <div class="col-sm-5">
+                            {{ form.longitud }}
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputPassword3" class="col-sm-4 col-form-label">Dimenciones en el caso que sea un mural: </label>
+                          <div class="col-sm-3">
+                            {{ form.dimenciones }}
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputPassword3" class="col-sm-2 col-form-label">Técnica: </label>
+                          <div class="col-sm-3">
+                            {{ form.Tecnica }}
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-10">
+                            <button type="submit" class="btn btn-azulMarino text-white">Guardar Edición</button>
+                            <a class="btn btn-warning" href="/colecciones">Cancelar</a>
+                          </div>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

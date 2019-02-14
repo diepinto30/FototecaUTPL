@@ -1,0 +1,16 @@
+{% load static %}
+{% for coment in comentlist %}
+    <div class="media mb-2">
+        <span class="bg-azulMarino rounded-circle text-white p-4 mr-3"><i class="far fa-user fa-2x"></i></span>
+        <div class="media-body">
+          <p><strong>{{ coment.iduser }}</strong> | {{ coment.fecha_comentario }}</p>
+          {{ coment.comentario }}
+        </div>
+    </div>
+    <hr>
+    <!--<p>
+        <strong><i class="far fa-user"></i><i> -{{ coment.iduser }}-</i></strong> | {{ coment.fecha_comentario }}
+        <br>Dice: {{ coment.comentario }}
+        <hr>
+    </p>-->
+{% endfor %}

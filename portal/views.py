@@ -92,7 +92,8 @@ def monumentos_list(request):
 	imagMonu = Imagen.objects.all().order_by('idimagen')
 	Categoria = ImagenHasCategorias.objects.all()
 	user = AuthUser.objects.all()
-	diccionario = {'list_imgs': imagMonu, 'list_monu': Categoria, 'userlist': user}
+	comentarios = Actividades.objects.all()
+	diccionario = {'list_imgs': imagMonu, 'list_monu': Categoria, 'userlist': user, 'comentlist': comentarios}
 	return render(request, 'internas/monumentos.html', diccionario)
 
 
@@ -153,6 +154,20 @@ def commit(request):
 	return render(request, 'internas/commit.html', {'form': form})
 
 
+# def commitMonu(request, id):
+# 	commit = Actividades.objects.get(iduser=id)
+# 	if request.method == 'GET':
+# 		form = CommitsForm(instance=commit)
+# 	else:
+# 		form = CommitsForm(request.POST, instance=commit)
+# 		if form.is_valid():
+# 			form.save()
+# 		return redirect('home')
+# 	return render(request, 'internas/commit.html', {'form': form})
+
+
+
+
 def colecciones_edit(request, id):
 	colecciones = Imagen.objects.get(idimagen=id)
 	if request.method == 'GET':
@@ -161,7 +176,7 @@ def colecciones_edit(request, id):
 		form = ColeccionesForm(request.POST, instance=colecciones)
 		if form.is_valid():
 			form.save()
-		return redirect('home')
+		return redirect('/colecciones')
 	return render(request, 'internas/formularioColecciones.html', {'form': form})
 
 
@@ -223,4 +238,3 @@ def colecciones_edit(request, id):
 # 	diccionario = {'list_tipoMura': imagenes, 'titulo': titulo}
 # 	return render(request, 'internas/murales.html', diccionario,context_instance=RequestContext(request))
 #
-

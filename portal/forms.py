@@ -15,17 +15,35 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
 
 
-class LoginFrom(forms.Form):
+class LoginFrom(forms.ModelForm):
 	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+        class Meta:
+            model = User
+            fields = ('username', 'password')
 
 
 class ColeccionesForm(forms.ModelForm):
+    CHOICES = (
+        ('1', 'Desconocido'),
+        ('2', 'Si'),
+        ('3', 'No'),
+    )
+
+    nombre = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    descripcion = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    hayrostros = forms.ChoiceField(widget=forms.Select(attrs={'class': 'custom-select'}), choices=CHOICES)
+    direccion = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    pais = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    ciudad = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    latitud = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    longitud = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    dimenciones = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    Tecnica = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     class Meta:
         model = Imagen
 
         fields = [
-            'iduser',
             'nombre',
             'descripcion',
             'hayrostros',
@@ -38,7 +56,6 @@ class ColeccionesForm(forms.ModelForm):
             'Tecnica',
         ]
         labels = {
-            'iduser': 'User',
             'nombre': 'Nombre de la imagen',
             'descripcion': 'Descripcion',
             'hayrostros': 'Existe algun rostro',
@@ -56,9 +73,9 @@ class CommitsForm(forms.ModelForm):
     class Meta:
         model = Actividades
         fields = ['iduser', 'idimagen', 'comentario']
-        labels = {'iduser': 'user', 'idimagen': 'img', 'comentario': 'comentario',}
+        labels = {'iduser': 'user', 'idimagen': 'img', 'comentario': 'comentario'}
         widgets = {
             'iduser': forms.TextInput(attrs={'class':'form-control'}),
             'idimagen': forms.TextInput(attrs={'class':'form-control'}),
-            'comentario': forms.TextInput(attrs={'class':'form-control'})
+            'comentario': forms.Textarea(attrs={'rows': 3, 'class':'form-control'})
         }
