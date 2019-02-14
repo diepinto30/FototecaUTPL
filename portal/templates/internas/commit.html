@@ -1,28 +1,33 @@
-<h1>New post</h1>
-   {% comment %} <form method="post" class="text-left">
+{% extends 'master.html' %}
+{% block tittle %} Editar Colecciones {% endblock %}
+{% load static %}
+{% block content1 %}
+   <form method="post" class="text-left">
         {% csrf_token %}
             <div class="form-group" style="text-align: center">
-                <label >Nombres de usuario</label>
+                <label >id user</label>
                 {{ form.iduser }}
             </div>
             <div class="form-group" style="text-align: center">
-                <label >Apellidos de usuario</label>
+                <label >id imagen</label>
                 {{ form.idimagen }}
             </div>
             <div class="form-group" style="text-align: center">
-                <label >Username</label><br>
+                <label >Comentar</label><br>
                 {{ form.comentario }}
             </div>
-        <button type="submit" class="btn btn-warning btn-block">Commit</button>
+        <button type="submit" class="btn btn-primary btn-block">Commit</button>
     </form>
-{% endcomment %}
 
+{% endblock %}
+{% comment %}
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <div class="form-group" style="text-align: center">
-                <label >Nombres de usuario</label>
-                {{ form.iduser }}
-            </div>
-    <input type="submit" value="Añadir persona" />
+
+    {{ form.iduser }}<br>hola
+    {{ form.idimagen }}<br>hola2
+    {{ form.comentario }}<br>hola3444
+
+    <button type="submit" class="btn-primary">Comentar</button>
 </form>
+{% endcomment %}

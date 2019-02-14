@@ -17,13 +17,14 @@ from django.template.loader import render_to_string
 from portal.models import *
 from portal.models import ImagenHasCategorias
 from portal.models import Imagen
+from portal.forms import ColeccionesForm
 
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from portal.forms import SignUpForm
-from portal.forms import CommitForm
+from portal.forms import CommitsForm
 
 
 
@@ -53,8 +54,6 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'internas/signup.html', {'form': form})
-
-
 
 
 def listado_fotos(request):
@@ -102,7 +101,6 @@ def logout_view(request):
     return render_to_response('internas/logout.html', context=RequestContext(request))
 
 
-
 def ImgMonu_edit(request, idimagen):
 	imagMonu = Imagen.objects.get(id=idimagen)
 	if request.method == 'GET':
@@ -145,14 +143,26 @@ def like(request):
 
 
 def commit(request):
-    if request.method == 'POST':
-        form = CommitForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        form = SignUpForm()
-    return render(request, 'internas/commit.html', {'form': form})
+	if request.method == 'POST':
+		form = CommitsForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('home')
+	else:
+		form = CommitsForm()
+	return render(request, 'internas/commit.html', {'form': form})
+
+
+def colecciones_edit(request, id):
+	colecciones = Imagen.objects.get(idimagen=id)
+	if request.method == 'GET':
+		form = ColeccionesForm(instance=colecciones)
+	else:
+		form = ColeccionesForm(request.POST, instance=colecciones)
+		if form.is_valid():
+			form.save()
+		return redirect('home')
+	return render(request, 'internas/formularioColecciones.html', {'form': form})
 
 
 

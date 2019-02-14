@@ -1,0 +1,10 @@
+{% extends 'master.html' %}
+{% block tittle %} Editar Colecciones {% endblock %}
+{% load static %}
+{% block content1 %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-primary">Guardar Edicion</button>
+    </form>
+{% endblock %}
