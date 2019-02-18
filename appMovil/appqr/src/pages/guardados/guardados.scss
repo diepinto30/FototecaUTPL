@@ -1,0 +1,7 @@
+page-guardados {
+  $song-card-height: 90px;
+
+  [ion-item] {
+    background-color: map-get($colors, primary);
+  }
+}

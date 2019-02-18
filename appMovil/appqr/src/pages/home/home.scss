@@ -1,0 +1,19 @@
+page-home {
+
+  ion-content {
+  background-image: /*linear-gradient(rgba(186, 139, 2, 0.9), rgba(24, 24, 24, 0.9)),*/
+                    url('../assets/img/logo-fototeca.jpg');
+                    -webkit-background-image: url('../assets/img/logo-fototeca.jpg');
+  background-repeat: no-repeat;
+  background-size:contain;
+  background-position-y: 22%;
+
+  }
+  [ion-button] {
+    background-color: map-get($colors, warning );
+    margin-top: 116%;
+  }
+
+
+
+}

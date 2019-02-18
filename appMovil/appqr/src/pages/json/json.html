@@ -1,0 +1,40 @@
+<!-- Contenido presentado en el ViewController -->
+<ion-content>
+
+  <ion-card padding>
+    <ion-card-header>
+      <ion-card-title color= "medium" text-center > <b> {{ nombre }} </b> </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card padding>
+    <ion-card-content text-justify>
+      <h2> <b> Ciudad: </b> {{ ciudad }} </h2>
+      <h2> <b> Pais: </b> {{ pais }} </h2>
+      <h2> <b> Ubicación: </b> {{ direccion }} </h2>
+      <h2> <b> Descripción: </b> {{ descripcion }} </h2>
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <!-- Footer con boton de cierre de modal -->
+  <ion-footer>
+    <ion-toolbar color="dark">
+
+      <ion-buttons end>
+        <button 
+                ion-button>
+          <a href="https://www.utpl.edu.ec/" style="text-decoration: none;"> MÁS INFORMACIÓN </a>
+        </button>
+
+        <button ion-button
+                (click)="cerrar_modal()">
+          Cerrar
+        </button>
+
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
+
+</ion-content >

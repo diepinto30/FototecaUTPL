@@ -1,0 +1,10 @@
+{
+  "name": "qrapp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "v2": true,
+  "typescript": true,
+  "id": "1c45f2c4"
+}
