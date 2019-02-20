@@ -26,6 +26,9 @@ from django.contrib.auth.decorators import login_required
 from portal.forms import SignUpForm
 from portal.forms import CommitsForm
 
+import pyqrcode		#libreria para qr
+import requests
+import json
 
 
 # Create your views here.
@@ -42,18 +45,18 @@ def login_home(request):
 
 
 def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('home')
-    else:
-        form = SignUpForm()
-    return render(request, 'internas/signup.html', {'form': form})
+	if request.method == 'POST':
+		form = SignUpForm(request.POST)
+		if form.is_valid():
+			form.save()
+			username = form.cleaned_data.get('username')
+			raw_password = form.cleaned_data.get('password1')
+			user = authenticate(username=username, password=raw_password)
+			login(request, user)
+			return redirect('home')
+	else:
+		form = SignUpForm()
+	return render(request, 'internas/signup.html', {'form': form})
 
 
 def listado_fotos(request):
@@ -80,6 +83,13 @@ def celulas(request):
 
 def murales(request):
 	imagenes = Imagen.objects.all()
+	for img in imagenes:
+		#generando Qr
+		data_img = requests.get('http://localhost:8000/monumentos/ws/imagenes/'+str(img.idimagen))
+		
+		qr = pyqrcode.create(data_img.content)
+		qr.svg('media/portal/imgs/QRS_fototeca/'+str(img.idimagen)+'.svg', scale=7)
+
 	Categoria = ImagenHasCategorias.objects.all()
 	Autores = Autor.objects.all()
 	comentarios = Actividades.objects.all()
@@ -90,6 +100,15 @@ def murales(request):
 
 def monumentos_list(request):
 	imagMonu = Imagen.objects.all().order_by('idimagen')
+	for img in imagMonu:
+		#generando Qr
+		#Obtener json de web services
+		data_img = requests.get('http://localhost:8000/monumentos/ws/imagenes/'+str(img.idimagen))
+		#Crear qr
+		qr = pyqrcode.create(data_img.content)
+		#Almacenar qr
+		qr.svg('media/portal/imgs/QRS_fototeca/'+str(img.idimagen)+'.svg', scale=7)
+
 	Categoria = ImagenHasCategorias.objects.all()
 	user = AuthUser.objects.all()
 	comentarios = Actividades.objects.all()
@@ -98,8 +117,8 @@ def monumentos_list(request):
 
 
 def logout_view(request):
-    logout(request)
-    return render_to_response('internas/logout.html', context=RequestContext(request))
+	logout(request)
+	return render_to_response('internas/logout.html', context=RequestContext(request))
 
 
 def ImgMonu_edit(request, idimagen):
@@ -194,24 +213,24 @@ def colecciones_edit(request, id):
 #
 # 	return JsonResponse({'liked': _liked})
 
-    # user = check_validation(request)
-    # if user and request.method == 'POST':
-    #    form = LikeForm(request.POST)
-    #    if form.is_valid():
-    #        #post_id = form.cleaned_data.get('post').id
-    #        post_id=request.POST['post']
+	# user = check_validation(request)
+	# if user and request.method == 'POST':
+	#    form = LikeForm(request.POST)
+	#    if form.is_valid():
+	#        #post_id = form.cleaned_data.get('post').id
+	#        post_id=request.POST['post']
 	#
-    #        existing_like = Megusta.objects.filter(post_id=post_id, user=user).first()
+	#        existing_like = Megusta.objects.filter(post_id=post_id, user=user).first()
 	#
-    #        if not existing_like:
-    #             Megusta.objects.create(post_id=post_id, user=user)
-    #        else:
-    #             existing_like.remove(user)
+	#        if not existing_like:
+	#             Megusta.objects.create(post_id=post_id, user=user)
+	#        else:
+	#             existing_like.remove(user)
 	#
-    #     return redirect('home_page.html')
+	#     return redirect('home_page.html')
 	#
-    # else:
-    #     return redirect('internas/login.html')
+	# else:
+	#     return redirect('internas/login.html')
 
 
 # def foto(request, id):

@@ -11,7 +11,12 @@ from portal.models import Imagen
 def wsImagenes_view1(request, id):
      
     data = Imagen.objects.filter(idimagen=id)
-    data = serializers.serialize('json', data)
+    desc = data[0].descripcion[:75] + ' ...'
+    newdata = data[0]
+    newdata.descripcion = desc
+    lst = []
+    lst.append(newdata)
+    data = serializers.serialize('json', lst)
     return HttpResponse (data, content_type='application/json')
 
 def wsImagenes_view(request):
