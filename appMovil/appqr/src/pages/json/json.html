@@ -16,15 +16,17 @@
     </ion-card-content>
   </ion-card>
 
+  <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="16">
+    <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+  </sebm-google-map>
 
-
+  </ion-content >
   <!-- Footer con boton de cierre de modal -->
   <ion-footer>
     <ion-toolbar color="dark">
 
       <ion-buttons end>
-        <button 
-                ion-button>
+        <button ion-button>
           <a href="https://www.utpl.edu.ec/" style="text-decoration: none;"> MÁS INFORMACIÓN </a>
         </button>
 
@@ -32,9 +34,7 @@
                 (click)="cerrar_modal()">
           Cerrar
         </button>
-
       </ion-buttons>
+
     </ion-toolbar>
   </ion-footer>
-
-</ion-content >

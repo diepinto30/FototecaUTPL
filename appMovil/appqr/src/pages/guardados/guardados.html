@@ -10,12 +10,9 @@
               color ="warning"
               *ngFor="let data of historial; let i = index"
               (click)="abrir_scan( i )">
-              {{ data.info }}
+              {{ data.celula }}
               <p>
                 {{ data.tipo }}
-              </p>
-              <p>
-                {{ i }}
               </p>
       </button>
 

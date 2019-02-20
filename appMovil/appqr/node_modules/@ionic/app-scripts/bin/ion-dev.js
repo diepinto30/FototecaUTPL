@@ -98,7 +98,8 @@ window.IonicDevServer = {
 
   openConnection: function() {
     var self = this;
-    this.socket = new WebSocket('ws://' + window.location.hostname + ':' + IonicDevServerConfig.wsPort);
+    var socketProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    this.socket = new WebSocket(socketProtocol + '//' + window.location.hostname + ':' + IonicDevServerConfig.wsPort);
 
     this.socket.onopen = function(ev) {
       self.socketReady = true;
@@ -169,10 +170,10 @@ window.IonicDevServer = {
       })();
     }
 
-    for (var consoleType in console) {
-      if (console.hasOwnProperty(consoleType) && typeof console[consoleType] === 'function') {
-        patchConsole(consoleType);
-      }
+    // https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-console/#supported-methods
+    var consoleFns = ['log', 'error', 'exception', 'warn', 'info', 'debug', 'assert', 'dir', 'dirxml', 'time', 'timeEnd', 'table'];
+    for (var i in consoleFns) {
+      patchConsole(consoleFns[i]);
     }
   },
 
@@ -391,7 +392,9 @@ window.IonicDevServer = {
       }
     });
 
-    this.enableShake();
+    if (location.href.indexOf('devapp=true') < 0) {
+      this.enableShake();
+    }
   },
 
   enableShake: function() {

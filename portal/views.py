@@ -85,9 +85,11 @@ def murales(request):
 	imagenes = Imagen.objects.all()
 	for img in imagenes:
 		#generando Qr
+		#Obtener json de web services
 		data_img = requests.get('http://localhost:8000/monumentos/ws/imagenes/'+str(img.idimagen))
-		
+		#Solicitud al rest para obtener a json
 		qr = pyqrcode.create(data_img.content)
+		#Almacena en archivo.svg
 		qr.svg('media/portal/imgs/QRS_fototeca/'+str(img.idimagen)+'.svg', scale=7)
 
 	Categoria = ImagenHasCategorias.objects.all()

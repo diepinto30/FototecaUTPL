@@ -21,6 +21,4 @@ export class GuardadosPage {
     this._historialService.abrir_scan( index );
   }
 
-
-
 }
